@@ -56,6 +56,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#plugins" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -506,10 +511,62 @@
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Index
+        <span class="md-nav__icon md-icon"></span>
+      </label>
     
     <a href="./" class="md-nav__link md-nav__link--active">
       Index
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-defining-what-our-archivy-extension-does" class="md-nav__link">
+    Step 1: Defining what our archivy extension does
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-setting-up-the-project" class="md-nav__link">
+    Step 2: Setting up the project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-writing-the-core-code-of-our-plugin" class="md-nav__link">
+    Step 3: Writing the core code of our plugin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-publishing-our-package-to-pypi" class="md-nav__link">
+    Step 4: Publishing our package to Pypi
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -526,6 +583,57 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-defining-what-our-archivy-extension-does" class="md-nav__link">
+    Step 1: Defining what our archivy extension does
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-setting-up-the-project" class="md-nav__link">
+    Step 2: Setting up the project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-writing-the-core-code-of-our-plugin" class="md-nav__link">
+    Step 3: Writing the core code of our plugin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-publishing-our-package-to-pypi" class="md-nav__link">
+    Step 4: Publishing our package to Pypi
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -536,9 +644,105 @@
                   </a>
                 
                 
-                  <h1>Index</h1>
-                
-                
+                <h1 id="plugins">Plugins</h1>
+<p>Plugins are a newly introduced method to add extensions to the archivy cli and web interface. It relies on the extremely useful <a href="https://github.com/click-contrib/click-plugins">click-plugins</a> package that is loaded through pip and the <a href="https://github.com/click-contrib/click-plugins">click-web</a> which has been modified and whose can be found in <code>archivy/click_web/</code>, some of the tests, templates and static files.</p>
+<p>To help you understand the way the plugin system works, we're going to build our own plugin that allows users to sync content from <code>pocket</code>. We'll even deploy it to Pypi so that other people can install it.</p>
+<p>Prerequisites: A python and pip installation with archivy.</p>
+<h2 id="step-1-defining-what-our-archivy-extension-does">Step 1: Defining what our archivy extension does</h2>
+<p><code>archivy</code> source used to have a built-in feature that allowed you to sync up to the bookmarks of your pocket account. We removed this and prefer to replace it with a standalone plugin, so let's build it!</p>
+<p>What it will do is allow a user to download their bookmarks from pocket, without redownloading content that already exists.</p>
+<h2 id="step-2-setting-up-the-project">Step 2: Setting up the project</h2>
+<p>Make a new directory named <code>archivy_pocket</code> wherever you want on your system and create a new <a href="https://stackoverflow.com/questions/1471994/what-is-setup-py"><code>setup.py</code></a> file that will define the characteristics of our package.</p>
+<p>This is what it looks like:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;README.md&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+    <span class="n">long_description</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;archivy_pocket&#39;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1.0&#39;</span><span class="p">,</span>
+    <span class="n">author</span><span class="o">=</span><span class="s2">&quot;Uzay-G&quot;</span><span class="p">,</span>
+    <span class="n">author_email</span><span class="o">=</span><span class="s2">&quot;halcyon@disroot.org&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">&quot;Archivy extension to sync content to your pocket account.&quot;</span>
+    <span class="p">),</span>
+    <span class="n">long_description</span><span class="o">=</span><span class="n">long_description</span><span class="p">,</span>
+    <span class="n">long_description_content_type</span><span class="o">=</span><span class="s2">&quot;text/markdown&quot;</span><span class="p">,</span>
+    <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;Programming Language :: Python :: 3&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        [archivy.plugins]</span>
+<span class="s1">        pocket=archivy_pocket:pocket</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Let's walk through what this is doing. We are setting up our package and we define a few characteristics of the package. We specify some metadata you can adapt to your own package. We then load our package by using the <code>find_packages</code> function. The <code>entry_points</code> part is the most important. The <code>[archivy.plugins]</code> tells archivy that this package will extend our CLI and then we define the command we want to add. In our case, people will call the extension using <code>archivy pocket</code>. We will actually be creating a group so that people will call subcommands like this: <code>archivy pocket &lt;subcommand&gt;</code>. You can do things either way.</p>
+<p>Create a <code>README.md</code> file that you can keep empty for now but should haCve information on your project.</p>
+<h2 id="step-3-writing-the-core-code-of-our-plugin">Step 3: Writing the core code of our plugin</h2>
+<p>Create an <code>archivy_web</code> directory inside the current directory where <code>setup.py</code> is stored. Create an <code>__init__.py</code> file in that directory where we'll store our main project code. For larger projects, it's better to separate concerns but that'll be good for now.</p>
+<p>This is what the skeleton of our code looks will look like.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">click</span> <span class="c1"># the package that manages the cli</span>
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">pocket</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="nd">@pocket</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">command1</span><span class="p">():</span>
+    <span class="o">...</span>
+
+<span class="nd">@pocket</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">command2</span><span class="p">():</span>
+    <span class="o">...</span>
+</code></pre></div>
+<p>With this structure, you'll be able to call <code>archivy pocket command1</code> and <code>archivy pocket command2</code>. Read the <a href="https://click.palletsprojects.com/en/7.x/options/">click docs</a> to learn about how to build more intricate</p>
+<p>Let's get into actually writing a command that interacts with the archivy codebase.</p>
+<p>The code below does a few things:</p>
+<ul>
+<li>It imports the archivy <code>app</code> that basically is the interface for the webserver and many essential Flask features (flask is the web framework archivy uses).</li>
+<li>It imports the <code>get_db</code> function that allows us to access and modify the db.</li>
+<li>We define our pocket group.</li>
+<li>We create a new command from that group, what's important here is the <code>with app.app_context</code> part. We need to run our code inside the archivy <code>app_context</code> to be able to call some of the archivy methods. If you call archivy methods in your plugins, it might fail if you don't include this part.</li>
+<li>Then we just have our command code.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">from</span> <span class="nn">archivy.extensions</span> <span class="kn">import</span> <span class="n">get_db</span>
+<span class="kn">from</span> <span class="nn">archivy</span> <span class="kn">import</span> <span class="n">app</span>
+<span class="kn">from</span> <span class="nn">archivy.data</span> <span class="kn">import</span> <span class="n">get_items</span>
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">pocket</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="nd">@pocket</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">&quot;api_key&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">auth</span><span class="p">(</span><span class="n">api_key</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+        <span class="c1"># ...</span>
+</code></pre></div>
+<p>We also added some other commands, but we'll skip them for brevity and you can check out the source code <a href="https://github.com/archivy/archivy_pocket">here</a>.</p>
+<p>Now you just need to do <code>pip install .</code> in the main directory and you'll have access to the commands. Check it out by running <code>archivy --help</code>.</p>
+<h2 id="step-4-publishing-our-package-to-pypi">Step 4: Publishing our package to Pypi</h2>
+<p><a href="https://pypi.org">Pypi</a> is the Python package repository. Publishing our package to it will allow other users to easily install our code onto their own archivy instance.</p>
+<p>This is a short overview. Check out <a href="https://packaging.python.org/">this website</a> for more info.</p>
+<p>This section is inspired by <a href="https://packaging.python.org/tutorials/packaging-projects/#installing-your-newly-uploaded-package">this</a>.</p>
+<p>Make sure the required utilities are installed:</p>
+<div class="highlight"><pre><span></span><code><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">setuptools</span> <span class="n">wheel</span>
+</code></pre></div>
+<p>Now run this command in the main dir to build the source:</p>
+<div class="highlight"><pre><span></span><code><span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">sdist</span> <span class="n">bdist_wheel</span>
+</code></pre></div>
+<p>Now you need to create an account on <a href="https://pypi.org">Pypi</a>. Then go <a href="https://pypi.org/manage/account/#api-tokens">here</a> and create a new API token; don’t limit its scope to a particular project, since you are creating a new project.</p>
+<p>Once you've saved your token, install <code>twine</code>, the program that will take care of the upload:</p>
+<div class="highlight"><pre><span></span><code><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">twine</span>
+</code></pre></div>
+<p>And you can finally upload your code! The username you should enter is <code>__token__</code> and then the password is your API token.</p>
+<div class="highlight"><pre><span></span><code><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">twine</span> <span class="n">upload</span> <span class="n">dist</span><span class="o">/*</span>
+</code></pre></div>
                 
               
               
