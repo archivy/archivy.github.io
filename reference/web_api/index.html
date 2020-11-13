@@ -478,7 +478,7 @@ create_bookmark<span class="p">()</span> </code>
         <span class="n">desc</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'desc'</span><span class="p">),</span>
         <span class="n">tags</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'tags'</span><span class="p">),</span>
         <span class="n">path</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"path"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
-        <span class="nb">type</span><span class="o">=</span><span class="s2">"bookmarks"</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s2">"bookmark"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">bookmark</span><span class="o">.</span><span class="n">process_bookmark_url</span><span class="p">()</span>
     <span class="n">bookmark_id</span> <span class="o">=</span> <span class="n">bookmark</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span>
