@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="../../img/logo-2.png" rel="shortcut icon"/>
 <meta content="mkdocs-1.1.2, mkdocs-material-6.1.4" name="generator"/>
-<title>Helpers - Archivy</title>
+<title>Search - Archivy</title>
 <link href="../../assets/stylesheets/main.358818c7.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.f0267088.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -19,7 +19,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#archivy.helpers">
+<a class="md-skip" href="#archivy.search">
           Skip to content
         </a>
 </div>
@@ -40,7 +40,7 @@
           </span>
 <span class="md-header-nav__topic md-ellipsis">
             
-              Helpers
+              Search
             
           </span>
 </div>
@@ -86,7 +86,7 @@
 </nav>
 </header>
 <div class="md-container" data-md-component="container">
-<nav aria-label="Tabs" class="md-tabs md-tabs--active" data-md-component="tabs">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
 <div class="md-tabs__inner md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
@@ -105,7 +105,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../architecture/">
+<a class="md-tabs__link" href="../architecture/">
           API Reference
         </a>
 </li>
@@ -225,8 +225,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-4" id="nav-4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" id="nav-4" type="checkbox"/>
 <label class="md-nav__link" for="nav-4">
       API Reference
       <span class="md-nav__icon md-icon"></span>
@@ -257,48 +257,10 @@
       Dataobj Filesystem Layer
     </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-        Helpers
-        <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../helpers/">
       Helpers
     </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#archivy.helpers">
-    archivy.helpers
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#archivy.helpers.get_db">
-    get_db()
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#archivy.helpers.get_elastic_client">
-    get_elastic_client()
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#archivy.helpers.get_max_id">
-    get_max_id()
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#archivy.helpers.set_max_id">
-    set_max_id()
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -318,28 +280,23 @@
     </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#archivy.helpers">
-    archivy.helpers
+<a class="md-nav__link" href="#archivy.search">
+    archivy.search
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#archivy.helpers.get_db">
-    get_db()
+<a class="md-nav__link" href="#archivy.search.add_to_index">
+    add_to_index()
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#archivy.helpers.get_elastic_client">
-    get_elastic_client()
+<a class="md-nav__link" href="#archivy.search.query_index">
+    query_index()
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#archivy.helpers.get_max_id">
-    get_max_id()
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#archivy.helpers.set_max_id">
-    set_max_id()
+<a class="md-nav__link" href="#archivy.search.remove_from_index">
+    remove_from_index()
   </a>
 </li>
 </ul>
@@ -349,127 +306,119 @@
 </div>
 <div class="md-content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/archivy/archivy/edit/master/docs/reference/helpers.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/archivy/archivy/edit/master/docs/reference/search.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
 </a>
-<h1>Helpers</h1>
-<p>This is a series of helper functions that could be useful for you.</p>
-<p>Notably, the <code>get_db</code> and <code>get_elastic_client</code> could help with writing an archivy plugin.</p>
+<h1>Search</h1>
+<p>These are a few methods to interface between archivy and the elasticsearch instance.</p>
 <div class="doc doc-object doc-module">
-<h2 class="hidden-toc" href="#archivy.helpers" id="archivy.helpers" style="visibility: hidden; position: absolute;">
+<h2 class="hidden-toc" href="#archivy.search" id="archivy.search" style="visibility: hidden; position: absolute;">
 </h2>
 <div class="doc doc-contents first">
 <div class="doc doc-children">
 <div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.helpers.get_db">
+<h2 class="doc doc-heading" id="archivy.search.add_to_index">
 <code class="highlight language-python">
-get_db<span class="p">()</span> </code>
+add_to_index<span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> </code>
 </h2>
 <div class="doc doc-contents">
-<p>Returns the database object that you can use to
-store data persistently</p>
+<p>Adds dataobj to given index. If object of given id already exists, it will be updated.</p>
+<ul>
+<li><strong>index</strong> - String of the ES Index. Archivy uses <code>dataobj</code> by default.</li>
+<li><strong>model</strong> - Instance of <code>archivy.models.Dataobj</code>, the object you want to index.</li>
+</ul>
 <details class="quote">
-<summary>Source code in <code>archivy/helpers.py</code></summary>
+<summary>Source code in <code>archivy/search.py</code></summary>
 <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">get_db</span><span class="p">():</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">add_to_index</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">    Returns the database object that you can use to</span>
-<span class="sd">    store data persistently</span>
+<span class="sd">    Adds dataobj to given index. If object of given id already exists, it will be updated.</span>
+
+<span class="sd">    Params:</span>
+
+<span class="sd">    - **index** - String of the ES Index. Archivy uses `dataobj` by default.</span>
+<span class="sd">    - **model** - Instance of `archivy.models.Dataobj`, the object you want to index.</span>
 <span class="sd">    """</span>
-
-    <span class="k">if</span> <span class="s1">'db'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">TinyDB</span><span class="p">(</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-                <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'APP_PATH'</span><span class="p">],</span>
-                <span class="s1">'db.json'</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">g</span><span class="o">.</span><span class="n">db</span>
+    <span class="n">es</span> <span class="o">=</span> <span class="n">get_elastic_client</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">es</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">__searchable__</span><span class="p">:</span>
+        <span class="n">payload</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
+    <span class="n">es</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>
 </div>
 </div>
 <div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.helpers.get_elastic_client">
+<h2 class="doc doc-heading" id="archivy.search.query_index">
 <code class="highlight language-python">
-get_elastic_client<span class="p">()</span> </code>
+query_index<span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span> </code>
 </h2>
 <div class="doc doc-contents">
-<p>Returns the elasticsearch client you can use to search and insert / delete data</p>
+<p>Returns search results for your given query</p>
 <details class="quote">
-<summary>Source code in <code>archivy/helpers.py</code></summary>
+<summary>Source code in <code>archivy/search.py</code></summary>
 <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">get_elastic_client</span><span class="p">():</span>
-    <span class="sd">"""Returns the elasticsearch client you can use to search and insert / delete data"""</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'ELASTICSEARCH_ENABLED'</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="kc">None</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">query_index</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+    <span class="sd">"""Returns search results for your given query"""</span>
+    <span class="n">es</span> <span class="o">=</span> <span class="n">get_elastic_client</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">es</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">search</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
+        <span class="n">body</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">"query"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"multi_match"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"query"</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+                    <span class="s2">"fields"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>
+                    <span class="s2">"analyzer"</span><span class="p">:</span> <span class="s2">"rebuilt_standard"</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">"highlight"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"fields"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"content"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"pre_tags"</span><span class="p">:</span> <span class="s2">"&lt;span class='matches'&gt;"</span><span class="p">,</span>
+                        <span class="s2">"post_tags"</span><span class="p">:</span> <span class="s2">"&lt;/span&gt;"</span><span class="p">,</span>
+                        <span class="s2">"boundary_max_scan"</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+                        <span class="s2">"fragment_size"</span><span class="p">:</span> <span class="mi">0</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
 
-    <span class="n">es</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'ELASTICSEARCH_URL'</span><span class="p">])</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">health</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">health</span><span class="p">()</span>
-    <span class="k">except</span> <span class="n">elasticsearch</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
-        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-            <span class="s2">"Elasticsearch does not seem to be running on "</span>
-            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">Config</span><span class="o">.</span><span class="n">ELASTICSEARCH_URL</span><span class="si">}</span><span class="s2">. Please start "</span>
-            <span class="s2">"it, for example with: sudo service elasticsearch restart"</span>
-        <span class="p">)</span>
-        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-            <span class="s2">"You can disable Elasticsearch by setting the "</span>
-            <span class="s2">"ELASTICSEARCH_ENABLED environment variable to 0"</span>
-        <span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="k">for</span> <span class="n">hit</span> <span class="ow">in</span> <span class="n">search</span><span class="p">[</span><span class="s2">"hits"</span><span class="p">][</span><span class="s2">"hits"</span><span class="p">]:</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"&lt;li&gt;[</span><span class="si">{</span><span class="n">hit</span><span class="p">[</span><span class="s1">'_source'</span><span class="p">][</span><span class="s1">'title'</span><span class="p">]</span><span class="si">}</span><span class="s2">](/dataobj/</span><span class="si">{</span><span class="n">hit</span><span class="p">[</span><span class="s1">'_id'</span><span class="p">]</span><span class="si">}</span><span class="s2">)&lt;br&gt;&lt;br&gt;    "</span>
+        <span class="k">if</span> <span class="s2">"highlight"</span> <span class="ow">in</span> <span class="n">hit</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">highlight</span> <span class="ow">in</span> <span class="n">hit</span><span class="p">[</span><span class="s2">"highlight"</span><span class="p">][</span><span class="s2">"content"</span><span class="p">]:</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">highlight</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="s2">"&lt;/li&gt;"</span>
 
-    <span class="k">if</span> <span class="n">health</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">):</span>
-        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-            <span class="s2">"Elasticsearch reports that it is not working "</span>
-            <span class="s2">"properly. Search might not work. You can disable "</span>
-            <span class="s2">"Elasticsearch by setting ELASTICSEARCH_ENABLED to 0."</span>
-        <span class="p">)</span>
-    <span class="k">return</span> <span class="n">es</span>
+    <span class="k">return</span> <span class="n">convert_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s2">"html"</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"md"</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>
 </div>
 </div>
 <div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.helpers.get_max_id">
+<h2 class="doc doc-heading" id="archivy.search.remove_from_index">
 <code class="highlight language-python">
-get_max_id<span class="p">()</span> </code>
+remove_from_index<span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">dataobj_id</span><span class="p">)</span> </code>
 </h2>
 <div class="doc doc-contents">
-<p>Returns the current maximum id of dataobjs in the database.</p>
+<p>Removes object of given id</p>
 <details class="quote">
-<summary>Source code in <code>archivy/helpers.py</code></summary>
+<summary>Source code in <code>archivy/search.py</code></summary>
 <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">get_max_id</span><span class="p">():</span>
-    <span class="sd">"""Returns the current maximum id of dataobjs in the database."""</span>
-    <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
-    <span class="n">max_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"max_id"</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">max_id</span><span class="p">:</span>
-        <span class="n">db</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"max_id"</span><span class="p">,</span> <span class="s2">"val"</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">return</span> <span class="n">max_id</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"val"</span><span class="p">]</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.helpers.set_max_id">
-<code class="highlight language-python">
-set_max_id<span class="p">(</span><span class="n">val</span><span class="p">)</span> </code>
-</h2>
-<div class="doc doc-contents">
-<p>Sets a new max_id</p>
-<details class="quote">
-<summary>Source code in <code>archivy/helpers.py</code></summary>
-<div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">set_max_id</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
-    <span class="sd">"""Sets a new max_id"""</span>
-    <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
-    <span class="n">db</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">operations</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"val"</span><span class="p">,</span> <span class="n">val</span><span class="p">),</span> <span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"max_id"</span><span class="p">)</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">remove_from_index</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">dataobj_id</span><span class="p">):</span>
+    <span class="sd">"""Removes object of given id"""</span>
+    <span class="n">es</span> <span class="o">=</span> <span class="n">get_elastic_client</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">es</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">es</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">dataobj_id</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>
@@ -483,23 +432,6 @@ set_max_id<span class="p">(</span><span class="n">val</span><span class="p">)</s
 </div>
 </main>
 <footer class="md-footer">
-<div class="md-footer-nav">
-<nav aria-label="Footer" class="md-footer-nav__inner md-grid">
-<a class="md-footer-nav__link md-footer-nav__link--prev" href="../filesystem_layer/" rel="prev">
-<div class="md-footer-nav__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
-</div>
-<div class="md-footer-nav__title">
-<div class="md-ellipsis">
-<span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Dataobj Filesystem Layer
-              </div>
-</div>
-</a>
-</nav>
-</div>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-footer-copyright">
