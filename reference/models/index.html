@@ -926,6 +926,7 @@ insert<span class="p">(</span><span class="bp">self</span><span class="p">)</spa
 <pre><span></span><code><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">"""Creates a new file with the object's attributes"""</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">():</span>
+
         <span class="n">helpers</span><span class="o">.</span><span class="n">set_max_id</span><span class="p">(</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_max_id</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">get_max_id</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>

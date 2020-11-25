@@ -371,7 +371,7 @@
 <div class="doc doc-object doc-function">
 <h2 class="doc doc-heading" id="archivy.helpers.get_db">
 <code class="highlight language-python">
-get_db<span class="p">()</span> </code>
+get_db<span class="p">(</span><span class="n">force_reconnect</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> </code>
 </h2>
 <div class="doc doc-contents">
 <p>Returns the database object that you can use to
@@ -379,13 +379,12 @@ store data persistently</p>
 <details class="quote">
 <summary>Source code in <code>archivy/helpers.py</code></summary>
 <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">get_db</span><span class="p">():</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_db</span><span class="p">(</span><span class="n">force_reconnect</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">"""</span>
 <span class="sd">    Returns the database object that you can use to</span>
 <span class="sd">    store data persistently</span>
 <span class="sd">    """</span>
-
-    <span class="k">if</span> <span class="s1">'db'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">'db'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">g</span> <span class="ow">or</span> <span class="n">force_reconnect</span><span class="p">:</span>
         <span class="n">g</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">TinyDB</span><span class="p">(</span>
             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
                 <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'APP_PATH'</span><span class="p">],</span>

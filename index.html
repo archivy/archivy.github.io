@@ -638,14 +638,12 @@
 <li>Option to compile data to a static site.</li>
 </ul>
 <h2 id="quickstart">Quickstart</h2>
-<p>Begin by installing <a href="https://pandoc.org">Pandoc</a>, the document converter archivy uses.
-Install with <code>pip install archivy</code> and then do <code>archivy run</code> to serve the app. You can open it at https://localhost:5000.</p>
-<p>The first time you run archivy, an admin user will automatically be created with a random password.
-These credentials will be printed to the log when you launch like this:</p>
-<div class="highlight"><pre><span></span><code>[2020-10-10 10:48:27,764] INFO in __init__: Archivy has created an admin user as it did not exist.
-                            Username: &#39;admin&#39;, password: &#39;5a512991c605ea51038ce2a0&#39;
+<p>Begin by installing <a href="https://pandoc.org">Pandoc</a>, the document converter archivy uses.</p>
+<p>Install with <code>pip install archivy</code>.</p>
+<p>Then run this and enter a password to create a new user:</p>
+<div class="highlight"><pre><span></span><code>$ archivy create-admin &lt;username&gt;
 </code></pre></div>
-<p>Login with these credentials and then you can change your password/username by clicking the profile button on the top left.</p>
+<p>Finally, execute <code>archivy run</code> to serve the app. You can open it at https://localhost:5000 and login with the credentials you entered before.</p>
 <p>You can then use archivy to create notes, bookmarks and then organize and store information.</p>
                 
               
