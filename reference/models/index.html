@@ -532,8 +532,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.from_file" class="md-nav__link">
-    from_file()
+  <a href="#archivy.models.DataObj.from_md" class="md-nav__link">
+    from_md()
   </a>
   
 </li>
@@ -702,8 +702,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.from_file" class="md-nav__link">
-    from_file()
+  <a href="#archivy.models.DataObj.from_md" class="md-nav__link">
+    from_md()
   </a>
   
 </li>
@@ -870,10 +870,10 @@ extract_content<span class="p">(</span><span class="bp">self</span><span class="
 </div>
 </div>
 <div class="doc doc-object doc-method">
-<h3 class="doc doc-heading" id="archivy.models.DataObj.from_file">
+<h3 class="doc doc-heading" id="archivy.models.DataObj.from_md">
 
         <code class="highlight language-python">
-from_file<span class="p">(</span><span class="n">filename</span><span class="p">)</span>        </code>
+from_md<span class="p">(</span><span class="n">md_content</span><span class="p">)</span>        </code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
@@ -881,28 +881,28 @@ from_file<span class="p">(</span><span class="n">filename</span><span class="p">
 
       </h3>
 <div class="doc doc-contents ">
-<p>Class method to generate new dataobj from a filename</p>
+<p>Class method to generate new dataobj from a well formatted markdown string</p>
 <p>Call like this:</p>
 <div class="highlight">
-<pre><span></span><code><span class="n">Dataobj</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<pre><span></span><code><span class="n">Dataobj</span><span class="o">.</span><span class="n">from_md</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
 </code></pre>
 </div>
 <details class="quote">
           <summary>Source code in <code>archivy/models.py</code></summary>
           <div class="highlight">
 <pre><span></span><code><span class="nd">@classmethod</span>
-<span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">from_md</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">md_content</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">"""</span>
-<span class="sd">    Class method to generate new dataobj from a filename</span>
+<span class="sd">    Class method to generate new dataobj from a well formatted markdown string</span>
 
 <span class="sd">    Call like this:</span>
 
 <span class="sd">    ```python</span>
-<span class="sd">    Dataobj.from_file(filename)</span>
+<span class="sd">    Dataobj.from_md(content)</span>
 
 <span class="sd">    ```</span>
 <span class="sd">    """</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">md_content</span><span class="p">)</span>
     <span class="n">dataobj</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">dataobj</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">content</span>
     <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"tags"</span><span class="p">,</span> <span class="s2">"desc"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">,</span> <span class="s2">"path"</span><span class="p">]:</span>

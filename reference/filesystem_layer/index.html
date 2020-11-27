@@ -605,6 +605,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#archivy.data.update_item" class="md-nav__link">
+    update_item()
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -754,6 +761,13 @@
         <li class="md-nav__item">
   <a href="#archivy.data.open_file" class="md-nav__link">
     open_file()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivy.data.update_item" class="md-nav__link">
+    update_item()
   </a>
   
 </li>
@@ -910,7 +924,6 @@ delete_item<span class="p">(</span><span class="n">dataobj_id</span><span class=
 <pre><span></span><code><span class="k">def</span> <span class="nf">delete_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">):</span>
     <span class="sd">"""Delete dataobj of given id"""</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
-
     <span class="k">if</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">Path</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 </code></pre>
@@ -1105,6 +1118,86 @@ open_file<span class="p">(</span><span class="n">path</span><span class="p">)</s
         <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s2">"open"</span><span class="p">,</span> <span class="n">path</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s2">"xdg-open"</span><span class="p">,</span> <span class="n">path</span><span class="p">])</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="archivy.data.update_item">
+
+        <code class="highlight language-python">
+update_item<span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_content</span><span class="p">)</span>        </code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Given an object id, this method overwrites the inner
+content of the post with <code>new_content</code>.</p>
+<p>This means that it won't change the frontmatter (eg tags, id, title)
+but it can change the file content.</p>
+<p>For example:</p>
+<p>If we have a dataobj like this:</p>
+<div class="highlight">
+<pre><span></span><code>---
+id: 1
+<span class="gu">title: Note</span>
+<span class="gu">---</span>
+
+<span class="gh"># This is random</span>
+</code></pre>
+</div>
+<p>Calling <code>update_item(1, "# This is specific")</code> will turn it into:</p>
+<div class="highlight">
+<pre><span></span><code>---
+id: 1 # unchanged
+<span class="gu">title: Note</span>
+<span class="gu">---</span>
+
+<span class="gh"># This is specific</span>
+</code></pre>
+</div>
+<details class="quote">
+          <summary>Source code in <code>archivy/data.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">update_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_content</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Given an object id, this method overwrites the inner</span>
+<span class="sd">    content of the post with `new_content`.</span>
+
+<span class="sd">    This means that it won't change the frontmatter (eg tags, id, title)</span>
+<span class="sd">    but it can change the file content.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">    If we have a dataobj like this:</span>
+
+<span class="sd">    ```md</span>
+<span class="sd">    ---</span>
+<span class="sd">    id: 1</span>
+<span class="sd">    title: Note</span>
+<span class="sd">    ---</span>
+
+<span class="sd">    # This is random</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    Calling `update_item(1, "# This is specific")` will turn it into:</span>
+
+
+<span class="sd">    ```md</span>
+<span class="sd">    ---</span>
+<span class="sd">    id: 1 # unchanged</span>
+<span class="sd">    title: Note</span>
+<span class="sd">    ---</span>
+
+<span class="sd">    # This is specific</span>
+<span class="sd">    ```</span>
+<span class="sd">    """</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
+    <span class="n">dataobj</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">dataobj</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">new_content</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frontmatter</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dataobj</span><span class="p">))</span>
 </code></pre>
 </div>
 </details>

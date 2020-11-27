@@ -320,6 +320,11 @@
     search_elastic()
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.api.update_dataobj">
+    update_dataobj()
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -423,6 +428,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#archivy.api.search_elastic">
     search_elastic()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.api.update_dataobj">
+    update_dataobj()
   </a>
 </li>
 </ul>
@@ -529,8 +539,8 @@ create_folder<span class="p">()</span> </code>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">sanitized_name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">create_dir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">FileExistsError</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Directory already exists"</span><span class="p">,</span> <span class="mi">401</span>
-    <span class="k">return</span> <span class="n">sanitized_name</span><span class="p">,</span> <span class="mi">200</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s2">"Directory already exists"</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">401</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">sanitized_name</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>
@@ -630,10 +640,10 @@ delete_folder<span class="p">()</span> </code>
 <span class="sd">    """</span>
     <span class="n">directory</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"path"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">directory</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Cannot delete root dir"</span><span class="p">,</span> <span class="mi">401</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s2">"Cannot delete root dir"</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">401</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">delete_dir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">"Successfully deleted"</span><span class="p">,</span> <span class="mi">200</span>
-    <span class="k">return</span> <span class="s2">"Not found"</span><span class="p">,</span> <span class="mi">404</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s2">"Successfully deleted"</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s2">"Not found"</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">404</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>
@@ -743,6 +753,41 @@ search_elastic<span class="p">()</span> </code>
     <span class="n">query</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"query"</span><span class="p">)</span>
     <span class="n">search_results</span> <span class="o">=</span> <span class="n">query_index</span><span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">INDEX_NAME</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">search_results</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="archivy.api.update_dataobj">
+<code class="highlight language-python">
+update_dataobj<span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span> </code>
+</h2>
+<div class="doc doc-contents">
+<p>Updates object of given id.</p>
+<p>Paramter in JSON body:</p>
+<ul>
+<li><strong>content</strong>: markdown text of new dataobj.</li>
+</ul>
+<details class="quote">
+<summary>Source code in <code>archivy/api.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="nd">@api_bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">"/dataobjs/&lt;int:dataobj_id&gt;"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">"PUT"</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">update_dataobj</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Updates object of given id.</span>
+
+<span class="sd">    Paramter in JSON body:</span>
+
+<span class="sd">    - **content**: markdown text of new dataobj.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"content"</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">update_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"content"</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">404</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s2">"Must provide content parameter"</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">401</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>
