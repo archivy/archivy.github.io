@@ -15,7 +15,7 @@
     
     
       
-        <title>Search - Archivy</title>
+        <title>Editing - Archivy</title>
       
     
     
@@ -59,6 +59,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#local-edit" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -84,7 +89,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Search
+              Editing
             
           </span>
         </div>
@@ -354,18 +359,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../setup-search/" class="md-nav__link">
       Search
     </a>
-    
   </li>
 
         
@@ -385,11 +383,52 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../editing/" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Editing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       Editing
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#local-edit" class="md-nav__link">
+    Local Edit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#through-the-app" class="md-nav__link">
+    Through the app
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -563,30 +602,64 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#local-edit" class="md-nav__link">
+    Local Edit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#through-the-app" class="md-nav__link">
+    Through the app
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/archivy/archivy/edit/master/docs/setup-search.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/archivy/archivy/edit/master/docs/editing.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Search</h1>
+                  <h1>Editing</h1>
                 
-                <p>Archivy uses <a href="https://www.elastic.co">ElasticSearch</a> to provide efficient full-text search.</p>
-<p>Instructions to install and run the service are provided <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html">here</a>.</p>
-<p>Append these two lines to your <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html">elasticsearch.yml config file</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">http.cors.enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">http.cors.allow-origin</span><span class="p">:</span> <span class="s">&quot;http://localhost:5000&quot;</span>
-</code></pre></div>
-<p>Run archivy like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">ELASTICSEARCH_ENABLED</span><span class="o">=</span><span class="m">1</span> archivy run
-</code></pre></div>
-<p>You will now have full-text search on your knowledge base!</p>
-<p>Whenever you edit an item through the files, it is better to have archivy running that way your changes will be synced to Elasticsearch.</p>
-<p>Elasticsearch can be a hefty dependency, so if you have any ideas for something more light-weight that could be used as an alternative, please share on <a href="https://github.com/archivy/archivy/issues/13">this thread</a>.</p>
+                <p>There are several ways you can edit content in Archivy.</p>
+<p>Whenever you open a note or bookmark, at the bottom of the page you'll find a few buttons that allow you to edit it.</p>
+<h2 id="local-edit">Local Edit</h2>
+<p>You can do a <strong>local edit</strong>. This option is only viable if running archivy on your own computer. This will open the concerned file with the default app set to edit markdown.</p>
+<p>For example like this:</p>
+<p><img alt="ex of local editing with marktext" src="../img/local-edit.png" /></p>
+<p>This markdown file will be rendered following the <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">pandoc markdown spec</a>. This includes mathematical equations, footnotes, and many other cool features.</p>
+<h2 id="through-the-app">Through the app</h2>
+<p>If you're remotely hosting archivy, and you'd like to edit content, you can still do edits through the web app, by clicking "Toggle web editor" at the bottom.</p>
+<p>Unfortunately this editor does not provide direct preview of math equations and other nice pandoc markdown features.</p>
+<p>However, you can still use pandoc markdown syntax, save the changes, and render the dataobj (not in the editor, but normally).</p>
                 
               
               
@@ -605,7 +678,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../usage/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../config/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -614,19 +687,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Usage
+                Config
               </div>
             </div>
           </a>
         
         
-          <a href="../config/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../whats_next/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Config
+                What's Next
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
