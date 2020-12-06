@@ -1,830 +1,468 @@
 
+<!DOCTYPE html>
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-      
-      
-      <link rel="shortcut icon" href="../../img/logo-2.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.6">
-    
-    
-      
-        <title>Models for User and DataObj - Archivy</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6910b76c.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.196e0c26.min.css">
-        
-      
-    
-    
-    
-      
-        
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
-      
-    
-    
-    
-    
-  <!-- privacy respectful analytics -->
-  <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-  <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript>
-
-    
-  </head>
-  
-  
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
-      
-  
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#archivy.models" class="md-skip">
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../img/logo-2.png" rel="shortcut icon"/>
+<meta content="mkdocs-1.1.2, mkdocs-material-6.1.6" name="generator"/>
+<title>Models for User and DataObj - Archivy</title>
+<link href="../../assets/stylesheets/main.6910b76c.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.196e0c26.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+<!-- privacy respectful analytics -->
+<script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img alt="" src="https://queue.simpleanalyticscdn.com/noscript.gif"/></noscript>
+</head>
+<body data-md-color-accent="none" data-md-color-primary="none" data-md-color-scheme="" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#archivy.models">
           Skip to content
         </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-      
-
+</div>
+<div data-md-component="announce">
+</div>
 <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="Archivy" class="md-header-nav__button md-logo" aria-label="Archivy">
-      
-  <img src="../../img/logo-2.png" alt="logo">
-
-    </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
-    </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+<nav aria-label="Header" class="md-header-nav md-grid">
+<a aria-label="Archivy" class="md-header-nav__button md-logo" href="../.." title="Archivy">
+<img alt="logo" src="../../img/logo-2.png"/>
+</a>
+<label class="md-header-nav__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header-nav__title" data-md-component="header-title">
+<div class="md-header-nav__ellipsis">
+<span class="md-header-nav__topic md-ellipsis">
             Archivy
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+<span class="md-header-nav__topic md-ellipsis">
             
               Models for User and DataObj
             
           </span>
-        </div>
-      
-    </div>
-    
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
+</div>
+</div>
+<label class="md-header-nav__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
 <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" data-md-state="active" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<button aria-label="Clear" class="md-search__icon md-icon" data-md-component="search-reset" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list"></ol>
 </div>
-    
-    
-      <div class="md-header-nav__source">
-        
-<a href="https://github.com/archivy/archivy/" title="Go to repository" class="md-source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
+</div>
+</div>
+</div>
+</div>
+<div class="md-header-nav__source">
+<a class="md-source" href="https://github.com/archivy/archivy/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
     archivy
   </div>
 </a>
-      </div>
-    
-  </nav>
+</div>
+</nav>
 </header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-
-  
-
-<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-      
-      <a href="../.." class="md-tabs__link">
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs md-tabs--active" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
         Home
       </a>
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-      
-      <a href="../../install/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../install/">
         Getting Started
       </a>
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-      
-      <a href="../../plugins/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../plugins/">
         Plugins
       </a>
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-      
-        
-      
-      <a href="../architecture/" class="md-tabs__link md-tabs__link--active">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../architecture/">
         API Reference
       </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
+</li>
+</ul>
+</div>
 </nav>
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Archivy" class="md-nav__button md-logo" aria-label="Archivy">
-      
-  <img src="../../img/logo-2.png" alt="logo">
-
-    </a>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Archivy" class="md-nav__button md-logo" href="../.." title="Archivy">
+<img alt="logo" src="../../img/logo-2.png"/>
+</a>
     Archivy
   </label>
-  
-    <div class="md-nav__source">
-      
-<a href="https://github.com/archivy/archivy/" title="Go to repository" class="md-source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
+<div class="md-nav__source">
+<a class="md-source" href="https://github.com/archivy/archivy/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
     archivy
   </div>
 </a>
-    </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
-    <label class="md-nav__link" for="nav-1">
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" id="nav-1" type="checkbox"/>
+<label class="md-nav__link" for="nav-1">
       Home
       <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Home" data-md-level="1">
-      <label class="md-nav__title" for="nav-1">
-        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Home" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-1">
+<span class="md-nav__icon md-icon"></span>
         Home
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../.." class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
       Index
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../difference/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../difference/">
       What makes Archivy different
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../CONTRIBUTING/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CONTRIBUTING/">
       Contributing
     </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
-    <label class="md-nav__link" for="nav-2">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" id="nav-2" type="checkbox"/>
+<label class="md-nav__link" for="nav-2">
       Getting Started
       <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
-        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Getting Started" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-2">
+<span class="md-nav__icon md-icon"></span>
         Getting Started
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../install/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../install/">
       Installing Archivy
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../docker/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../docker/">
       Installing with Docker
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../usage/">
       Usage
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../setup-search/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../setup-search/">
       Search
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../config/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../config/">
       Config
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../editing/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../editing/">
       Editing
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../whats_next/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../whats_next/">
       What's Next
     </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
-    <label class="md-nav__link" for="nav-3">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" id="nav-3" type="checkbox"/>
+<label class="md-nav__link" for="nav-3">
       Plugins
       <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Plugins" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Plugins" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-3">
+<span class="md-nav__icon md-icon"></span>
         Plugins
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../plugins/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../plugins/">
       Index
     </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
-    <label class="md-nav__link" for="nav-4">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-4" id="nav-4" type="checkbox"/>
+<label class="md-nav__link" for="nav-4">
       API Reference
       <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="API Reference" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="API Reference" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-4">
+<span class="md-nav__icon md-icon"></span>
         API Reference
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../architecture/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../architecture/">
       Architecture
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../web_api/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../web_api/">
       Web API
     </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
         Models for User and DataObj
         <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
       Models for User and DataObj
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#archivy.models" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models">
     archivy.models
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#archivy.models.DataObj" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj">
     DataObj
   </a>
-  
-    <nav class="md-nav" aria-label="DataObj">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.extract_content" class="md-nav__link">
+<nav aria-label="DataObj" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.extract_content">
     extract_content()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.from_md" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.from_md">
     from_md()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.insert" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.insert">
     insert()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.process_bookmark_url" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.process_bookmark_url">
     process_bookmark_url()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.validate" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.validate">
     validate()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.wipe" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.wipe">
     wipe()
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#archivy.models.User" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.User">
     User
   </a>
-  
-    <nav class="md-nav" aria-label="User">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.User.from_db" class="md-nav__link">
+<nav aria-label="User" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.User.from_db">
     from_db()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.User.insert" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.User.insert">
     insert()
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
+</ul>
 </nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../filesystem_layer/" class="md-nav__link">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../filesystem_layer/">
       Dataobj Filesystem Layer
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../search/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../search/">
       Search
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../helpers/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../helpers/">
       Helpers
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../web_inputs/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../web_inputs/">
       Web Inputs For Plugins
     </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-  </ul>
+</li>
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#archivy.models" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models">
     archivy.models
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#archivy.models.DataObj" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj">
     DataObj
   </a>
-  
-    <nav class="md-nav" aria-label="DataObj">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.extract_content" class="md-nav__link">
+<nav aria-label="DataObj" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.extract_content">
     extract_content()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.from_md" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.from_md">
     from_md()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.insert" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.insert">
     insert()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.process_bookmark_url" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.process_bookmark_url">
     process_bookmark_url()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.validate" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.validate">
     validate()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.DataObj.wipe" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.DataObj.wipe">
     wipe()
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#archivy.models.User" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.User">
     User
   </a>
-  
-    <nav class="md-nav" aria-label="User">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.User.from_db" class="md-nav__link">
+<nav aria-label="User" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.User.from_db">
     from_db()
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#archivy.models.User.insert" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.models.User.insert">
     insert()
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          <div class="md-content">
-            <article class="md-content__inner md-typeset">
-              
-                
-                  <a href="https://github.com/archivy/archivy/edit/master/docs/reference/models.md" title="Edit this page" class="md-content__button md-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-                  </a>
-                
-                
-                  <h1>Models for User and DataObj</h1>
-                
-                <p>Internal API for the models Archivy uses in the backend that could be useful for writing plugins.</p>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/archivy/archivy/edit/master/docs/reference/models.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
+</a>
+<h1>Models for User and DataObj</h1>
+<p>Internal API for the models Archivy uses in the backend that could be useful for writing plugins.</p>
 <div class="doc doc-object doc-module">
 <h2 class="hidden-toc" href="#archivy.models" id="archivy.models" style="visibility: hidden; position: absolute;">
-        </h2>
+</h2>
 <div class="doc doc-contents first">
 <div class="doc doc-children">
 <div class="doc doc-object doc-class">
 <h2 class="doc doc-heading" id="archivy.models.DataObj">
-
-        <code>DataObj</code>
-
-
-      </h2>
-<div class="doc doc-contents ">
+<code>DataObj</code>
+</h2>
+<div class="doc doc-contents">
 <p>Class that holds a data object (either a note or a bookmark).</p>
 <p>Attrbutes:</p>
 <p>[Required to pass when creating a new object]</p>
@@ -856,17 +494,14 @@ the db with their contents.</p>
 <div class="doc doc-children">
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="archivy.models.DataObj.extract_content">
-
-        <code class="highlight language-python">
-extract_content<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beautsoup</span><span class="p">)</span>        </code>
-
-
-      </h3>
-<div class="doc doc-contents ">
+<code class="highlight language-python">
+extract_content<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beautsoup</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
 <p>converts html bookmark url to optimized markdown</p>
 <details class="quote">
-          <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
+<summary>Source code in <code>archivy/models.py</code></summary>
+<div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">extract_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beautsoup</span><span class="p">):</span>
     <span class="sd">"""converts html bookmark url to optimized markdown"""</span>
 
@@ -895,16 +530,13 @@ extract_content<span class="p">(</span><span class="bp">self</span><span class="
 </div>
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="archivy.models.DataObj.from_md">
-
-        <code class="highlight language-python">
-from_md<span class="p">(</span><span class="n">md_content</span><span class="p">)</span>        </code>
-
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
-  </span>
-
-      </h3>
-<div class="doc doc-contents ">
+<code class="highlight language-python">
+from_md<span class="p">(</span><span class="n">md_content</span><span class="p">)</span> </code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
+</span>
+</h3>
+<div class="doc doc-contents">
 <p>Class method to generate new dataobj from a well formatted markdown string</p>
 <p>Call like this:</p>
 <div class="highlight">
@@ -912,8 +544,8 @@ from_md<span class="p">(</span><span class="n">md_content</span><span class="p">
 </code></pre>
 </div>
 <details class="quote">
-          <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
+<summary>Source code in <code>archivy/models.py</code></summary>
+<div class="highlight">
 <pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">from_md</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">md_content</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">"""</span>
@@ -948,17 +580,14 @@ from_md<span class="p">(</span><span class="n">md_content</span><span class="p">
 </div>
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="archivy.models.DataObj.insert">
-
-        <code class="highlight language-python">
-insert<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
-
-
-      </h3>
-<div class="doc doc-contents ">
+<code class="highlight language-python">
+insert<span class="p">(</span><span class="bp">self</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
 <p>Creates a new file with the object's attributes</p>
 <details class="quote">
-          <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
+<summary>Source code in <code>archivy/models.py</code></summary>
+<div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">"""Creates a new file with the object's attributes"""</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">():</span>
@@ -988,7 +617,7 @@ insert<span class="p">(</span><span class="bp">self</span><span class="p">)</spa
                             <span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
                             <span class="p">)</span>
 
-        <span class="n">add_to_index</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'INDEX_NAME'</span><span class="p">],</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="n">add_to_index</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"ELASTICSEARCH_CONF"</span><span class="p">][</span><span class="s2">"index_name"</span><span class="p">],</span> <span class="bp">self</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
     <span class="k">return</span> <span class="kc">False</span>
 </code></pre>
@@ -998,17 +627,14 @@ insert<span class="p">(</span><span class="bp">self</span><span class="p">)</spa
 </div>
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="archivy.models.DataObj.process_bookmark_url">
-
-        <code class="highlight language-python">
-process_bookmark_url<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
-
-
-      </h3>
-<div class="doc doc-contents ">
+<code class="highlight language-python">
+process_bookmark_url<span class="p">(</span><span class="bp">self</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
 <p>Process url to get content for bookmark</p>
 <details class="quote">
-          <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
+<summary>Source code in <code>archivy/models.py</code></summary>
+<div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">process_bookmark_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">"""Process url to get content for bookmark"""</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"bookmark"</span><span class="p">,</span> <span class="s2">"pocket_bookmark"</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">validators</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">):</span>
@@ -1045,17 +671,14 @@ process_bookmark_url<span class="p">(</span><span class="bp">self</span><span cl
 </div>
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="archivy.models.DataObj.validate">
-
-        <code class="highlight language-python">
-validate<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
-
-
-      </h3>
-<div class="doc doc-contents ">
+<code class="highlight language-python">
+validate<span class="p">(</span><span class="bp">self</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
 <p>Verifies that the content matches required validation constraints</p>
 <details class="quote">
-          <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
+<summary>Source code in <code>archivy/models.py</code></summary>
+<div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">"""Verifies that the content matches required validation constraints"""</span>
     <span class="n">valid_url</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">"bookmark"</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">"pocket_bookmark"</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
@@ -1072,17 +695,14 @@ validate<span class="p">(</span><span class="bp">self</span><span class="p">)</s
 </div>
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="archivy.models.DataObj.wipe">
-
-        <code class="highlight language-python">
-wipe<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
-
-
-      </h3>
-<div class="doc doc-contents ">
+<code class="highlight language-python">
+wipe<span class="p">(</span><span class="bp">self</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
 <p>Resets and invalidates dataobj</p>
 <details class="quote">
-          <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
+<summary>Source code in <code>archivy/models.py</code></summary>
+<div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">wipe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">"""Resets and invalidates dataobj"""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">""</span>
@@ -1098,12 +718,9 @@ wipe<span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 </div>
 <div class="doc doc-object doc-class">
 <h2 class="doc doc-heading" id="archivy.models.User">
-
-        <code>User</code>
-
-
-      </h2>
-<div class="doc doc-contents ">
+<code>User</code>
+</h2>
+<div class="doc doc-contents">
 <p>Model we use for User that inherits from flask login's
 <a href="https://flask-login.readthedocs.io/en/latest/#flask_login.UserMixin"><code>UserMixin</code></a></p>
 <ul>
@@ -1114,20 +731,17 @@ wipe<span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <div class="doc doc-children">
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="archivy.models.User.from_db">
-
-        <code class="highlight language-python">
-from_db<span class="p">(</span><span class="n">db_object</span><span class="p">)</span>        </code>
-
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
-  </span>
-
-      </h3>
-<div class="doc doc-contents ">
+<code class="highlight language-python">
+from_db<span class="p">(</span><span class="n">db_object</span><span class="p">)</span> </code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
+</span>
+</h3>
+<div class="doc doc-contents">
 <p>Takes a database object and turns it into a user</p>
 <details class="quote">
-          <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
+<summary>Source code in <code>archivy/models.py</code></summary>
+<div class="highlight">
 <pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">from_db</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">db_object</span><span class="p">):</span>
     <span class="sd">"""Takes a database object and turns it into a user"""</span>
@@ -1142,17 +756,14 @@ from_db<span class="p">(</span><span class="n">db_object</span><span class="p">)
 </div>
 <div class="doc doc-object doc-method">
 <h3 class="doc doc-heading" id="archivy.models.User.insert">
-
-        <code class="highlight language-python">
-insert<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
-
-
-      </h3>
-<div class="doc doc-contents ">
+<code class="highlight language-python">
+insert<span class="p">(</span><span class="bp">self</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
 <p>Inserts the model from the database</p>
 <details class="quote">
-          <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
+<summary>Source code in <code>archivy/models.py</code></summary>
+<div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">"""Inserts the model from the database"""</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">:</span>
@@ -1182,76 +793,57 @@ insert<span class="p">(</span><span class="bp">self</span><span class="p">)</spa
 </div>
 </div>
 </div>
-                
-              
-              
-                
-
-
-              
-            </article>
-          </div>
-        </div>
-      </main>
-      
-        
+</article>
+</div>
+</div>
+</main>
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../web_api/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
+<div class="md-footer-nav">
+<nav aria-label="Footer" class="md-footer-nav__inner md-grid">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../web_api/" rel="prev">
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
                   Previous
                 </span>
                 Web API
               </div>
-            </div>
-          </a>
-        
-        
-          <a href="../filesystem_layer/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
+</div>
+</a>
+<a class="md-footer-nav__link md-footer-nav__link--next" href="../filesystem_layer/" rel="next">
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
                   Next
                 </span>
                 Dataobj Filesystem Layer
               </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
+</div>
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"></path></svg>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
         
         Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+        <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
           Material for MkDocs
         </a>
-      </div>
-      
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    
-      <script src="../../assets/javascripts/vendor.fd16492e.min.js"></script>
-      <script src="../../assets/javascripts/bundle.7836ba4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
-      
-      <script>
+</div>
+<script src="../../assets/javascripts/vendor.fd16492e.min.js"></script>
+<script src="../../assets/javascripts/bundle.7836ba4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+<script>
         app = initialize({
           base: "../..",
           features: ['navigation.tabs'],
@@ -1260,7 +852,5 @@ insert<span class="p">(</span><span class="bp">self</span><span class="p">)</spa
           }, typeof search !== "undefined" && search)
         })
       </script>
-      
-    
-  </body>
+</body>
 </html>

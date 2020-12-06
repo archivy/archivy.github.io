@@ -59,6 +59,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#general" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -386,9 +391,43 @@
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Config
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
     <a href="./" class="md-nav__link md-nav__link--active">
       Config
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    General
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elasticsearch" class="md-nav__link">
+    Elasticsearch
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -575,6 +614,41 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    General
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elasticsearch" class="md-nav__link">
+    Elasticsearch
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -587,7 +661,10 @@
                 
                   <h1>Config</h1>
                 
-                <p>Archivy uses environment variables for its configuration (we are hesitating on this and might switch to a yaml file):</p>
+                <p>Once you've <a href="../install/">initialized</a> your archivy install, a yaml archivy config is automatically generated.</p>
+<p>You can edit it by running <code>archivy config</code>.</p>
+<p>Here's an overview of the different values you can set and modify.</p>
+<h3 id="general">General</h3>
 <table>
 <thead>
 <tr>
@@ -598,28 +675,62 @@
 </thead>
 <tbody>
 <tr>
-<td><code>ARCHIVY_DATA_DIR</code></td>
-<td>System-dependent, see below</td>
-<td>Directory in which data will be saved</td>
+<td><code>USER_DIR</code></td>
+<td>System-dependent, see below. It is recommended to set this through <code>archivy init</code></td>
+<td>Directory in which markdown data will be saved</td>
 </tr>
 <tr>
-<td><code>ARCHIVY_PORT</code></td>
+<td><code>INTERNAL_DIR</code></td>
+<td>System-dependent, see below</td>
+<td>Directory where archivy internals will be stored (config, db...)</td>
+</tr>
+<tr>
+<td><code>PORT</code></td>
 <td>5000</td>
 <td>Port on which archivy will run</td>
 </tr>
 <tr>
-<td><code>ELASTICSEARCH_ENABLED</code></td>
-<td>0</td>
-<td>Enable Elasticsearch integration</td>
-</tr>
-<tr>
-<td><code>ELASTICSEARCH_URL</code></td>
-<td>http://localhost:9200</td>
-<td>Url to the elasticsearch server</td>
+<td><code>HOST</code></td>
+<td>127.0.0.1</td>
+<td>Host on which the app will run.</td>
 </tr>
 </tbody>
 </table>
-<p><code>ARCHIVY_DATA_DIR</code> by default will be set by the
+<h3 id="elasticsearch">Elasticsearch</h3>
+<p>All of these are children of the <code>ELASTICSEARCH_CONF</code> object, like this in the yaml:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ELASTICSEARCH_CONF</span><span class="p">:</span>
+  <span class="nt">enabled</span><span class="p">:</span>
+  <span class="nt">url</span><span class="p">:</span>
+  <span class="c1"># ...</span>
+</code></pre></div>
+<p>This part will not be configured by default unless you specify you wish to integrate with ES.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>http://localhost:9200</td>
+<td>Url to the elasticsearch server</td>
+</tr>
+<tr>
+<td><code>search_conf</code></td>
+<td>Long dict of ES config options</td>
+<td>Configuration of Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html">analyzer</a>, <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html">mappings</a> and general settings.</td>
+</tr>
+</tbody>
+</table>
+<p><code>INTERNAL_DIR</code> and <code>USER_DIR</code> by default will be set by the
 <a href="https://pypi.org/project/appdirs/">appdirs</a> python library:</p>
 <p>On Linux systems, it follows the <a href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG
 specification</a>:

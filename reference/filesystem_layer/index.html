@@ -992,7 +992,7 @@ get_data_dir<span class="p">()</span>        </code>
           <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">get_data_dir</span><span class="p">():</span>
     <span class="sd">"""Returns the directory where dataobjs are stored"""</span>
-    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'APP_PATH'</span><span class="p">])</span> <span class="o">/</span> <span class="s2">"data"</span>
+    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'USER_DIR'</span><span class="p">])</span> <span class="o">/</span> <span class="s2">"data"</span>
 </code></pre>
 </div>
 </details>

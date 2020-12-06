@@ -311,8 +311,18 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.helpers.load_config">
+    load_config()
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#archivy.helpers.set_max_id">
     set_max_id()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.helpers.write_config">
+    write_config()
   </a>
 </li>
 </ul>
@@ -361,8 +371,18 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.helpers.load_config">
+    load_config()
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#archivy.helpers.set_max_id">
     set_max_id()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archivy.helpers.write_config">
+    write_config()
   </a>
 </li>
 </ul>
@@ -402,8 +422,8 @@ store data persistently</p>
     <span class="k">if</span> <span class="s1">'db'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">g</span> <span class="ow">or</span> <span class="n">force_reconnect</span><span class="p">:</span>
         <span class="n">g</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">TinyDB</span><span class="p">(</span>
             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-                <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'APP_PATH'</span><span class="p">],</span>
-                <span class="s1">'db.json'</span>
+                <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"INTERNAL_DIR"</span><span class="p">],</span>
+                <span class="s2">"db.json"</span>
             <span class="p">)</span>
         <span class="p">)</span>
 
@@ -425,21 +445,21 @@ get_elastic_client<span class="p">()</span> </code>
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">get_elastic_client</span><span class="p">():</span>
     <span class="sd">"""Returns the elasticsearch client you can use to search and insert / delete data"""</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'ELASTICSEARCH_ENABLED'</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"ELASTICSEARCH_CONF"</span><span class="p">][</span><span class="s2">"enabled"</span><span class="p">]:</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="n">es</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'ELASTICSEARCH_URL'</span><span class="p">])</span>
+    <span class="n">es</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"ELASTICSEARCH_CONF"</span><span class="p">][</span><span class="s2">"url"</span><span class="p">])</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">health</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">health</span><span class="p">()</span>
     <span class="k">except</span> <span class="n">elasticsearch</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
         <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
             <span class="s2">"Elasticsearch does not seem to be running on "</span>
-            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">Config</span><span class="o">.</span><span class="n">ELASTICSEARCH_URL</span><span class="si">}</span><span class="s2">. Please start "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'ELASTICSEARCH_CONF'</span><span class="p">][</span><span class="s1">'url'</span><span class="p">]</span><span class="si">}</span><span class="s2">. Please start "</span>
             <span class="s2">"it, for example with: sudo service elasticsearch restart"</span>
         <span class="p">)</span>
         <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-            <span class="s2">"You can disable Elasticsearch by setting the "</span>
-            <span class="s2">"ELASTICSEARCH_ENABLED environment variable to 0"</span>
+            <span class="s2">"You can disable Elasticsearch by modifying the `enabled` variable "</span>
+            <span class="sa">f</span><span class="s2">"in </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'INTERNAL_DIR'</span><span class="p">],</span> <span class="s1">'config.yml'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
@@ -479,6 +499,26 @@ get_max_id<span class="p">()</span> </code>
 </div>
 </div>
 <div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="archivy.helpers.load_config">
+<code class="highlight language-python">
+load_config<span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span> </code>
+</h2>
+<div class="doc doc-contents">
+<p>Loads <code>config.yml</code> file and deserializes it to a python dict.</p>
+<details class="quote">
+<summary>Source code in <code>archivy/helpers.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">load_config</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">""</span><span class="p">):</span>
+    <span class="sd">"""Loads `config.yml` file and deserializes it to a python dict."""</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="ow">or</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"INTERNAL_DIR"</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"config.yml"</span><span class="p">))</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
 <h2 class="doc doc-heading" id="archivy.helpers.set_max_id">
 <code class="highlight language-python">
 set_max_id<span class="p">(</span><span class="n">val</span><span class="p">)</span> </code>
@@ -492,6 +532,25 @@ set_max_id<span class="p">(</span><span class="n">val</span><span class="p">)</s
     <span class="sd">"""Sets a new max_id"""</span>
     <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
     <span class="n">db</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">operations</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"val"</span><span class="p">,</span> <span class="n">val</span><span class="p">),</span> <span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"max_id"</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="archivy.helpers.write_config">
+<code class="highlight language-python">
+write_config<span class="p">(</span><span class="n">config</span><span class="p">)</span> </code>
+</h2>
+<div class="doc doc-contents">
+<p>Writes a new config dict to a <code>config.yml</code> file that will override defaults</p>
+<details class="quote">
+<summary>Source code in <code>archivy/helpers.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">write_config</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">"""Writes a new config dict to a `config.yml` file that will override defaults"""</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"INTERNAL_DIR"</span><span class="p">],</span> <span class="s2">"config.yml"</span><span class="p">),</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>
