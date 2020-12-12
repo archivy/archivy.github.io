@@ -761,7 +761,7 @@ search_elastic<span class="p">()</span> </code>
 <span class="sd">    - **query**</span>
 <span class="sd">    """</span>
     <span class="n">query</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"query"</span><span class="p">)</span>
-    <span class="n">search_results</span> <span class="o">=</span> <span class="n">query_index</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"INDEX_NAME"</span><span class="p">],</span> <span class="n">query</span><span class="p">)</span>
+    <span class="n">search_results</span> <span class="o">=</span> <span class="n">query_index</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"ELASTICSEARCH_CONF"</span><span class="p">][</span><span class="s2">"index_name"</span><span class="p">],</span> <span class="n">query</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">search_results</span><span class="p">)</span>
 </code></pre>
 </div>

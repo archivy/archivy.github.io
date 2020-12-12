@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#local-edit" class="md-skip">
+        <a href="#format" class="md-skip">
           Skip to content
         </a>
       
@@ -424,15 +424,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#local-edit" class="md-nav__link">
-    Local Edit
+  <a href="#format" class="md-nav__link">
+    Format
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#through-the-app" class="md-nav__link">
-    Through the app
+  <a href="#ways-you-can-edit" class="md-nav__link">
+    Ways you can edit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#through-the-web-interface" class="md-nav__link">
+    Through the web interface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locally" class="md-nav__link">
+    Locally
   </a>
   
 </li>
@@ -629,15 +643,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#local-edit" class="md-nav__link">
-    Local Edit
+  <a href="#format" class="md-nav__link">
+    Format
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#through-the-app" class="md-nav__link">
-    Through the app
+  <a href="#ways-you-can-edit" class="md-nav__link">
+    Ways you can edit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#through-the-web-interface" class="md-nav__link">
+    Through the web interface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locally" class="md-nav__link">
+    Locally
   </a>
   
 </li>
@@ -661,17 +689,49 @@
                 
                   <h1>Editing</h1>
                 
-                <p>There are several ways you can edit content in Archivy.</p>
+                <h2 id="format">Format</h2>
+<p>Archivy files are in the <a href="https://daringfireball.net/projects/markdown/basics">markdown</a> format following the <a href="https://spec.commonmark.org/">commonmark spec</a>.</p>
+<p>We've also included a few powerful extensions:</p>
+<ul>
+<li><strong>LaTeX</strong>: you can render mathematical expressions like this:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$$
+\pi = 3.14
+$$
+</code></pre></div>
+<ul>
+<li>
+<p><strong>Footnotes</strong>:
+    <div class="highlight"><pre><span></span><code>What does this describe? [^1]
+
+[<span class="nl">^1</span>]: <span class="na">test foot note.</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Tables</strong>:
+    <div class="highlight"><pre><span></span><code>| Column 1 | Column 2 |
+| -------- | -------- |
+| ...      | ...      |
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Code blocks with syntax highlighting</strong>:
+    <div class="highlight"><pre><span></span><code><span class="sb">```python</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this will be highlighted&quot;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1337</span>
+<span class="sb">```</span>
+</code></pre></div></p>
+</li>
+</ul>
+<p>There are several ways you can edit content in Archivy.</p>
 <p>Whenever you open a note or bookmark, at the bottom of the page you'll find a few buttons that allow you to edit it.</p>
-<h2 id="local-edit">Local Edit</h2>
+<h2 id="ways-you-can-edit">Ways you can edit</h2>
+<h2 id="through-the-web-interface">Through the web interface</h2>
+<p>You can still do edits through the web app, by clicking "Toggle web editor" at the bottom.</p>
+<h2 id="locally">Locally</h2>
 <p>You can do a <strong>local edit</strong>. This option is only viable if running archivy on your own computer. This will open the concerned file with the default app set to edit markdown.</p>
 <p>For example like this:</p>
 <p><img alt="ex of local editing with marktext" src="../img/local-edit.png" /></p>
-<p>This markdown file will be rendered following the <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">pandoc markdown spec</a>. This includes mathematical equations, footnotes, and many other cool features.</p>
-<h2 id="through-the-app">Through the app</h2>
-<p>If you're remotely hosting archivy, and you'd like to edit content, you can still do edits through the web app, by clicking "Toggle web editor" at the bottom.</p>
-<p>Unfortunately this editor does not provide direct preview of math equations and other nice pandoc markdown features.</p>
-<p>However, you can still use pandoc markdown syntax, save the changes, and render the dataobj through the normal archivy interface.</p>
                 
               
               
