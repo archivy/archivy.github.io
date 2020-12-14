@@ -445,16 +445,16 @@ get_elastic_client<span class="p">()</span> </code>
 <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">get_elastic_client</span><span class="p">():</span>
     <span class="sd">"""Returns the elasticsearch client you can use to search and insert / delete data"""</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"ELASTICSEARCH_CONF"</span><span class="p">][</span><span class="s2">"enabled"</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"SEARCH_CONF"</span><span class="p">][</span><span class="s2">"enabled"</span><span class="p">]:</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="n">es</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"ELASTICSEARCH_CONF"</span><span class="p">][</span><span class="s2">"url"</span><span class="p">])</span>
+    <span class="n">es</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"SEARCH_CONF"</span><span class="p">][</span><span class="s2">"url"</span><span class="p">])</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">health</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">health</span><span class="p">()</span>
     <span class="k">except</span> <span class="n">elasticsearch</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
         <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
             <span class="s2">"Elasticsearch does not seem to be running on "</span>
-            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'ELASTICSEARCH_CONF'</span><span class="p">][</span><span class="s1">'url'</span><span class="p">]</span><span class="si">}</span><span class="s2">. Please start "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'SEARCH_CONF'</span><span class="p">][</span><span class="s1">'url'</span><span class="p">]</span><span class="si">}</span><span class="s2">. Please start "</span>
             <span class="s2">"it, for example with: sudo service elasticsearch restart"</span>
         <span class="p">)</span>
         <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>

@@ -588,6 +588,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.data.format_file" class="md-nav__link">
+    format_file()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.data.get_by_id" class="md-nav__link">
     get_by_id()
   </a>
@@ -625,6 +632,13 @@
         <li class="md-nav__item">
   <a href="#archivy.data.open_file" class="md-nav__link">
     open_file()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivy.data.unformat_file" class="md-nav__link">
+    unformat_file()
   </a>
   
 </li>
@@ -748,6 +762,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.data.format_file" class="md-nav__link">
+    format_file()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.data.get_by_id" class="md-nav__link">
     get_by_id()
   </a>
@@ -785,6 +806,13 @@
         <li class="md-nav__item">
   <a href="#archivy.data.open_file" class="md-nav__link">
     open_file()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivy.data.unformat_file" class="md-nav__link">
+    unformat_file()
   </a>
   
 </li>
@@ -948,8 +976,67 @@ delete_item<span class="p">(</span><span class="n">dataobj_id</span><span class=
 <pre><span></span><code><span class="k">def</span> <span class="nf">delete_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">):</span>
     <span class="sd">"""Delete dataobj of given id"""</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
+    <span class="n">remove_from_index</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">Path</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="archivy.data.format_file">
+
+        <code class="highlight language-python">
+format_file<span class="p">(</span><span class="n">path</span><span class="p">)</span>        </code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Converts normal md of file at <code>path</code> to formatted archivy markdown file, with yaml front matter
+and a filename of format "{id}-{old_filename}.md"</p>
+<details class="quote">
+          <summary>Source code in <code>archivy/data.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">format_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Converts normal md of file at `path` to formatted archivy markdown file, with yaml front matter</span>
+<span class="sd">    and a filename of format "{id}-{old_filename}.md"</span>
+<span class="sd">    """</span>
+
+    <span class="kn">from</span> <span class="nn">archivy.models</span> <span class="kn">import</span> <span class="n">DataObj</span>
+    <span class="n">data_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">path</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+            <span class="n">format_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">new_file</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+        <span class="n">file_contents</span> <span class="o">=</span> <span class="n">new_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">new_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># get relative path of object in `data` dir</span>
+            <span class="n">datapath</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">datapath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span>
+
+        <span class="n">note_dataobj</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">"title"</span><span class="p">:</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".md"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
+                <span class="s2">"content"</span><span class="p">:</span> <span class="n">file_contents</span><span class="p">,</span>
+                <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"note"</span><span class="p">,</span>
+                <span class="s2">"path"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">datapath</span><span class="p">)</span>
+            <span class="p">}</span>
+
+        <span class="n">dataobj</span> <span class="o">=</span> <span class="n">DataObj</span><span class="p">(</span><span class="o">**</span><span class="n">note_dataobj</span><span class="p">)</span>
+        <span class="n">dataobj</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span>
+
+        <span class="n">path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Formatted and moved </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">datapath</span> <span class="o">/</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">dataobj</span><span class="o">.</span><span class="n">fullpath</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>
@@ -1142,6 +1229,59 @@ open_file<span class="p">(</span><span class="n">path</span><span class="p">)</s
         <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s2">"open"</span><span class="p">,</span> <span class="n">path</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s2">"xdg-open"</span><span class="p">,</span> <span class="n">path</span><span class="p">])</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="archivy.data.unformat_file">
+
+        <code class="highlight language-python">
+unformat_file<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">)</span>        </code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Converts normal md of file at <code>path</code> to formatted archivy markdown file, with yaml front matter
+and a filename of format "{id}-{old_filename}.md"</p>
+<details class="quote">
+          <summary>Source code in <code>archivy/data.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">unformat_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Converts normal md of file at `path` to formatted archivy markdown file, with yaml front matter</span>
+<span class="sd">    and a filename of format "{id}-{old_filename}.md"</span>
+<span class="sd">    """</span>
+
+    <span class="n">data_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">out_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">out_dir</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">out_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">out_dir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">path</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+            <span class="n">unformat_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">out_dir</span><span class="p">))</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dataobj</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># get relative path of object in `data` dir</span>
+            <span class="n">datapath</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">datapath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span>
+
+        <span class="c1"># create subdir if doesn't exist</span>
+        <span class="p">(</span><span class="n">out_dir</span> <span class="o">/</span> <span class="n">datapath</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">new_path</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="n">datapath</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dataobj</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span><span class="si">}</span><span class="s2">.md"</span>
+        <span class="k">with</span> <span class="n">new_path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dataobj</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unformatted and moved </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">new_path</span><span class="o">.</span><span class="n">resolve</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 </code></pre>
 </div>
 </details>

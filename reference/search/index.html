@@ -375,7 +375,7 @@
 <div class="doc doc-object doc-function">
 <h2 class="doc doc-heading" id="archivy.search.add_to_index">
 <code class="highlight language-python">
-add_to_index<span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> </code>
+add_to_index<span class="p">(</span><span class="n">model</span><span class="p">)</span> </code>
 </h2>
 <div class="doc doc-contents">
 <p>Adds dataobj to given index. If object of given id already exists, it will be updated.</p>
@@ -386,7 +386,7 @@ add_to_index<span class="p">(</span><span class="n">index</span><span class="p">
 <details class="quote">
 <summary>Source code in <code>archivy/search.py</code></summary>
 <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">add_to_index</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">add_to_index</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
     <span class="sd">"""</span>
 <span class="sd">    Adds dataobj to given index. If object of given id already exists, it will be updated.</span>
 
@@ -401,7 +401,8 @@ add_to_index<span class="p">(</span><span class="n">index</span><span class="p">
     <span class="n">payload</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">__searchable__</span><span class="p">:</span>
         <span class="n">payload</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
-    <span class="n">es</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+    <span class="n">es</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"SEARCH_CONF"</span><span class="p">][</span><span class="s2">"index_name"</span><span class="p">],</span> <span class="nb">id</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span>
 </code></pre>
 </div>
 </details>
@@ -410,20 +411,20 @@ add_to_index<span class="p">(</span><span class="n">index</span><span class="p">
 <div class="doc doc-object doc-function">
 <h2 class="doc doc-heading" id="archivy.search.query_index">
 <code class="highlight language-python">
-query_index<span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span> </code>
+query_index<span class="p">(</span><span class="n">query</span><span class="p">)</span> </code>
 </h2>
 <div class="doc doc-contents">
 <p>Returns search results for your given query</p>
 <details class="quote">
 <summary>Source code in <code>archivy/search.py</code></summary>
 <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">query_index</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">query_index</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
     <span class="sd">"""Returns search results for your given query"""</span>
     <span class="n">es</span> <span class="o">=</span> <span class="n">get_elastic_client</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">es</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
     <span class="n">search</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-        <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"SEARCH_CONF"</span><span class="p">][</span><span class="s2">"index_name"</span><span class="p">],</span>
         <span class="n">body</span><span class="o">=</span><span class="p">{</span>
             <span class="s2">"query"</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">"multi_match"</span><span class="p">:</span> <span class="p">{</span>
@@ -433,12 +434,11 @@ query_index<span class="p">(</span><span class="n">index</span><span class="p">,
                 <span class="p">}</span>
             <span class="p">},</span>
             <span class="s2">"highlight"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"fragment_size"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
                 <span class="s2">"fields"</span><span class="p">:</span> <span class="p">{</span>
                     <span class="s2">"content"</span><span class="p">:</span> <span class="p">{</span>
                         <span class="s2">"pre_tags"</span><span class="p">:</span> <span class="s2">"=="</span><span class="p">,</span>
                         <span class="s2">"post_tags"</span><span class="p">:</span> <span class="s2">"=="</span><span class="p">,</span>
-                        <span class="s2">"boundary_max_scan"</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-                        <span class="s2">"fragment_size"</span><span class="p">:</span> <span class="mi">0</span>
                     <span class="p">}</span>
                 <span class="p">}</span>
             <span class="p">}</span>
@@ -461,19 +461,19 @@ query_index<span class="p">(</span><span class="n">index</span><span class="p">,
 <div class="doc doc-object doc-function">
 <h2 class="doc doc-heading" id="archivy.search.remove_from_index">
 <code class="highlight language-python">
-remove_from_index<span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">dataobj_id</span><span class="p">)</span> </code>
+remove_from_index<span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span> </code>
 </h2>
 <div class="doc doc-contents">
 <p>Removes object of given id</p>
 <details class="quote">
 <summary>Source code in <code>archivy/search.py</code></summary>
 <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">remove_from_index</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">dataobj_id</span><span class="p">):</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">remove_from_index</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">):</span>
     <span class="sd">"""Removes object of given id"""</span>
     <span class="n">es</span> <span class="o">=</span> <span class="n">get_elastic_client</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">es</span><span class="p">:</span>
         <span class="k">return</span>
-    <span class="n">es</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">dataobj_id</span><span class="p">)</span>
+    <span class="n">es</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"SEARCH_CONF"</span><span class="p">][</span><span class="s2">"index_name"</span><span class="p">],</span> <span class="nb">id</span><span class="o">=</span><span class="n">dataobj_id</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>

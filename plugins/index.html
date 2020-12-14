@@ -745,7 +745,7 @@
 <span class="p">)</span>
 </code></pre></div>
 <p>Let's walk through what this is doing. We are setting up our package and we define a few characteristics of the package. We specify some metadata you can adapt to your own package. We then load our package by using the <code>find_packages</code> function. The <code>entry_points</code> part is the most important. The <code>[archivy.plugins]</code> tells archivy that this package will extend our CLI and then we define the command we want to add. In our case, people will call the extension using <code>archivy pocket</code>. We will actually be creating a group so that people will call subcommands like this: <code>archivy pocket &lt;subcommand&gt;</code>. You can do things either way.</p>
-<p>Create a <code>README.md</code> file that you can keep empty for now but should haCve information on your project.</p>
+<p>Create a <code>README.md</code> file that you can keep empty for now but should store information on your project.</p>
 <h2 id="step-3-writing-the-core-code-of-our-plugin">Step 3: Writing the core code of our plugin</h2>
 <p>Create an <code>archivy_web</code> directory inside the current directory where <code>setup.py</code> is stored. Create an <code>__init__.py</code> file in that directory where we'll store our main project code. For larger projects, it's better to separate concerns but that'll be good for now.</p>
 <p>This is what the skeleton of our code looks will look like.</p>

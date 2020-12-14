@@ -697,8 +697,8 @@
 </tbody>
 </table>
 <h3 id="elasticsearch">Elasticsearch</h3>
-<p>All of these are children of the <code>ELASTICSEARCH_CONF</code> object, like this in the yaml:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">ELASTICSEARCH_CONF</span><span class="p">:</span>
+<p>All of these are children of the <code>SEARCH_CONF</code> object, like this in the yaml:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">SEARCH_CONF</span><span class="p">:</span>
   <span class="nt">enabled</span><span class="p">:</span>
   <span class="nt">url</span><span class="p">:</span>
   <span class="c1"># ...</span>
@@ -717,6 +717,11 @@
 <td><code>enabled</code></td>
 <td>1</td>
 <td></td>
+</tr>
+<tr>
+<td><code>enable_watcher</code></td>
+<td>1</td>
+<td>Whether or not to run the watcher that auto-syncs changes to dataobjs to Elasticsearch. Otherwise you can handle syncing yourself through <code>archivy search-index</code></td>
 </tr>
 <tr>
 <td><code>url</code></td>
