@@ -298,6 +298,85 @@
 
 
   <li class="md-nav__item">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Architecture
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Architecture
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-storage" class="md-nav__link">
+    Data Storage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search" class="md-nav__link">
+    Search
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#daemon" class="md-nav__link">
+    Daemon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auth" class="md-nav__link">
+    Auth
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-bookmarks-work" class="md-nav__link">
+    How bookmarks work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugins" class="md-nav__link">
+    Plugins
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../CONTRIBUTING/" class="md-nav__link">
       Contributing
     </a>
@@ -720,7 +799,7 @@
                 <p>This document is a general overview of how the different pieces of archivy interact and what technologies it uses. Reading this will be useful for people looking to access the inner archivy API to write plugins. Read <a href="https://www.uzpg.me/tech/2020/07/21/architecture-md.html">this post</a> to understand what the function of an <code>architecture.md</code> file is.</p>
 <p>Archivy is:</p>
 <ul>
-<li>A <a href="flask.palletsprojects.com/">Flask</a> web application.</li>
+<li>A <a href="https://flask.palletsprojects.com/">Flask</a> web application.</li>
 <li>A <a href="https://click.palletsprojects.com/">click</a> backend command line interface.</li>
 </ul>
 <p>You use the cli to run the app, and you'll probably be using the web application for direct usage of archivy.</p>
