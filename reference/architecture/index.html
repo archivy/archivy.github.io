@@ -337,13 +337,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#daemon" class="md-nav__link">
-    Daemon
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#auth" class="md-nav__link">
     Auth
   </a>
@@ -603,13 +596,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#daemon" class="md-nav__link">
-    Daemon
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#auth" class="md-nav__link">
     Auth
   </a>
@@ -750,13 +736,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#daemon" class="md-nav__link">
-    Daemon
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#auth" class="md-nav__link">
     Auth
   </a>
@@ -827,9 +806,6 @@
 <p>Archivy uses <a href="https://www.elastic.co/">Elasticsearch</a> to index and allow users to have full-text search on their knowledge bases. </p>
 <p>Elasticsearch requires configuration to have higher quality search results. You can check out the top-notch config archivy already uses by default <a href="https://github.com/archivy/archivy/blob/master/archivy/config.py">here</a>.</p>
 <p>Check out the <a href="../search/">helper methods</a> archivy exposes for ES.</p>
-<h2 id="daemon">Daemon</h2>
-<p>Since the DataObjs are stored on the filesystem, archivy runs a daemon to check for changes in the files.</p>
-<p>It has a simple function: if you have elasticsearch enabled, whenever you edit a file, it will sync the changes to ES.</p>
 <h2 id="auth">Auth</h2>
 <p>Archivy uses <a href="https://flask-login.readthedocs.io/en/latest/">flask-login</a> for auth. All endpoints require to be authenticated. When you run archivy for the first time, it creates an admin user for you and outputs a temporary password.</p>
 <p>In our roadmap we plan to extend our permission framework to have a multi-user system, and define configuration for the permissions of non-logged in users. In general we want to make things more flexible on the auth side.</p>

@@ -619,7 +619,7 @@ Commands:
 <p>Make sure you've configured Archivy by running <code>archivy init</code>, as outlined in <a href="../install/">install</a>.</p>
 <p>If you'd like to add users, you can simply create new admin users with the <code>create-admin</code> command. Only give credentials to trusted people.</p>
 <p>If you have normal md files you'd like to migrate to archivy, move your files into your archivy data directory and then run <code>archivy format &lt;filenames&gt;</code> to make them conform to <a href="/reference/architecture/#data-storage">archivy's formatting</a>. Run <code>archivy unformat</code> to convert the other way around.</p>
-<p>You can sync changes to files to the Elasticsearch index by running <code>archivy index</code> or by simply running archivy when you edit (and not disabling the <a href="/reference/architecture#daemon">watcher</a>.</p>
+<p>You can sync changes to files to the Elasticsearch index by running <code>archivy index</code> or by simply using the web editor which updates ES when you push a change.</p>
 <p>The <code>config</code> command allows you to play around with <a href="../config/">configuration</a> and use <code>shell</code> if you'd like to play around with the archivy python API.</p>
 <p>You can then use archivy to create notes, bookmarks and to organize and store information.</p>
 <p>The <a href="../reference/web_api/">web api</a> is also useful to extend archivy, or <a href="../plugins/">plugins</a>.</p>
