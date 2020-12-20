@@ -609,8 +609,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../reference/search/" class="md-nav__link">
-      Search
+    <a href="../reference/helpers/" class="md-nav__link">
+      Helpers
     </a>
   </li>
 
@@ -621,8 +621,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../reference/helpers/" class="md-nav__link">
-      Helpers
+    <a href="../reference/hooks/" class="md-nav__link">
+      Hooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/search/" class="md-nav__link">
+      Search
     </a>
   </li>
 
@@ -721,99 +733,193 @@
                 
                 <h1 id="plugins">Plugins</h1>
 <p>Plugins are a newly introduced method to add extensions to the archivy cli and web interface. It relies on the extremely useful <a href="https://github.com/click-contrib/click-plugins">click-plugins</a> package that is loaded through pip and the <a href="https://github.com/click-contrib/click-plugins">click-web</a> which has been modified and whose can be found in <code>archivy/click_web/</code>, some of the tests, templates and static files.</p>
-<p>To help you understand the way the plugin system works, we're going to build our own plugin that allows users to sync content from <code>pocket</code>. We'll even deploy it to Pypi so that other people can install it.</p>
-<p>Note: The source code for this plugin is available <a href="https://github.com/archivy/archivy-pocket">here</a>.</p>
-<p>We also recommend you to read <a href="../reference/architecture/">the overview of the reference</a> so you can better use the wrapper methods archivy exposes.</p>
+<p>To help you understand the way the plugin system works, we're going to build our own example plugin. We'll even deploy it to Pypi so that other people can install it.</p>
+<p>Note: The source code for this plugin is available <a href="https://github.com/archivy/archivy/tree/master/docs/example_plugin">here</a>.</p>
+<p>We also recommend you read <a href="../reference/architecture/">the overview of the reference</a> beforehand so you can better use the wrapper methods archivy exposes.</p>
 <p>Prerequisites: A python and pip installation with archivy.</p>
 <h2 id="step-1-defining-what-our-archivy-extension-does">Step 1: Defining what our archivy extension does</h2>
-<p><code>archivy</code> source used to have a built-in feature that allowed you to sync up to the bookmarks of your pocket account. We removed this and prefer to replace it with a standalone plugin, so let's build it!</p>
-<p>What it will do is allow a user to download their bookmarks from pocket, without redownloading content that already exists.</p>
+<p>Let's build a simple plugin that will automatically add some metadata (author name, location...) at the end of each note.</p>
 <h2 id="step-2-setting-up-the-project">Step 2: Setting up the project</h2>
-<p>Make a new directory named <code>archivy_pocket</code> wherever you want on your system and create a new <a href="https://stackoverflow.com/questions/1471994/what-is-setup-py"><code>setup.py</code></a> file that will define the characteristics of our package.</p>
-<p>This is what it looks like:</p>
+<p>Make a new directory named <code>archivy_extra_metadata</code> that will be our plugin directory and create a new <a href="https://stackoverflow.com/questions/1471994/what-is-setup-py"><code>setup.py</code></a> file that will define the characteristics of our package.</p>
+<p>Note: Using <a href="https://archivy.github.io/reference/architecture/#data-storage"><code>frontmatter</code></a> is better suited for this functionality, but here we'll just want something simple that adds text directly at the end of the content, like: <code>Made by John Doe in London.</code></p>
+<p>This is what our <code>setup.py</code> looks like:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;README.md&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
-    <span class="n">long_description</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
 <span class="n">setup</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;archivy_pocket&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;archivy_extra_metadata&#39;</span><span class="p">,</span>
     <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1.0&#39;</span><span class="p">,</span>
     <span class="n">author</span><span class="o">=</span><span class="s2">&quot;Uzay-G&quot;</span><span class="p">,</span>
-    <span class="n">author_email</span><span class="o">=</span><span class="s2">&quot;halcyon@disroot.org&quot;</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-        <span class="s2">&quot;Archivy extension to sync content to your pocket account.&quot;</span>
+        <span class="s2">&quot;Archivy extension to add some metadata at the end of your notes / bookmarks.&quot;</span>
     <span class="p">),</span>
-    <span class="n">long_description</span><span class="o">=</span><span class="n">long_description</span><span class="p">,</span>
-    <span class="n">long_description_content_type</span><span class="o">=</span><span class="s2">&quot;text/markdown&quot;</span><span class="p">,</span>
     <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
         <span class="s2">&quot;Programming Language :: Python :: 3&quot;</span><span class="p">,</span>
     <span class="p">],</span>
     <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
     <span class="n">entry_points</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">        [archivy.plugins]</span>
-<span class="s1">        pocket=archivy_pocket:pocket</span>
+<span class="s1">        extra-metadata=archivy_extra_metadata:extra_metadata</span>
 <span class="s1">    &#39;&#39;&#39;</span>
 <span class="p">)</span>
 </code></pre></div>
-<p>Let's walk through what this is doing. We are setting up our package and we define a few characteristics of the package. We specify some metadata you can adapt to your own package. We then load our package by using the <code>find_packages</code> function. The <code>entry_points</code> part is the most important. The <code>[archivy.plugins]</code> tells archivy that this package will extend our CLI and then we define the command we want to add. In our case, people will call the extension using <code>archivy pocket</code>. We will actually be creating a group so that people will call subcommands like this: <code>archivy pocket &lt;subcommand&gt;</code>. You can do things either way.</p>
-<p>Create a <code>README.md</code> file that you can keep empty for now but should store information on your project.</p>
+<p>Let's walk through what this is doing:</p>
+<ul>
+<li>We specify some metadata you can adapt to your own package like <code>name</code>, <code>author</code> and <code>description</code>. </li>
+<li>We then load our package and source code by using the <code>find_packages</code> function.</li>
+<li>The <code>entry_points</code> is the most important: the <code>[archivy.plugins]</code> part tells archivy that this package's commands will directly extend the archivy CLI so we can call <code>archivy extra-metadata</code> in the command line. We will actually be creating a group of commands so users will call subcommands like this: <code>archivy extra-metadata &lt;subcommand&gt;</code>. You can do things either way.</li>
+</ul>
 <h2 id="step-3-writing-the-core-code-of-our-plugin">Step 3: Writing the core code of our plugin</h2>
-<p>Create an <code>archivy_web</code> directory inside the current directory where <code>setup.py</code> is stored. Create an <code>__init__.py</code> file in that directory where we'll store our main project code. For larger projects, it's better to separate concerns but that'll be good for now.</p>
-<p>This is what the skeleton of our code looks will look like.</p>
+<p>Create an <code>archivy_extra_metadata</code> directory inside the current directory where <code>setup.py</code> is stored. Create an <code>__init__.py</code> file in that directory where we'll store our main project code. For larger projects, it's better to separate concerns but that'll be good for now.</p>
+<p>This will be the skeleton structure of our <code>__init__.py</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">click</span> <span class="c1"># the package that manages the cli</span>
 
 <span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">pocket</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">extra_metadata</span><span class="p">():</span>
     <span class="k">pass</span>
 
-<span class="nd">@pocket</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@extra_metadata</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">command1</span><span class="p">():</span>
     <span class="o">...</span>
 
-<span class="nd">@pocket</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@extra_metadata</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">command2</span><span class="p">():</span>
     <span class="o">...</span>
 </code></pre></div>
-<p>With this structure, you'll be able to call <code>archivy pocket command1</code> and <code>archivy pocket command2</code>. Read the <a href="https://click.palletsprojects.com/en/7.x/options/">click docs</a> to learn about how to build more intricate options. We also provide some custom ones <a href="/reference/web_inputs.md">like email and password</a></p>
+<p>With this example structure, you'd be able to run commands like <code>archivy extra_metadata command1</code> and <code>archivy extra_metadata command2</code>. Read the <a href="https://click.palletsprojects.com/en/7.x/options/">click docs</a> to learn about how to build more intricate commands / options. We also provide some custom <a href="https://click.palletsprojects.com/en/7.x/parameters/#parameter-types">option types</a> like <a href="/reference/web_inputs.md">email and password</a></p>
 <p>Let's get into actually writing a command that interacts with the archivy codebase.</p>
-<p>The code below does a few things:</p>
-<ul>
-<li>It imports the archivy <code>app</code> that basically is the interface for the webserver and many essential Flask features (flask is the web framework archivy uses).</li>
-<li>It imports the <code>get_db</code> function that allows us to access and modify the db.</li>
-<li>We define our pocket group.</li>
-<li>We create a new command from that group, what's important here is the <code>with app.app_context</code> part. We need to run our code inside the archivy <code>app_context</code> to be able to call some of the archivy methods. If you call archivy methods in your plugins, it might fail if you don't include this part.</li>
-<li>Then we just have our command code.</li>
-</ul>
+<p>We'll make a command called <code>setup</code> to allow users to setup their metadata by specifying their name and location:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">click</span>
-<span class="kn">from</span> <span class="nn">archivy.extensions</span> <span class="kn">import</span> <span class="n">get_db</span>
+<span class="kn">from</span> <span class="nn">archivy.helpers</span> <span class="kn">import</span> <span class="n">get_db</span>
 <span class="kn">from</span> <span class="nn">archivy</span> <span class="kn">import</span> <span class="n">app</span>
-<span class="kn">from</span> <span class="nn">archivy.data</span> <span class="kn">import</span> <span class="n">get_items</span>
 
 <span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">pocket</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">extra_metadata</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;`archivy_extra_metadata` plugin to add metadata to your notes.&quot;&quot;&quot;</span>
     <span class="k">pass</span>
 
-<span class="nd">@pocket</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">&quot;api_key&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">auth</span><span class="p">(</span><span class="n">api_key</span><span class="p">):</span>
+<span class="nd">@extra_metadata</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--author&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--location&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">author</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Save metadata values.&quot;&quot;&quot;</span>    
     <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
-        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
-        <span class="c1"># ...</span>
+        <span class="c1"># save data in db</span>
+        <span class="n">get_db</span><span class="p">()</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="n">author</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">})</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Metadata saved!&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>We also added some other commands, but we'll skip them for brevity and you can check out the source code <a href="https://github.com/archivy/archivy-pocket">here</a>.</p>
-<p>Now you just need to do <code>pip install .</code> in the main directory and you'll have access to the commands. Check it out by running <code>archivy --help</code>.</p>
+<p>The code above does a few things:</p>
+<ul>
+<li>It imports the archivy <code>app</code> that is basically the interface for the webserver and many essential Flask features (flask is the web framework archivy uses).</li>
+<li>It imports the <code>get_db</code> function that allows us to access and modify the database.</li>
+<li>We define our <code>extra_metadata</code> group of commands that will be the parent of our subcommands.</li>
+<li>We create a new command from that group with two parameters: <code>author</code> and <code>location</code>. An important part of the code is the <code>with app.app_context()</code> part, we need to run our code inside the archivy <code>app_context</code> to be able to call some of the archivy methods. If you call archivy methods in your plugins, it might fail if you don't include this part.</li>
+<li>Then we just have our command code that takes the arguments and saves them into the <a href="/reference/architecture/#data-storage">database</a>.</li>
+</ul>
+<p>Now you just need to do <code>pip install .</code> in the main directory and you'll have access to the commands. Check it out by running <code>archivy extra_metadata --help</code> and then you can access the commands:</p>
+<div class="highlight"><pre><span></span><code>$ archivy extra-metadata --help
+Usage: archivy extra-metadata <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+
+  <span class="sb">`</span>archivy_extra_metadata<span class="sb">`</span> plugin to add metadata to your notes.
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  setup  Save metadata values.
+
+$ archivy extra-metadata setup --help
+Usage: archivy extra-metadata setup <span class="o">[</span>OPTIONS<span class="o">]</span>
+
+  Save metadata values.
+
+Options:
+  --name TEXT      <span class="o">[</span>required<span class="o">]</span>
+  --location TEXT  <span class="o">[</span>required<span class="o">]</span>
+  --help           Show this message and exit.
+
+$ archivy extra-metadata setup --author Uzay --location Europe
+Metadata saved!
+</code></pre></div>
+<p>That's nice and all, but now we want to actually use this metadata! This wouldn't work with a cli command, because we want it to add metadata whenever a new note is created, not just when a command is executed.</p>
+<p>To do this, we'll use <a href="/reference/hooks"><code>hooks</code></a>. These allow the end user to configure what happens whenever an event is fired off, like the creation of a <a href="../reference/models/">DataObj</a> .</p>
+<p>Archivy saves a link to a user-specified directory where it stores all your data for Archivy. This directory is usually set during the execution of the <code>archivy init</code> command.</p>
+<p>It has this structure:</p>
+<div class="highlight"><pre><span></span><code>data/
+    # content
+</code></pre></div>
+<p>Creating a <code>hooks.py</code> file in the root of this directory is how archivy calls these events.</p>
+<p>For example, this could be a potential hook file:</p>
+<div class="highlight"><pre><span></span><code># import base hooks that our `Hooks` class inherits
+from archivy.config import BaseHooks
+
+class Hooks(BaseHooks):
+    def on_dataobj_create(self, dataobj):
+        print(&quot;New dataobj created!&quot;)
+</code></pre></div>
+<p>What we'll be doing is we'll use the <a href="../reference/hooks/"><code>before_dataobj_create</code></a> event to add our metadata before the text is saved.</p>
+<p>Let's define a function at the end of the <code>__init__.py</code> file of our package that takes a <a href="../reference/models/">DataObj</a> as an argument and modifies it:</p>
+<div class="highlight"><pre><span></span><code>from tinydb import Query # this is the db handler that we use and we need to make a Query
+def add_metadata(dataobj):
+    with app.app_context():
+        metadata = get_db().search(Query().type == &quot;metadata&quot;)
+        dataobj.content += f&quot;Made by {metadata[&#39;author&#39;]} in {metadata[&#39;location&#39;]}&quot;
+</code></pre></div>
+<p>Combined with our previous code:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">from</span> <span class="nn">tinydb</span> <span class="kn">import</span> <span class="n">Query</span>
+<span class="kn">from</span> <span class="nn">archivy.helpers</span> <span class="kn">import</span> <span class="n">get_db</span>
+<span class="kn">from</span> <span class="nn">archivy</span> <span class="kn">import</span> <span class="n">app</span>
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">extra_metadata</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;`archivy_extra_metadata` plugin to add metadata to your notes.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+<span class="nd">@extra_metadata</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--author&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--location&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">author</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Save metadata values.&quot;&quot;&quot;</span>    
+    <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
+        <span class="c1"># save data in db</span>
+        <span class="n">get_db</span><span class="p">()</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="n">author</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">})</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Metadata saved!&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">add_metadata</span><span class="p">(</span><span class="n">dataobj</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;metadata&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dataobj</span><span class="o">.</span><span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Made by </span><span class="si">{</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span>
+</code></pre></div>
+<p>Now to enable our plugin, all people have to do is modify their <code>hooks.py</code> file like this for example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">archivy_extra_metadata</span> <span class="kn">import</span> <span class="n">add_metadata</span>
+<span class="kn">from</span> <span class="nn">archivy.config</span> <span class="kn">import</span> <span class="n">BaseHooks</span>
+
+<span class="k">class</span> <span class="nc">Hooks</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
+        <span class="n">add_metadata</span><span class="p">(</span><span class="n">dataobj</span><span class="p">)</span>
+</code></pre></div>
+<p>Users of your plugin will add the <code>add_metadata(dataobj)</code> to the <code>before_dataobj_create</code> call, and the metadata will be added automatically when the event is called.</p>
+<p>We now have a working setup:</p>
+<p>This is how our plugin will be used:</p>
+<ul>
+<li>Users install the package.</li>
+<li>They run <code>archivy extra-metadata setup --author xxx --location xxx</code> to set metadata.</li>
+<li>They modify their <code>hooks.py</code> to call <code>add_metadata</code> on the <code>before_dataobj_create</code> event.</li>
+<li>Voilà!</li>
+</ul>
+<p>However, we need a way for them to install this package. That brings us to Step 4.</p>
 <h2 id="step-4-publishing-our-package-to-pypi">Step 4: Publishing our package to Pypi</h2>
 <p><a href="https://pypi.org">Pypi</a> is the Python package repository. Publishing our package to it will allow other users to easily install our code onto their own archivy instance.</p>
-<p>This is a short overview. Check out <a href="https://packaging.python.org/">this website</a> for more info.</p>
-<p>This section is inspired by <a href="https://packaging.python.org/tutorials/packaging-projects/#installing-your-newly-uploaded-package">this</a>.</p>
+<p>This is a short overview of how you can upload your package. Check out <a href="https://packaging.python.org/">this website</a> for more info.</p>
+<p>This section is inspired by <a href="https://packaging.python.org/tutorials/packaging-projects/#installing-your-newly-uploaded-package">this useful tutorial</a>.</p>
 <p>Make sure the required utilities are installed:</p>
 <div class="highlight"><pre><span></span><code><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">setuptools</span> <span class="n">wheel</span>
 </code></pre></div>
-<p>Now run this command in the main dir to build the source:</p>
+<p>Now run this command in the main directory to build the source:</p>
 <div class="highlight"><pre><span></span><code><span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">sdist</span> <span class="n">bdist_wheel</span>
 </code></pre></div>
-<p>Now you need to create an account on <a href="https://pypi.org">Pypi</a>. Then go <a href="https://pypi.org/manage/account/#api-tokens">here</a> and create a new API token; don’t limit its scope to a particular project, since you are creating a new project.</p>
+<p>Create an account on <a href="https://pypi.org">Pypi</a>. Then go <a href="https://pypi.org/manage/account/#api-tokens">here</a> and create a new API token; set its scope to all projects.</p>
 <p>Once you've saved your token, install <code>twine</code>, the program that will take care of the upload:</p>
 <div class="highlight"><pre><span></span><code><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">twine</span>
 </code></pre></div>

@@ -675,8 +675,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../search/" class="md-nav__link">
-      Search
+    <a href="../helpers/" class="md-nav__link">
+      Helpers
     </a>
   </li>
 
@@ -687,8 +687,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../helpers/" class="md-nav__link">
-      Helpers
+    <a href="../hooks/" class="md-nav__link">
+      Hooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../search/" class="md-nav__link">
+      Search
     </a>
   </li>
 
@@ -1369,6 +1381,7 @@ id: 1 # unchanged
 <span class="sd">    # This is specific</span>
 <span class="sd">    ```</span>
 <span class="sd">    """</span>
+
     <span class="kn">from</span> <span class="nn">archivy.models</span> <span class="kn">import</span> <span class="n">DataObj</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
     <span class="n">dataobj</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
@@ -1377,8 +1390,10 @@ id: 1 # unchanged
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
 
-    <span class="c1"># save changes to ES</span>
-    <span class="n">DataObj</span><span class="o">.</span><span class="n">from_md</span><span class="p">(</span><span class="n">md</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">()</span>
+    <span class="n">converted_dataobj</span> <span class="o">=</span> <span class="n">DataObj</span><span class="o">.</span><span class="n">from_md</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
+    <span class="n">converted_dataobj</span><span class="o">.</span><span class="n">fullpath</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"USER_DIR"</span><span class="p">]))</span>
+    <span class="n">converted_dataobj</span><span class="o">.</span><span class="n">index</span><span class="p">()</span>
+    <span class="n">load_hooks</span><span class="p">()</span><span class="o">.</span><span class="n">on_edit</span><span class="p">(</span><span class="n">converted_dataobj</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>
@@ -1420,13 +1435,13 @@ id: 1 # unchanged
           </a>
         
         
-          <a href="../search/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../helpers/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Search
+                Helpers
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
