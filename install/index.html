@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#from-pip" class="md-skip">
+        <a href="#with-pip" class="md-skip">
           Skip to content
         </a>
       
@@ -407,8 +407,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#from-pip" class="md-nav__link">
-    From pip
+  <a href="#with-pip" class="md-nav__link">
+    With pip
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#with-nix" class="md-nav__link">
+    With Nix
   </a>
   
 </li>
@@ -708,8 +715,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#from-pip" class="md-nav__link">
-    From pip
+  <a href="#with-pip" class="md-nav__link">
+    With pip
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#with-nix" class="md-nav__link">
+    With Nix
   </a>
   
 </li>
@@ -740,7 +754,7 @@
                 
                   <h1>Installing Archivy</h1>
                 
-                <h2 id="from-pip">From pip</h2>
+                <h2 id="with-pip">With pip</h2>
 <p>You can easily install archivy with <code>pip</code>. (pip  is the default package installer for Python, you can use pip to install many packages and apps, see this <a href="https://pypi.org/project/pip/">link</a> for more information if needed)</p>
 <ol>
 <li>Make sure your system has Python and pip installed. The Python programming language can also be downloaded from <a href="https://www.python.org/downloads/">here</a>.</li>
@@ -748,6 +762,9 @@
 <li>If you'd like to use search, follow <a href="../setup-search/">these docs</a> first and then do this part. Either way, run <code>archivy init</code> to create a new user and use the setup wizard.</li>
 <li>There you go! You should be able to start the app by running <code>archivy run</code> in your terminal and then just login.</li>
 </ol>
+<h2 id="with-nix">With Nix</h2>
+<div class="highlight"><pre><span></span><code>$ nix-env -i archivy
+</code></pre></div>
 <h2 id="with-docker">With docker</h2>
 <p>You can also use archivy with Docker. </p>
 <p>See <a href="../docker/">Installing with docker</a> for instructions on this.</p>
