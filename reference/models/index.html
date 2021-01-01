@@ -917,7 +917,6 @@
 </ul>
 <p>[Optional attrs that if passed, will be set by the class]</p>
 <ul>
-<li>desc</li>
 <li>tags</li>
 <li>content</li>
 <li>path</li>
@@ -1014,7 +1013,7 @@ from_md<span class="p">(</span><span class="n">md_content</span><span class="p">
     <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">md_content</span><span class="p">)</span>
     <span class="n">dataobj</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">dataobj</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">content</span>
-    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"tags"</span><span class="p">,</span> <span class="s2">"desc"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">,</span> <span class="s2">"path"</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"tags"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">,</span> <span class="s2">"path"</span><span class="p">]:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">dataobj</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
@@ -1057,7 +1056,6 @@ insert<span class="p">(</span><span class="bp">self</span><span class="p">)</spa
         <span class="n">hooks</span><span class="o">.</span><span class="n">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"type"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
-            <span class="s2">"desc"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">desc</span><span class="p">,</span>
             <span class="s2">"title"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">),</span>
             <span class="s2">"date"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"</span><span class="si">%x</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"/"</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">),</span>
             <span class="s2">"tags"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span>
@@ -1107,7 +1105,7 @@ process_bookmark_url<span class="p">(</span><span class="bp">self</span><span cl
     <span class="k">try</span><span class="p">:</span>
         <span class="n">url_request</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not retrieve </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not retrieve </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wipe</span><span class="p">()</span>
         <span class="k">return</span>
 
@@ -1115,14 +1113,14 @@ process_bookmark_url<span class="p">(</span><span class="bp">self</span><span cl
         <span class="n">parsed_html</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">url_request</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
                                     <span class="n">features</span><span class="o">=</span><span class="s2">"html.parser"</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not parse </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not parse </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wipe</span><span class="p">()</span>
         <span class="k">return</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_content</span><span class="p">(</span><span class="n">parsed_html</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not extract content from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not extract content from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="n">parsed_title</span> <span class="o">=</span> <span class="n">parsed_html</span><span class="o">.</span><span class="n">title</span>
@@ -1176,7 +1174,6 @@ wipe<span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <pre><span></span><code><span class="k">def</span> <span class="nf">wipe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">"""Resets and invalidates dataobj"""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">""</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">desc</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">""</span>
 </code></pre>
 </div>

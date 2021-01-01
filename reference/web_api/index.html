@@ -500,7 +500,6 @@ create_bookmark<span class="p">()</span> </code>
 <p><strong>Parameters:</strong></p>
 <p>All parameters are sent through the JSON body.
 - <strong>url</strong> (required)
-- <strong>desc</strong>
 - <strong>tags</strong>
 - <strong>path</strong></p>
 <details class="quote">
@@ -515,14 +514,12 @@ create_bookmark<span class="p">()</span> </code>
 
 <span class="sd">    All parameters are sent through the JSON body.</span>
 <span class="sd">    - **url** (required)</span>
-<span class="sd">    - **desc**</span>
 <span class="sd">    - **tags**</span>
 <span class="sd">    - **path**</span>
 <span class="sd">    """</span>
     <span class="n">json_data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
     <span class="n">bookmark</span> <span class="o">=</span> <span class="n">DataObj</span><span class="p">(</span>
         <span class="n">url</span><span class="o">=</span><span class="n">json_data</span><span class="p">[</span><span class="s1">'url'</span><span class="p">],</span>
-        <span class="n">desc</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'desc'</span><span class="p">),</span>
         <span class="n">tags</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'tags'</span><span class="p">),</span>
         <span class="n">path</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"path"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
         <span class="nb">type</span><span class="o">=</span><span class="s2">"bookmark"</span><span class="p">,</span>
@@ -581,7 +578,6 @@ create_note<span class="p">()</span> </code>
 <p>All parameters are sent through the JSON body.
 - <strong>title</strong> (required)
 - <strong>content</strong> (required)
-- <strong>desc</strong>
 - <strong>tags</strong>
 - <strong>path</strong></p>
 <details class="quote">
@@ -597,7 +593,6 @@ create_note<span class="p">()</span> </code>
 <span class="sd">    All parameters are sent through the JSON body.</span>
 <span class="sd">    - **title** (required)</span>
 <span class="sd">    - **content** (required)</span>
-<span class="sd">    - **desc**</span>
 <span class="sd">    - **tags**</span>
 <span class="sd">    - **path**</span>
 <span class="sd">    """</span>
@@ -605,7 +600,6 @@ create_note<span class="p">()</span> </code>
     <span class="n">note</span> <span class="o">=</span> <span class="n">DataObj</span><span class="p">(</span>
         <span class="n">title</span><span class="o">=</span><span class="n">json_data</span><span class="p">[</span><span class="s2">"title"</span><span class="p">],</span>
         <span class="n">content</span><span class="o">=</span><span class="n">json_data</span><span class="p">[</span><span class="s2">"content"</span><span class="p">],</span>
-        <span class="n">desc</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"desc"</span><span class="p">),</span>
         <span class="n">tags</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"tags"</span><span class="p">),</span>
         <span class="n">path</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"path"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
         <span class="nb">type</span><span class="o">=</span><span class="s2">"note"</span>
