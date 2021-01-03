@@ -1253,24 +1253,24 @@ get_items<span class="p">(</span><span class="n">collections</span><span class="
 <span class="sd">    """</span>
     <span class="n">datacont</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">path</span> <span class="ow">or</span> <span class="s2">"root"</span><span class="p">)</span> <span class="k">if</span> <span class="n">structured</span> <span class="k">else</span> <span class="p">[]</span>
     <span class="n">root_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span> <span class="o">/</span> <span class="n">path</span>
-    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">"*"</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">"*"</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">structured</span><span class="p">:</span>
-            <span class="n">paths</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span>
+            <span class="n">paths</span> <span class="o">=</span> <span class="n">filepath</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span>
             <span class="n">current_dir</span> <span class="o">=</span> <span class="n">datacont</span>
 
-            <span class="c1"># iterate through paths</span>
-            <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">paths</span><span class="o">.</span><span class="n">parts</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">segment</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".md"</span><span class="p">):</span>
-                    <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-                    <span class="n">current_dir</span><span class="o">.</span><span class="n">child_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="c1"># directory has not been saved in tree yet</span>
-                    <span class="k">if</span> <span class="n">segment</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">:</span>
-                        <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">segment</span><span class="p">]</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
-                    <span class="n">current_dir</span> <span class="o">=</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">segment</span><span class="p">]</span>
+            <span class="c1"># iterate through parent directories</span>
+            <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">paths</span><span class="o">.</span><span class="n">parts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="c1"># directory has not been saved in tree yet</span>
+                <span class="k">if</span> <span class="n">segment</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">:</span>
+                    <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">segment</span><span class="p">]</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
+                <span class="n">current_dir</span> <span class="o">=</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">segment</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">paths</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".md"</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+                <span class="n">current_dir</span><span class="o">.</span><span class="n">child_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".md"</span><span class="p">):</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">filepath</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".md"</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">collections</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> \
                         <span class="nb">any</span><span class="p">([</span><span class="n">collection</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span>
                             <span class="k">for</span> <span class="n">collection</span> <span class="ow">in</span> <span class="n">collections</span><span class="p">]):</span>
