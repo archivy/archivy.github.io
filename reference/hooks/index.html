@@ -638,12 +638,18 @@
     archivy.config.BaseHooks
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+    <nav class="md-nav" aria-label="archivy.config.BaseHooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#archivy.config.BaseHooks--usage" class="md-nav__link">
     Usage:
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -740,12 +746,18 @@
     archivy.config.BaseHooks
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+    <nav class="md-nav" aria-label="archivy.config.BaseHooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#archivy.config.BaseHooks--usage" class="md-nav__link">
     Usage:
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -797,11 +809,11 @@
                   <h1>Hooks</h1>
                 
                 <div class="doc doc-object doc-class">
-<h2 class="hidden-toc" href="#archivy.config.BaseHooks" id="archivy.config.BaseHooks" style="visibility: hidden; position: absolute;">
+<h2 class="hidden-toc" id="archivy.config.BaseHooks" style="visibility: hidden; position: absolute;">
         </h2>
 <div class="doc doc-contents first">
 <p>Class of methods users can inherit to configure and extend archivy with hooks.</p>
-<h2 id="usage">Usage:</h2>
+<h3 id="archivy.config.BaseHooks--usage">Usage:</h3>
 <p>Archivy checks for the presence of a <code>hooks.py</code> file in the
 user directory that stores the <code>data/</code> directory with your notes and bookmarks.
 This location is usually set during <code>archivy init</code>.</p>
@@ -826,8 +838,7 @@ please open an <a href="https://github.com/archivy/archivy/issues">issue</a>.</p
 <div class="doc doc-object doc-method">
 <h2 class="doc doc-heading" id="archivy.config.BaseHooks.before_dataobj_create">
 
-        <code class="highlight language-python">
-before_dataobj_create<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">)</span>        </code>
+<code class="highlight language-python"><span class="n">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">)</span></code>
 
 
       </h2>
@@ -846,8 +857,7 @@ before_dataobj_create<span class="p">(</span><span class="bp">self</span><span c
 <div class="doc doc-object doc-method">
 <h2 class="doc doc-heading" id="archivy.config.BaseHooks.on_dataobj_create">
 
-        <code class="highlight language-python">
-on_dataobj_create<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">)</span>        </code>
+<code class="highlight language-python"><span class="n">on_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">)</span></code>
 
 
       </h2>
@@ -866,8 +876,7 @@ on_dataobj_create<span class="p">(</span><span class="bp">self</span><span class
 <div class="doc doc-object doc-method">
 <h2 class="doc doc-heading" id="archivy.config.BaseHooks.on_edit">
 
-        <code class="highlight language-python">
-on_edit<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">)</span>        </code>
+<code class="highlight language-python"><span class="n">on_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">)</span></code>
 
 
       </h2>
@@ -886,8 +895,7 @@ on_edit<span class="p">(</span><span class="bp">self</span><span class="p">,</sp
 <div class="doc doc-object doc-method">
 <h2 class="doc doc-heading" id="archivy.config.BaseHooks.on_user_create">
 
-        <code class="highlight language-python">
-on_user_create<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>        </code>
+<code class="highlight language-python"><span class="n">on_user_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span></code>
 
 
       </h2>
