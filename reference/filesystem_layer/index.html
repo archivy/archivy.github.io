@@ -981,7 +981,7 @@
 <span class="sd">    - **title** - title used for filename</span>
 <span class="sd">    - **path**</span>
 <span class="sd">    """</span>
-    <span class="n">path_to_md_file</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span> <span class="o">/</span> <span class="n">path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">secure_filename</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="si">}</span><span class="s2">.md"</span>
+    <span class="n">path_to_md_file</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span> <span class="o">/</span> <span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">secure_filename</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="si">}</span><span class="s2">.md"</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_to_md_file</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
 
@@ -1006,7 +1006,7 @@
 <pre><span></span><code><span class="k">def</span> <span class="nf">create_dir</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="sd">"""Create dir of given name"""</span>
     <span class="n">home_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
-    <span class="n">new_path</span> <span class="o">=</span> <span class="n">home_dir</span> <span class="o">/</span> <span class="n">name</span>
+    <span class="n">new_path</span> <span class="o">=</span> <span class="n">home_dir</span> <span class="o">/</span> <span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
     <span class="n">new_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">new_path</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">home_dir</span><span class="p">))</span>
 </code></pre>
@@ -1245,7 +1245,9 @@ and a filename of format "{id}-{old_filename}.md"</p>
 <span class="sd">      to send back a json response.</span>
 <span class="sd">    """</span>
     <span class="n">datacont</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">path</span> <span class="ow">or</span> <span class="s2">"root"</span><span class="p">)</span> <span class="k">if</span> <span class="n">structured</span> <span class="k">else</span> <span class="p">[]</span>
-    <span class="n">root_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span> <span class="o">/</span> <span class="n">path</span>
+    <span class="n">root_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span> <span class="o">/</span> <span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span>
     <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">"*"</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">structured</span><span class="p">:</span>
             <span class="n">paths</span> <span class="o">=</span> <span class="n">filepath</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span>
