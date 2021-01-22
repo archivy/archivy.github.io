@@ -901,15 +901,15 @@ store data persistently</p>
 
       </h2>
 <div class="doc doc-contents ">
-<p>Loads <code>config.yml</code> file and deserializes it to a python dict.</p>
+<p>Loads <code>config.yml</code> file safely and deserializes it to a python dict.</p>
 <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
           <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">load_config</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">""</span><span class="p">):</span>
-    <span class="sd">"""Loads `config.yml` file and deserializes it to a python dict."""</span>
+    <span class="sd">"""Loads `config.yml` file safely and deserializes it to a python dict."""</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="ow">or</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"INTERNAL_DIR"</span><span class="p">]</span>
     <span class="k">with</span> <span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"config.yml"</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">SafeLoader</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>
