@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../img/logo-2.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
@@ -670,6 +670,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.data.is_relative_to" class="md-nav__link">
+    is_relative_to()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.data.open_file" class="md-nav__link">
     open_file()
   </a>
@@ -859,6 +866,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.data.is_relative_to" class="md-nav__link">
+    is_relative_to()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.data.open_file" class="md-nav__link">
     open_file()
   </a>
@@ -981,10 +995,12 @@
           <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">create_dir</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="sd">"""Create dir of given name"""</span>
-    <span class="n">home_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
-    <span class="n">new_path</span> <span class="o">=</span> <span class="n">home_dir</span> <span class="o">/</span> <span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
-    <span class="n">new_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">new_path</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">home_dir</span><span class="p">))</span>
+    <span class="n">root_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
+    <span class="n">new_path</span> <span class="o">=</span> <span class="n">root_dir</span> <span class="o">/</span> <span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_relative_to</span><span class="p">(</span><span class="n">new_path</span><span class="p">,</span> <span class="n">root_dir</span><span class="p">):</span>
+        <span class="n">new_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">new_path</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">root_dir</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">False</span>
 </code></pre>
 </div>
 </details>
@@ -1004,8 +1020,12 @@
           <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">delete_dir</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="sd">"""Deletes dir of given name"""</span>
+    <span class="n">root_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
+    <span class="n">target_dir</span> <span class="o">=</span> <span class="n">root_dir</span> <span class="o">/</span> <span class="n">name</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_relative_to</span><span class="p">(</span><span class="n">target_dir</span><span class="p">,</span> <span class="n">root_dir</span><span class="p">)</span> <span class="ow">or</span> <span class="n">target_dir</span> <span class="o">==</span> <span class="n">root_dir</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">rmtree</span><span class="p">(</span><span class="n">get_data_dir</span><span class="p">()</span> <span class="o">/</span> <span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">))</span>
+        <span class="n">rmtree</span><span class="p">(</span><span class="n">target_dir</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -1221,8 +1241,9 @@ and a filename of format "{id}-{old_filename}.md"</p>
 <span class="sd">      to send back a json response.</span>
 <span class="sd">    """</span>
     <span class="n">datacont</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">path</span> <span class="ow">or</span> <span class="s2">"root"</span><span class="p">)</span> <span class="k">if</span> <span class="n">structured</span> <span class="k">else</span> <span class="p">[]</span>
-    <span class="n">root_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span> <span class="o">/</span> <span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="n">data_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
+    <span class="n">root_dir</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="n">path</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_relative_to</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
         <span class="k">raise</span> <span class="ne">FileNotFoundError</span>
     <span class="k">if</span> <span class="n">structured</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">"*"</span><span class="p">):</span>
@@ -1260,6 +1281,30 @@ and a filename of format "{id}-{old_filename}.md"</p>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">datacont</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">datacont</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="archivy.data.is_relative_to">
+
+<code class="highlight language-python"><span class="n">is_relative_to</span><span class="p">(</span><span class="n">sub_path</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span></code>
+
+
+      </h2>
+<div class="doc doc-contents ">
+<p>Implement pathlib <code>is_relative_to</code> only available in python 3.9</p>
+<details class="quote">
+          <summary>Source code in <code>archivy/data.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">is_relative_to</span><span class="p">(</span><span class="n">sub_path</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+    <span class="sd">"""Implement pathlib `is_relative_to` only available in python 3.9"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">sub_path</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
 </code></pre>
 </div>
 </details>
@@ -1498,8 +1543,8 @@ id: 1 # unchanged
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.53cc9318.min.js"></script>
-      <script src="../../assets/javascripts/bundle.e9c9f54f.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
