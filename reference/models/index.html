@@ -941,8 +941,11 @@ the db with their contents.</p>
                 <span class="c1"># delete tag</span>
                 <span class="n">tag</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
 
-        <span class="k">elif</span> <span class="n">tag</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"img"</span> <span class="ow">and</span> <span class="n">tag</span><span class="o">.</span><span class="n">has_attr</span><span class="p">(</span><span class="s2">"src"</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">tag</span><span class="p">[</span><span class="s2">"src"</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
-                                                            <span class="ow">or</span> <span class="n">tag</span><span class="p">[</span><span class="s2">"src"</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"./"</span><span class="p">)):</span>
+        <span class="k">elif</span> <span class="p">(</span>
+            <span class="n">tag</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"img"</span>
+            <span class="ow">and</span> <span class="n">tag</span><span class="o">.</span><span class="n">has_attr</span><span class="p">(</span><span class="s2">"src"</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="n">tag</span><span class="p">[</span><span class="s2">"src"</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">tag</span><span class="p">[</span><span class="s2">"src"</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"./"</span><span class="p">))</span>
+        <span class="p">):</span>
 
             <span class="n">tag</span><span class="p">[</span><span class="s2">"src"</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tag</span><span class="p">[</span><span class="s2">"src"</span><span class="p">])</span>
 
@@ -1034,7 +1037,7 @@ the db with their contents.</p>
             <span class="s2">"date"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"</span><span class="si">%x</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"/"</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">),</span>
             <span class="s2">"tags"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span>
             <span class="s2">"id"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="s2">"path"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+            <span class="s2">"path"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">"bookmark"</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">"pocket_bookmark"</span><span class="p">:</span>
             <span class="n">data</span><span class="p">[</span><span class="s2">"url"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
@@ -1042,11 +1045,13 @@ the db with their contents.</p>
         <span class="c1"># convert to markdown file</span>
         <span class="n">dataobj</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">Post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
         <span class="n">dataobj</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fullpath</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">create</span><span class="p">(</span>
-                                <span class="n">frontmatter</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dataobj</span><span class="p">),</span>
-                                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dataobj</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
-                                <span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
-                            <span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fullpath</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
+            <span class="n">create</span><span class="p">(</span>
+                <span class="n">frontmatter</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dataobj</span><span class="p">),</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dataobj</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                <span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="n">hooks</span><span class="o">.</span><span class="n">on_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">()</span>
@@ -1071,7 +1076,9 @@ the db with their contents.</p>
           <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">process_bookmark_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">"""Process url to get content for bookmark"""</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"bookmark"</span><span class="p">,</span> <span class="s2">"pocket_bookmark"</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">validators</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"bookmark"</span><span class="p">,</span> <span class="s2">"pocket_bookmark"</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">validators</span><span class="o">.</span><span class="n">url</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
+    <span class="p">):</span>
         <span class="k">return</span> <span class="kc">None</span>
 
     <span class="k">try</span><span class="p">:</span>
@@ -1082,8 +1089,7 @@ the db with their contents.</p>
         <span class="k">return</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">parsed_html</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">url_request</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
-                                    <span class="n">features</span><span class="o">=</span><span class="s2">"html.parser"</span><span class="p">)</span>
+        <span class="n">parsed_html</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">url_request</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s2">"html.parser"</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
         <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not parse </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wipe</span><span class="p">()</span>
@@ -1096,8 +1102,7 @@ the db with their contents.</p>
         <span class="k">return</span>
 
     <span class="n">parsed_title</span> <span class="o">=</span> <span class="n">parsed_html</span><span class="o">.</span><span class="n">title</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="p">(</span><span class="n">parsed_title</span><span class="o">.</span><span class="n">string</span> <span class="k">if</span> <span class="n">parsed_title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                  <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">parsed_title</span><span class="o">.</span><span class="n">string</span> <span class="k">if</span> <span class="n">parsed_title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
 </code></pre>
 </div>
 </details>
@@ -1118,11 +1123,13 @@ the db with their contents.</p>
 <pre><span></span><code><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">"""Verifies that the content matches required validation constraints"""</span>
     <span class="n">valid_url</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">"bookmark"</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">"pocket_bookmark"</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
-                <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">validators</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
+        <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">validators</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+    <span class="p">)</span>
 
     <span class="n">valid_title</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">!=</span> <span class="s2">""</span>
-    <span class="n">valid_content</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"bookmark"</span><span class="p">,</span> <span class="s2">"pocket_bookmark"</span><span class="p">)</span>
-                     <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+    <span class="n">valid_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"bookmark"</span><span class="p">,</span> <span class="s2">"pocket_bookmark"</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="nb">str</span>
+    <span class="p">)</span>
     <span class="k">return</span> <span class="n">valid_url</span> <span class="ow">and</span> <span class="n">valid_title</span> <span class="ow">and</span> <span class="n">valid_content</span>
 </code></pre>
 </div>
@@ -1223,7 +1230,7 @@ the db with their contents.</p>
         <span class="s2">"username"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
         <span class="s2">"hashed_password"</span><span class="p">:</span> <span class="n">hashed_password</span><span class="p">,</span>
         <span class="s2">"is_admin"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span><span class="p">,</span>
-        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"user"</span>
+        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="n">helpers</span><span class="o">.</span><span class="n">load_hooks</span><span class="p">()</span><span class="o">.</span><span class="n">on_user_create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>

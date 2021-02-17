@@ -1077,6 +1077,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 <span class="sd">    """</span>
 
     <span class="kn">from</span> <span class="nn">archivy.models</span> <span class="kn">import</span> <span class="n">DataObj</span>
+
     <span class="n">data_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
@@ -1097,18 +1098,19 @@ and a filename of format "{id}-{old_filename}.md"</p>
             <span class="n">datapath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span>
 
         <span class="n">note_dataobj</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">"title"</span><span class="p">:</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".md"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
-                <span class="s2">"content"</span><span class="p">:</span> <span class="n">file_contents</span><span class="p">,</span>
-                <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"note"</span><span class="p">,</span>
-                <span class="s2">"path"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">datapath</span><span class="p">)</span>
-            <span class="p">}</span>
+            <span class="s2">"title"</span><span class="p">:</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".md"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
+            <span class="s2">"content"</span><span class="p">:</span> <span class="n">file_contents</span><span class="p">,</span>
+            <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"note"</span><span class="p">,</span>
+            <span class="s2">"path"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">datapath</span><span class="p">),</span>
+        <span class="p">}</span>
 
         <span class="n">dataobj</span> <span class="o">=</span> <span class="n">DataObj</span><span class="p">(</span><span class="o">**</span><span class="n">note_dataobj</span><span class="p">)</span>
         <span class="n">dataobj</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span>
 
         <span class="n">path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
         <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">"Formatted and moved </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">datapath</span> <span class="o">/</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">dataobj</span><span class="o">.</span><span class="n">fullpath</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="sa">f</span><span class="s2">"Formatted and moved </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">datapath</span> <span class="o">/</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">dataobj</span><span class="o">.</span><span class="n">fullpath</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">)</span>
 </code></pre>
 </div>
 </details>
@@ -1149,7 +1151,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
           <div class="highlight">
 <pre><span></span><code><span class="k">def</span> <span class="nf">get_data_dir</span><span class="p">():</span>
     <span class="sd">"""Returns the directory where dataobjs are stored"""</span>
-    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'USER_DIR'</span><span class="p">])</span> <span class="o">/</span> <span class="s2">"data"</span>
+    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"USER_DIR"</span><span class="p">])</span> <span class="o">/</span> <span class="s2">"data"</span>
 </code></pre>
 </div>
 </details>
@@ -1170,8 +1172,11 @@ and a filename of format "{id}-{old_filename}.md"</p>
 <pre><span></span><code><span class="k">def</span> <span class="nf">get_dirs</span><span class="p">():</span>
     <span class="sd">"""Gets all dir names where dataobjs are stored"""</span>
     <span class="c1"># join glob matchers</span>
-    <span class="n">dirnames</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">dir_path</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">get_data_dir</span><span class="p">()))</span> <span class="k">for</span> <span class="n">dir_path</span>
-                <span class="ow">in</span> <span class="n">get_data_dir</span><span class="p">()</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">"*"</span><span class="p">)</span> <span class="k">if</span> <span class="n">dir_path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()]</span>
+    <span class="n">dirnames</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">dir_path</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">get_data_dir</span><span class="p">()))</span>
+        <span class="k">for</span> <span class="n">dir_path</span> <span class="ow">in</span> <span class="n">get_data_dir</span><span class="p">()</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">"*"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dir_path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>
+    <span class="p">]</span>
 
     <span class="c1"># append name for root dir</span>
     <span class="n">dirnames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"not classified"</span><span class="p">)</span>
@@ -1270,9 +1275,9 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">"*.md"</span><span class="p">):</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
             <span class="n">data</span><span class="p">[</span><span class="s2">"fullpath"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">root_dir</span><span class="p">))</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">collections</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> \
-                    <span class="nb">any</span><span class="p">([</span><span class="n">collection</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span>
-                        <span class="k">for</span> <span class="n">collection</span> <span class="ow">in</span> <span class="n">collections</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">collections</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">collection</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span> <span class="k">for</span> <span class="n">collection</span> <span class="ow">in</span> <span class="n">collections</span><span class="p">]</span>
+            <span class="p">):</span>
                 <span class="k">if</span> <span class="n">json_format</span><span class="p">:</span>
                     <span class="n">dict_dataobj</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="vm">__dict__</span>
                     <span class="c1"># remove unnecessary yaml handler</span>
@@ -1380,7 +1385,9 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <span class="k">with</span> <span class="n">new_path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dataobj</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 
-        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unformatted and moved </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">new_path</span><span class="o">.</span><span class="n">resolve</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Unformatted and moved </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">new_path</span><span class="o">.</span><span class="n">resolve</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">)</span>
         <span class="n">path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 </code></pre>
 </div>
@@ -1458,6 +1465,7 @@ id: 1 # unchanged
 <span class="sd">    """</span>
 
     <span class="kn">from</span> <span class="nn">archivy.models</span> <span class="kn">import</span> <span class="n">DataObj</span>
+
     <span class="n">filename</span> <span class="o">=</span> <span class="n">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
     <span class="n">dataobj</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="n">dataobj</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">new_content</span>
@@ -1466,7 +1474,9 @@ id: 1 # unchanged
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
 
     <span class="n">converted_dataobj</span> <span class="o">=</span> <span class="n">DataObj</span><span class="o">.</span><span class="n">from_md</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
-    <span class="n">converted_dataobj</span><span class="o">.</span><span class="n">fullpath</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"USER_DIR"</span><span class="p">]))</span>
+    <span class="n">converted_dataobj</span><span class="o">.</span><span class="n">fullpath</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
+        <span class="n">filename</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"USER_DIR"</span><span class="p">])</span>
+    <span class="p">)</span>
     <span class="n">converted_dataobj</span><span class="o">.</span><span class="n">index</span><span class="p">()</span>
     <span class="n">load_hooks</span><span class="p">()</span><span class="o">.</span><span class="n">on_edit</span><span class="p">(</span><span class="n">converted_dataobj</span><span class="p">)</span>
 </code></pre>

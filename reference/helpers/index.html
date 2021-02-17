@@ -811,7 +811,7 @@ store data persistently</p>
 <span class="sd">    Returns the database object that you can use to</span>
 <span class="sd">    store data persistently</span>
 <span class="sd">    """</span>
-    <span class="k">if</span> <span class="s1">'db'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">g</span> <span class="ow">or</span> <span class="n">force_reconnect</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">"db"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">g</span> <span class="ow">or</span> <span class="n">force_reconnect</span><span class="p">:</span>
         <span class="n">g</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">TinyDB</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"INTERNAL_DIR"</span><span class="p">])</span> <span class="o">/</span> <span class="s2">"db.json"</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">g</span><span class="o">.</span><span class="n">db</span>

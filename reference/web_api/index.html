@@ -921,8 +921,8 @@
 <span class="sd">    """</span>
     <span class="n">json_data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
     <span class="n">bookmark</span> <span class="o">=</span> <span class="n">DataObj</span><span class="p">(</span>
-        <span class="n">url</span><span class="o">=</span><span class="n">json_data</span><span class="p">[</span><span class="s1">'url'</span><span class="p">],</span>
-        <span class="n">tags</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'tags'</span><span class="p">),</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">json_data</span><span class="p">[</span><span class="s2">"url"</span><span class="p">],</span>
+        <span class="n">tags</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"tags"</span><span class="p">),</span>
         <span class="n">path</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"path"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
         <span class="nb">type</span><span class="o">=</span><span class="s2">"bookmark"</span><span class="p">,</span>
     <span class="p">)</span>
@@ -1011,7 +1011,7 @@
         <span class="n">content</span><span class="o">=</span><span class="n">json_data</span><span class="p">[</span><span class="s2">"content"</span><span class="p">],</span>
         <span class="n">tags</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"tags"</span><span class="p">),</span>
         <span class="n">path</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"path"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
-        <span class="nb">type</span><span class="o">=</span><span class="s2">"note"</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s2">"note"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">note_id</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span>
@@ -1097,12 +1097,16 @@
     <span class="sd">"""Returns dataobj of given id"""</span>
     <span class="n">dataobj</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span>
-        <span class="n">dataobj_id</span><span class="o">=</span><span class="n">dataobj_id</span><span class="p">,</span>
-        <span class="n">title</span><span class="o">=</span><span class="n">dataobj</span><span class="p">[</span><span class="s2">"title"</span><span class="p">],</span>
-        <span class="n">content</span><span class="o">=</span><span class="n">dataobj</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
-        <span class="n">md_path</span><span class="o">=</span><span class="n">dataobj</span><span class="p">[</span><span class="s2">"fullpath"</span><span class="p">],</span>
-    <span class="p">)</span> <span class="k">if</span> <span class="n">dataobj</span> <span class="k">else</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">404</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">jsonify</span><span class="p">(</span>
+            <span class="n">dataobj_id</span><span class="o">=</span><span class="n">dataobj_id</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">dataobj</span><span class="p">[</span><span class="s2">"title"</span><span class="p">],</span>
+            <span class="n">content</span><span class="o">=</span><span class="n">dataobj</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+            <span class="n">md_path</span><span class="o">=</span><span class="n">dataobj</span><span class="p">[</span><span class="s2">"fullpath"</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">dataobj</span>
+        <span class="k">else</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">404</span><span class="p">)</span>
+    <span class="p">)</span>
 </code></pre>
 </div>
 </details>
@@ -1153,10 +1157,9 @@ Pass in the username and password of your account.</p>
 <span class="sd">    """</span>
     <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
     <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">username</span> <span class="o">==</span> <span class="n">request</span><span class="o">.</span><span class="n">authorization</span><span class="p">[</span><span class="s2">"username"</span><span class="p">])</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">user</span> <span class="ow">and</span>
-            <span class="n">check_password_hash</span><span class="p">(</span>
-                <span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"hashed_password"</span><span class="p">],</span>
-                <span class="n">request</span><span class="o">.</span><span class="n">authorization</span><span class="p">[</span><span class="s2">"password"</span><span class="p">])):</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">and</span> <span class="n">check_password_hash</span><span class="p">(</span>
+        <span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"hashed_password"</span><span class="p">],</span> <span class="n">request</span><span class="o">.</span><span class="n">authorization</span><span class="p">[</span><span class="s2">"password"</span><span class="p">]</span>
+    <span class="p">):</span>
         <span class="c1"># user is verified so we can log him in from the db</span>
         <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">from_db</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">login_user</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">remember</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
