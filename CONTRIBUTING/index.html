@@ -370,6 +370,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#running-the-dev-server" class="md-nav__link">
+    Running the dev server.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-cli-commands" class="md-nav__link">
+    Running cli commands
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -686,6 +700,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#running-the-dev-server" class="md-nav__link">
+    Running the dev server.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-cli-commands" class="md-nav__link">
+    Running cli commands
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -713,6 +741,18 @@
 <li>Run <code>source venv/bin/activate</code> to activate this new environment.</li>
 <li>Run <code>pip install -r requirements.txt</code> to download all dependencies.</li>
 </ul>
+<h2 id="running-the-dev-server">Running the dev server.</h2>
+<div class="highlight"><pre><span></span><code># after sourcing the virtualenv
+
+$ export FLASK_APP=archivy/__init__.py
+$ export FLASK_ENV=development
+$ flask run
+</code></pre></div>
+<h2 id="running-cli-commands">Running cli commands</h2>
+<div class="highlight"><pre><span></span><code># after sourcing the virtualenv
+
+$ python -m archivy.cli --help
+</code></pre></div>
 <p>If you'd like to work on an <a href="https://github.com/archivy/archivy/issues">existing issue</a>, please comment on the github thread for the issue to notify that you're working on it, and then create a new branch with a suitable name.</p>
 <p>For example, if you'd like to work on something about "Improving the UI", you'd call it <code>improve_ui</code>. Once you're done with your changes, you can open a pull request and we'll review them.</p>
 <p><strong>Do not</strong> begin working on a new feature without first discussing it and opening an issue, as we might not agree with your vision.</p>
