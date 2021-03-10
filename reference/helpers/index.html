@@ -641,6 +641,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.helpers.test_es_connection" class="md-nav__link">
+    test_es_connection()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.helpers.write_config" class="md-nav__link">
     write_config()
   </a>
@@ -762,6 +769,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.helpers.test_es_connection" class="md-nav__link">
+    test_es_connection()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.helpers.write_config" class="md-nav__link">
     write_config()
   </a>
@@ -860,30 +874,14 @@ store data persistently</p>
           <summary>Source code in <code>archivy/helpers.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_elastic_client</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Returns the elasticsearch client you can use to search and insert / delete data&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;enabled&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="ow">not</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;enabled&quot;</span><span class="p">]</span>
+        <span class="ow">or</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;engine&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;elasticsearch&quot;</span>
+    <span class="p">):</span>
         <span class="k">return</span> <span class="kc">None</span>
 
     <span class="n">es</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;url&quot;</span><span class="p">])</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">health</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">health</span><span class="p">()</span>
-    <span class="k">except</span> <span class="n">elasticsearch</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
-        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-            <span class="s2">&quot;Elasticsearch does not seem to be running on &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;SEARCH_CONF&#39;</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">. Please start &quot;</span>
-            <span class="s2">&quot;it, for example with: sudo service elasticsearch restart&quot;</span>
-        <span class="p">)</span>
-        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-            <span class="s2">&quot;You can disable Elasticsearch by modifying the `enabled` variable &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;in </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;INTERNAL_DIR&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="s1">&#39;config.yml&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">health</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">):</span>
-        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-            <span class="s2">&quot;Elasticsearch reports that it is not working &quot;</span>
-            <span class="s2">&quot;properly. Search might not work. You can disable &quot;</span>
-            <span class="s2">&quot;Elasticsearch by setting ELASTICSEARCH_ENABLED to 0.&quot;</span>
-        <span class="p">)</span>
+    <span class="n">test_es_connection</span><span class="p">(</span><span class="n">es</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">es</span>
 </code></pre></div>
         </details>
@@ -975,6 +973,52 @@ store data persistently</p>
     <span class="sd">&quot;&quot;&quot;Sets a new max_id&quot;&quot;&quot;</span>
     <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
     <span class="n">db</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">operations</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;val&quot;</span><span class="p">,</span> <span class="n">val</span><span class="p">),</span> <span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;max_id&quot;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.helpers.test_es_connection" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">test_es_connection</span><span class="p">(</span><span class="n">es</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Tests health and presence of connection to elasticsearch.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/helpers.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_es_connection</span><span class="p">(</span><span class="n">es</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Tests health and presence of connection to elasticsearch.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">health</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">health</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">elasticsearch</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
+        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="s2">&quot;Elasticsearch does not seem to be running on &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;SEARCH_CONF&#39;</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">. Please start &quot;</span>
+            <span class="s2">&quot;it, for example with: sudo service elasticsearch restart&quot;</span>
+        <span class="p">)</span>
+        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="s2">&quot;You can disable Elasticsearch by modifying the `enabled` variable &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;in </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;INTERNAL_DIR&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="s1">&#39;config.yml&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">health</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">):</span>
+        <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&quot;Elasticsearch reports that it is not working &quot;</span>
+            <span class="s2">&quot;properly. Search might not work. You can disable &quot;</span>
+            <span class="s2">&quot;Elasticsearch by setting ELASTICSEARCH_ENABLED to 0.&quot;</span>
+        <span class="p">)</span>
 </code></pre></div>
         </details>
     </div>

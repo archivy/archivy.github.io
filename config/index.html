@@ -450,8 +450,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#elasticsearch" class="md-nav__link">
-    Elasticsearch
+  <a href="#search" class="md-nav__link">
+    Search
   </a>
   
 </li>
@@ -692,8 +692,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#elasticsearch" class="md-nav__link">
-    Elasticsearch
+  <a href="#search" class="md-nav__link">
+    Search
   </a>
   
 </li>
@@ -752,14 +752,16 @@
 </tr>
 </tbody>
 </table>
-<h3 id="elasticsearch">Elasticsearch</h3>
-<p>All of these are children of the <code>SEARCH_CONF</code> object, like this in the yaml:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">SEARCH_CONF</span><span class="p">:</span>
+<h3 id="search">Search</h3>
+<p>See [setup-search.md] for more information.</p>
+<p>All of these options are children of the <code>SEARCH_CONF</code> object, like this in the <code>config.yml</code>:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nt">SEARCH_CONF</span><span class="p">:</span>
   <span class="nt">enabled</span><span class="p">:</span>
   <span class="nt">url</span><span class="p">:</span>
   <span class="c1"># ...</span>
 </code></pre></div>
-<p>This part will not be configured by default unless you specify you wish to integrate with ES.</p>
+To use search, you first have to enable it either through the <code>archivy init</code> setup script or by modifying the <code>enabled</code> variable (see below).</p>
+<p>Variables marked <code>ES only</code> in their description are only relevant when using the Elasticsearch engine.</p>
 <table>
 <thead>
 <tr>
@@ -775,14 +777,19 @@
 <td></td>
 </tr>
 <tr>
+<td><code>engine</code></td>
+<td>empty string</td>
+<td>search engine you'd like to use. One of <code>["ripgrep", ["elasticsearch"]</code></td>
+</tr>
+<tr>
 <td><code>url</code></td>
 <td>http://localhost:9200</td>
-<td>Url to the elasticsearch server</td>
+<td><strong>[ES only]</strong> Url to the elasticsearch server</td>
 </tr>
 <tr>
 <td><code>search_conf</code></td>
 <td>Long dict of ES config options</td>
-<td>Configuration of Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html">analyzer</a>, <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html">mappings</a> and general settings.</td>
+<td><strong>[ES only]</strong> Configuration of Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html">analyzer</a>, <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html">mappings</a> and general settings.</td>
 </tr>
 </tbody>
 </table>

@@ -847,7 +847,12 @@
 <li>Another storage method Archivy uses is <a href="https://tinydb.readthedocs.io/en/stable/">TinyDB</a>. This is a small, simple document-oriented database archivy gives you access to for persistent data you might want to store in archivy plugins. Use <a href="/reference/helpers/#archivy.helpers.get_db"><code>helpers.get_db</code></a> to call the database.</li>
 </ul>
 <h2 id="search">Search</h2>
-<p>Archivy uses <a href="https://www.elastic.co/">Elasticsearch</a> to index and allow users to have full-text search on their knowledge bases. </p>
+<p>Archivy supports two search engines:</p>
+<ol>
+<li><a href="https://www.elastic.co/">Elasticsearch</a> - an incredibly powerful solution that is however harder to install.</li>
+<li><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>, much more lightweight but also less powerful.</li>
+</ol>
+<p>These allow archivy to to index and provide full-text search on their knowledge bases. </p>
 <p>Elasticsearch requires configuration to have higher quality search results. You can check out the top-notch config archivy already uses by default <a href="https://github.com/archivy/archivy/blob/master/archivy/config.py">here</a>.</p>
 <p>Check out the <a href="../search/">helper methods</a> archivy exposes for ES.</p>
 <h2 id="auth">Auth</h2>

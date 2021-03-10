@@ -637,8 +637,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#archivy.search.query_index" class="md-nav__link">
-    query_index()
+  <a href="#archivy.search.query_es_index" class="md-nav__link">
+    query_es_index()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivy.search.query_ripgrep" class="md-nav__link">
+    query_ripgrep()
   </a>
   
 </li>
@@ -713,8 +720,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#archivy.search.query_index" class="md-nav__link">
-    query_index()
+  <a href="#archivy.search.query_es_index" class="md-nav__link">
+    query_es_index()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivy.search.query_ripgrep" class="md-nav__link">
+    query_ripgrep()
   </a>
   
 </li>
@@ -757,6 +771,9 @@
 
 
   <div class="doc doc-children">
+
+
+
 
 
 
@@ -816,8 +833,8 @@
 
 
 
-<h2 id="archivy.search.query_index" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">query_index</span><span class="p">(</span><span class="n">query</span><span class="p">)</span></code>
+<h2 id="archivy.search.query_es_index" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">query_es_index</span><span class="p">(</span><span class="n">query</span><span class="p">)</span></code>
 
 
 </h2>
@@ -828,7 +845,7 @@
 
         <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">query_index</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">query_es_index</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns search results for your given query&quot;&quot;&quot;</span>
     <span class="n">es</span> <span class="o">=</span> <span class="n">get_elastic_client</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">es</span><span class="p">:</span>
@@ -875,6 +892,48 @@
 
 
 
+<h2 id="archivy.search.query_ripgrep" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">query_ripgrep</span><span class="p">(</span><span class="n">query</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Uses ripgrep to search data with a simpler setup than ES</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/search.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">query_ripgrep</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Uses ripgrep to search data with a simpler setup than ES&quot;&quot;&quot;</span>
+
+    <span class="kn">from</span> <span class="nn">archivy.data</span> <span class="kn">import</span> <span class="n">get_data_dir</span>
+
+    <span class="k">if</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;engine&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;ripgrep&quot;</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">which</span><span class="p">(</span><span class="s2">&quot;rg&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">rg_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rg&quot;</span><span class="p">,</span> <span class="n">RG_MISC_ARGS</span><span class="p">,</span> <span class="n">RG_FILETYPE</span><span class="p">,</span> <span class="n">RG_REGEX_ARG</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_data_dir</span><span class="p">())]</span>
+    <span class="n">rg</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">rg_cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">file_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">Path</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">rg</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()]</span>
+
+    <span class="c1"># don&#39;t open file just find info from filename for speed</span>
+    <span class="n">hits</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">file_paths</span><span class="p">:</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+        <span class="n">hits</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">parsed</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed</span><span class="p">[</span><span class="mi">1</span><span class="p">:])})</span>
+    <span class="k">return</span> <span class="n">hits</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
 <h2 id="archivy.search.remove_from_index" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">remove_from_index</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span></code>
 
@@ -898,6 +957,7 @@
     </div>
 
   </div>
+
 
 
 

@@ -62,6 +62,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#elasticsearch" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -405,9 +410,43 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Search
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Search
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elasticsearch" class="md-nav__link">
+    Elasticsearch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ripgrep" class="md-nav__link">
+    Ripgrep
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -630,6 +669,42 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elasticsearch" class="md-nav__link">
+    Elasticsearch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ripgrep" class="md-nav__link">
+    Ripgrep
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
@@ -642,16 +717,28 @@
                 
                   <h1>Search</h1>
                 
-                <p>Archivy uses <a href="https://www.elastic.co">ElasticSearch</a> to provide efficient full-text search.</p>
-<p>Instructions to install and run the service are provided <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html">here</a>.</p>
+                <p>Archivy supports two search engines:</p>
+<ol>
+<li><a href="https://www.elastic.co/">Elasticsearch</a> - an incredibly powerful solution that is however harder to install.</li>
+<li><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>, much more lightweight but also less powerful.</li>
+</ol>
+<p>These allow archivy to index and provide full-text search on their knowledge bases. </p>
+<p>You can select these in the <code>archivy init</code> script, and the <a href="../config/">the config docs</a> also has more information on this.</p>
+<h2 id="elasticsearch">Elasticsearch</h2>
+<p>Elasticsearch, is a complex and extendable search engine that returns high-quality results.</p>
+<p>Instructions to install and run the service which needs to be running when you use Elasticsearch can be found <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html">here</a>.</p>
 <p>Append these two lines to your <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html">elasticsearch.yml config file</a>:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">http.cors.enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">http.cors.allow-origin</span><span class="p">:</span> <span class="s">&quot;http://localhost:5000&quot;</span>
 </code></pre></div>
 <p>Then, when you run <code>archivy init</code> simply specify you have enabled ES to integrate it with archivy.</p>
 <p>You will now have full-text search on your knowledge base!</p>
-<p>Whenever you edit an item locally, it is better to have archivy running that way your changes will be automatically synced to Elasticsearch.</p>
+<p>If you're adding ES to an existing knowledge base, use <code>archivy index</code> to sync any changes.</p>
 <p>Elasticsearch can be a hefty dependency, so if you have any ideas for something more light-weight that could be used as an alternative, please share on <a href="https://github.com/archivy/archivy/issues/13">this thread</a>.</p>
+<h2 id="ripgrep">Ripgrep</h2>
+<p><a href="https://github.com/BurntSushi/ripgrep">Ripgrep</a>, on the other hand, is much more lightweight and small, but is also a bit limited in its functionality.</p>
+<p>Follow <a href="https://github.com/BurntSushi/ripgrep#installation">these instructions</a> to install ripgrep.</p>
+<p>Then simply specify you want to use it during the <code>archivy init</code> script (or edit the config to add it).</p>
                 
               
               
