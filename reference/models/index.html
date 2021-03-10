@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../img/logo-2.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.5">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a3f8f96a.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.77f3fd56.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
@@ -36,6 +36,8 @@
       
     
     
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
     
   <!-- privacy respectful analytics -->
@@ -280,19 +282,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
       
-      <label class="md-nav__link" for="nav-1">
+      <label class="md-nav__link" for="__nav_1">
         Home
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Home" data-md-level="1">
-        <label class="md-nav__title" for="nav-1">
+        <label class="md-nav__title" for="__nav_1">
           <span class="md-nav__icon md-icon"></span>
           Home
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -359,19 +360,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
-      <label class="md-nav__link" for="nav-2">
+      <label class="md-nav__link" for="__nav_2">
         Getting Started
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="nav-2">
+        <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -462,19 +462,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
-      <label class="md-nav__link" for="nav-3">
+      <label class="md-nav__link" for="__nav_3">
         Plugins
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Plugins" data-md-level="1">
-        <label class="md-nav__title" for="nav-3">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Plugins
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -507,19 +506,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
-      <label class="md-nav__link" for="nav-4">
+      <label class="md-nav__link" for="__nav_4">
         API Reference
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="API Reference" data-md-level="1">
-        <label class="md-nav__title" for="nav-4">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           API Reference
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -870,22 +868,39 @@
                   <h1>Models for User and DataObj</h1>
                 
                 <p>Internal API for the models Archivy uses in the backend that could be useful for writing plugins.</p>
-<div class="doc doc-object doc-module">
-<h2 class="hidden-toc" id="archivy.models" style="visibility: hidden; position: absolute;">
-        </h2>
-<div class="doc doc-contents first">
-<div class="doc doc-children">
-<div class="doc doc-object doc-class">
-<h2 class="doc doc-heading" id="archivy.models.DataObj">
 
+
+  <div class="doc doc-object doc-module">
+
+<a id="archivy.models"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="archivy.models.DataObj" class="doc doc-heading">
         <code>DataObj</code>
 
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Class that holds a data object (either a note or a bookmark).</p>
-<p>[Required to pass when creating a new object]</p>
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Class that holds a data object (either a note or a bookmark).</p>
+      <p>[Required to pass when creating a new object]</p>
 <ul>
 <li><strong>type</strong> -&gt; "note" or "bookmark"</li>
 </ul>
@@ -910,78 +925,100 @@
 Run <code>process_bookmark_url()</code> once you've created it.</p>
 <p>For both types, run <code>insert()</code> if you want to create a new file in
 the db with their contents.</p>
-<div class="doc doc-children">
-<div class="doc doc-object doc-method">
-<h3 class="doc doc-heading" id="archivy.models.DataObj.extract_content">
 
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="archivy.models.DataObj.extract_content" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">extract_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beautsoup</span><span class="p">)</span></code>
 
 
-      </h3>
-<div class="doc doc-contents ">
-<p>converts html bookmark url to optimized markdown</p>
-<details class="quote">
-          <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">extract_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beautsoup</span><span class="p">):</span>
-    <span class="sd">"""converts html bookmark url to optimized markdown"""</span>
+</h3>
 
-    <span class="n">stripped_tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"footer"</span><span class="p">,</span> <span class="s2">"nav"</span><span class="p">]</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+    <div class="doc doc-contents ">
+
+      <p>converts html bookmark url to optimized markdown</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/models.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">extract_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beautsoup</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;converts html bookmark url to optimized markdown&quot;&quot;&quot;</span>
+
+    <span class="n">stripped_tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;footer&quot;</span><span class="p">,</span> <span class="s2">&quot;nav&quot;</span><span class="p">]</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">stripped_tags</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">beautsoup</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
             <span class="nb">getattr</span><span class="p">(</span><span class="n">beautsoup</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
-    <span class="n">resources</span> <span class="o">=</span> <span class="n">beautsoup</span><span class="o">.</span><span class="n">find_all</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"img"</span><span class="p">])</span>
+    <span class="n">resources</span> <span class="o">=</span> <span class="n">beautsoup</span><span class="o">.</span><span class="n">find_all</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;img&quot;</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">resources</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"a"</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">has_attr</span><span class="p">(</span><span class="s2">"href"</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">tag</span><span class="p">[</span><span class="s2">"href"</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)):</span>
-                <span class="n">tag</span><span class="p">[</span><span class="s2">"href"</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tag</span><span class="p">[</span><span class="s2">"href"</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">has_attr</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">tag</span><span class="p">[</span><span class="s2">&quot;href&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)):</span>
+                <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;href&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;href&quot;</span><span class="p">])</span>
 
-            <span class="c1"># check it's a normal link and not some sort of image</span>
+            <span class="c1"># check it&#39;s a normal link and not some sort of image</span>
             <span class="c1"># string returns the text content of the tag</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">tag</span><span class="o">.</span><span class="n">string</span><span class="p">:</span>
                 <span class="c1"># delete tag</span>
                 <span class="n">tag</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
 
         <span class="k">elif</span> <span class="p">(</span>
-            <span class="n">tag</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"img"</span>
-            <span class="ow">and</span> <span class="n">tag</span><span class="o">.</span><span class="n">has_attr</span><span class="p">(</span><span class="s2">"src"</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="p">(</span><span class="n">tag</span><span class="p">[</span><span class="s2">"src"</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">tag</span><span class="p">[</span><span class="s2">"src"</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"./"</span><span class="p">))</span>
+            <span class="n">tag</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;img&quot;</span>
+            <span class="ow">and</span> <span class="n">tag</span><span class="o">.</span><span class="n">has_attr</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;./&quot;</span><span class="p">))</span>
         <span class="p">):</span>
 
-            <span class="n">tag</span><span class="p">[</span><span class="s2">"src"</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tag</span><span class="p">[</span><span class="s2">"src"</span><span class="p">])</span>
+            <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">])</span>
 
     <span class="n">res</span> <span class="o">=</span> <span class="n">html2text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">beautsoup</span><span class="p">),</span> <span class="n">bodywidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-method">
-<h3 class="doc doc-heading" id="archivy.models.DataObj.from_md">
+</code></pre></div>
+        </details>
+    </div>
 
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="archivy.models.DataObj.from_md" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">from_md</span><span class="p">(</span><span class="n">md_content</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
   </span>
 
-      </h3>
-<div class="doc doc-contents ">
-<p>Class method to generate new dataobj from a well formatted markdown string</p>
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Class method to generate new dataobj from a well formatted markdown string</p>
 <p>Call like this:</p>
-<div class="highlight">
-<pre><span></span><code><span class="n">Dataobj</span><span class="o">.</span><span class="n">from_md</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-</code></pre>
-</div>
-<details class="quote">
+<div class="highlight"><pre><span></span><code><span class="n">Dataobj</span><span class="o">.</span><span class="n">from_md</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="nd">@classmethod</span>
+          <div class="highlight"><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">from_md</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">md_content</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class method to generate new dataobj from a well formatted markdown string</span>
 
 <span class="sd">    Call like this:</span>
@@ -990,11 +1027,11 @@ the db with their contents.</p>
 <span class="sd">    Dataobj.from_md(content)</span>
 
 <span class="sd">    ```</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">md_content</span><span class="p">)</span>
     <span class="n">dataobj</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">dataobj</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">content</span>
-    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"tags"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">,</span> <span class="s2">"path"</span><span class="p">]:</span>
+    <span class="n">dataobj</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">content</span>
+    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;tags&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">]:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">dataobj</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
@@ -1004,27 +1041,35 @@ the db with their contents.</p>
             <span class="c1"># be ignored</span>
             <span class="k">break</span>
 
-    <span class="n">dataobj</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"processed-dataobj"</span>
+    <span class="n">dataobj</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;processed-dataobj&quot;</span>
     <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">dataobj</span><span class="p">)</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-method">
-<h3 class="doc doc-heading" id="archivy.models.DataObj.insert">
+</code></pre></div>
+        </details>
+    </div>
 
+  </div>
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="archivy.models.DataObj.insert" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
-      </h3>
-<div class="doc doc-contents ">
-<p>Creates a new file with the object's attributes</p>
-<details class="quote">
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Creates a new file with the object's attributes</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">"""Creates a new file with the object's attributes"""</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates a new file with the object&#39;s attributes&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">():</span>
 
         <span class="n">helpers</span><span class="o">.</span><span class="n">set_max_id</span><span class="p">(</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_max_id</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -1035,15 +1080,15 @@ the db with their contents.</p>
 
         <span class="n">hooks</span><span class="o">.</span><span class="n">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">"type"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
-            <span class="s2">"title"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">),</span>
-            <span class="s2">"date"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"</span><span class="si">%x</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"/"</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">),</span>
-            <span class="s2">"tags"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span>
-            <span class="s2">"id"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="s2">"path"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">),</span>
+            <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%x</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">"bookmark"</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">"pocket_bookmark"</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">[</span><span class="s2">"url"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;bookmark&quot;</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;pocket_bookmark&quot;</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
 
         <span class="c1"># convert to markdown file</span>
         <span class="n">dataobj</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">Post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
@@ -1051,7 +1096,7 @@ the db with their contents.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">fullpath</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
             <span class="n">create</span><span class="p">(</span>
                 <span class="n">frontmatter</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dataobj</span><span class="p">),</span>
-                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dataobj</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dataobj</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
                 <span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="p">)</span>
@@ -1060,26 +1105,33 @@ the db with their contents.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
     <span class="k">return</span> <span class="kc">False</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-method">
-<h3 class="doc doc-heading" id="archivy.models.DataObj.process_bookmark_url">
+</code></pre></div>
+        </details>
+    </div>
 
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="archivy.models.DataObj.process_bookmark_url" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">process_bookmark_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
-      </h3>
-<div class="doc doc-contents ">
-<p>Process url to get content for bookmark</p>
-<details class="quote">
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Process url to get content for bookmark</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">process_bookmark_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">"""Process url to get content for bookmark"""</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"bookmark"</span><span class="p">,</span> <span class="s2">"pocket_bookmark"</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">validators</span><span class="o">.</span><span class="n">url</span><span class="p">(</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_bookmark_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Process url to get content for bookmark&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;bookmark&quot;</span><span class="p">,</span> <span class="s2">&quot;pocket_bookmark&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">validators</span><span class="o">.</span><span class="n">url</span><span class="p">(</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
     <span class="p">):</span>
         <span class="k">return</span> <span class="kc">None</span>
@@ -1087,171 +1139,239 @@ the db with their contents.</p>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">url_request</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
-            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">"User-agent"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Archivy/v</span><span class="si">{</span><span class="n">require</span><span class="p">(</span><span class="s1">'archivy'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span><span class="p">},</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;User-agent&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Archivy/v</span><span class="si">{</span><span class="n">require</span><span class="p">(</span><span class="s1">&#39;archivy&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
         <span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not retrieve </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">)</span>
+        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not retrieve </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wipe</span><span class="p">()</span>
         <span class="k">return</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">parsed_html</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">url_request</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s2">"html.parser"</span><span class="p">)</span>
+        <span class="n">parsed_html</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">url_request</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not parse </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">)</span>
+        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not parse </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wipe</span><span class="p">()</span>
         <span class="k">return</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_content</span><span class="p">(</span><span class="n">parsed_html</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not extract content from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">)</span>
+        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not extract content from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="n">parsed_title</span> <span class="o">=</span> <span class="n">parsed_html</span><span class="o">.</span><span class="n">title</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">parsed_title</span><span class="o">.</span><span class="n">string</span> <span class="k">if</span> <span class="n">parsed_title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-method">
-<h3 class="doc doc-heading" id="archivy.models.DataObj.validate">
+</code></pre></div>
+        </details>
+    </div>
 
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="archivy.models.DataObj.validate" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
-      </h3>
-<div class="doc doc-contents ">
-<p>Verifies that the content matches required validation constraints</p>
-<details class="quote">
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Verifies that the content matches required validation constraints</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">"""Verifies that the content matches required validation constraints"""</span>
-    <span class="n">valid_url</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">"bookmark"</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">"pocket_bookmark"</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Verifies that the content matches required validation constraints&quot;&quot;&quot;</span>
+    <span class="n">valid_url</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&quot;bookmark&quot;</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&quot;pocket_bookmark&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
         <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">validators</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
     <span class="p">)</span>
 
-    <span class="n">valid_title</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">!=</span> <span class="s2">""</span>
-    <span class="n">valid_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"bookmark"</span><span class="p">,</span> <span class="s2">"pocket_bookmark"</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span>
+    <span class="n">valid_title</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">valid_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;bookmark&quot;</span><span class="p">,</span> <span class="s2">&quot;pocket_bookmark&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="nb">str</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">valid_url</span> <span class="ow">and</span> <span class="n">valid_title</span> <span class="ow">and</span> <span class="n">valid_content</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-method">
-<h3 class="doc doc-heading" id="archivy.models.DataObj.wipe">
+</code></pre></div>
+        </details>
+    </div>
 
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="archivy.models.DataObj.wipe" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">wipe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
-      </h3>
-<div class="doc doc-contents ">
-<p>Resets and invalidates dataobj</p>
-<details class="quote">
-          <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">wipe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">"""Resets and invalidates dataobj"""</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">""</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">""</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="doc doc-object doc-class">
-<h2 class="doc doc-heading" id="archivy.models.User">
+</h3>
 
+    <div class="doc doc-contents ">
+
+      <p>Resets and invalidates dataobj</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/models.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">wipe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Resets and invalidates dataobj&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="archivy.models.User" class="doc doc-heading">
         <code>User</code>
 
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Model we use for User that inherits from flask login's
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Model we use for User that inherits from flask login's
 <a href="https://flask-login.readthedocs.io/en/latest/#flask_login.UserMixin"><code>UserMixin</code></a></p>
-<ul>
+      <ul>
 <li><strong>username</strong></li>
 <li><strong>password</strong></li>
 <li><strong>is_admin</strong></li>
 </ul>
-<div class="doc doc-children">
-<div class="doc doc-object doc-method">
-<h3 class="doc doc-heading" id="archivy.models.User.from_db">
 
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="archivy.models.User.from_db" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">from_db</span><span class="p">(</span><span class="n">db_object</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
   </span>
 
-      </h3>
-<div class="doc doc-contents ">
-<p>Takes a database object and turns it into a user</p>
-<details class="quote">
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Takes a database object and turns it into a user</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="nd">@classmethod</span>
+          <div class="highlight"><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">from_db</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">db_object</span><span class="p">):</span>
-    <span class="sd">"""Takes a database object and turns it into a user"""</span>
-    <span class="n">username</span> <span class="o">=</span> <span class="n">db_object</span><span class="p">[</span><span class="s2">"username"</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;Takes a database object and turns it into a user&quot;&quot;&quot;</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db_object</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
     <span class="nb">id</span> <span class="o">=</span> <span class="n">db_object</span><span class="o">.</span><span class="n">doc_id</span>
 
     <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-method">
-<h3 class="doc doc-heading" id="archivy.models.User.insert">
+</code></pre></div>
+        </details>
+    </div>
 
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="archivy.models.User.insert" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
-      </h3>
-<div class="doc doc-contents ">
-<p>Inserts the model from the database</p>
-<details class="quote">
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Inserts the model from the database</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">"""Inserts the model from the database"""</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Inserts the model from the database&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="n">hashed_password</span> <span class="o">=</span> <span class="n">generate_password_hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
     <span class="n">db</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">get_db</span><span class="p">()</span>
 
-    <span class="k">if</span> <span class="n">db</span><span class="o">.</span><span class="n">search</span><span class="p">((</span><span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">"user"</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">username</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">db</span><span class="o">.</span><span class="n">search</span><span class="p">((</span><span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;user&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">username</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">)):</span>
         <span class="k">return</span> <span class="kc">False</span>
     <span class="n">db_user</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"username"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
-        <span class="s2">"hashed_password"</span><span class="p">:</span> <span class="n">hashed_password</span><span class="p">,</span>
-        <span class="s2">"is_admin"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span><span class="p">,</span>
-        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span>
+        <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+        <span class="s2">&quot;hashed_password&quot;</span><span class="p">:</span> <span class="n">hashed_password</span><span class="p">,</span>
+        <span class="s2">&quot;is_admin&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span><span class="p">,</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="n">helpers</span><span class="o">.</span><span class="n">load_hooks</span><span class="p">()</span><span class="o">.</span><span class="n">on_user_create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">db</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">db_user</span><span class="p">)</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
                 
               
               
@@ -1308,6 +1428,7 @@ the db with their contents.</p>
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs
         </a>
+        
       </div>
       
     </div>
@@ -1318,10 +1439,10 @@ the db with their contents.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.217ffd95.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.926459b3.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5cf3e710.min.js"></script>
       
     
   </body>

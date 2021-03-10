@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../img/logo-2.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.5">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a3f8f96a.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.77f3fd56.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
@@ -36,6 +36,8 @@
       
     
     
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
     
   <!-- privacy respectful analytics -->
@@ -280,19 +282,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
       
-      <label class="md-nav__link" for="nav-1">
+      <label class="md-nav__link" for="__nav_1">
         Home
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Home" data-md-level="1">
-        <label class="md-nav__title" for="nav-1">
+        <label class="md-nav__title" for="__nav_1">
           <span class="md-nav__icon md-icon"></span>
           Home
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -359,19 +360,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
-      <label class="md-nav__link" for="nav-2">
+      <label class="md-nav__link" for="__nav_2">
         Getting Started
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="nav-2">
+        <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -462,19 +462,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
-      <label class="md-nav__link" for="nav-3">
+      <label class="md-nav__link" for="__nav_3">
         Plugins
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Plugins" data-md-level="1">
-        <label class="md-nav__title" for="nav-3">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Plugins
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -507,19 +506,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
-      <label class="md-nav__link" for="nav-4">
+      <label class="md-nav__link" for="__nav_4">
         API Reference
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="API Reference" data-md-level="1">
-        <label class="md-nav__title" for="nav-4">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           API Reference
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -788,111 +786,155 @@
                   <h1>Hooks</h1>
                 
                 <div class="doc doc-object doc-class">
-<h2 class="hidden-toc" id="archivy.config.BaseHooks" style="visibility: hidden; position: absolute;">
-        </h2>
-<div class="doc doc-contents first">
-<p>Class of methods users can inherit to configure and extend archivy with hooks.</p>
+
+<a id="archivy.config.BaseHooks"></a>
+    <div class="doc doc-contents first">
+
+      <p>Class of methods users can inherit to configure and extend archivy with hooks.</p>
 <h3 id="archivy.config.BaseHooks--usage">Usage:</h3>
 <p>Archivy checks for the presence of a <code>hooks.py</code> file in the
 user directory that stores the <code>data/</code> directory with your notes and bookmarks.
 This location is usually set during <code>archivy init</code>.</p>
 <p>Example <code>hooks.py</code> file:</p>
-<div class="highlight">
-<pre><span></span><code><span class="kn">from</span> <span class="nn">archivy.config</span> <span class="kn">import</span> <span class="n">BaseHooks</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">archivy.config</span> <span class="kn">import</span> <span class="n">BaseHooks</span>
 
 <span class="k">class</span> <span class="nc">Hooks</span><span class="p">(</span><span class="n">BaseHooks</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">on_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Edit made to </span><span class="si">{</span><span class="n">dataobj</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Edit made to </span><span class="si">{</span><span class="n">dataobj</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
-        <span class="n">dataobj</span><span class="o">.</span><span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">This note's random number is </span><span class="si">{</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">dataobj</span><span class="o">.</span><span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">This note&#39;s random number is </span><span class="si">{</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
 
     <span class="c1"># ...</span>
-</code></pre>
-</div>
+</code></pre></div>
 <p>If you have ideas for any other hooks you'd find useful if they were supported,
 please open an <a href="https://github.com/archivy/archivy/issues">issue</a>.</p>
-<div class="doc doc-children">
-<div class="doc doc-object doc-method">
-<h2 class="doc doc-heading" id="archivy.config.BaseHooks.before_dataobj_create">
 
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="archivy.config.BaseHooks.before_dataobj_create" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">)</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Hook called immediately before dataobj creation.</p>
-<details class="quote">
-          <summary>Source code in <code>archivy/config.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
-    <span class="sd">"""Hook called immediately before dataobj creation."""</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-method">
-<h2 class="doc doc-heading" id="archivy.config.BaseHooks.on_dataobj_create">
+</h2>
 
+    <div class="doc doc-contents ">
+
+      <p>Hook called immediately before dataobj creation.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/config.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hook called immediately before dataobj creation.&quot;&quot;&quot;</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="archivy.config.BaseHooks.on_dataobj_create" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">on_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">)</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Hook for dataobj creation.</p>
-<details class="quote">
-          <summary>Source code in <code>archivy/config.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">on_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
-    <span class="sd">"""Hook for dataobj creation."""</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-method">
-<h2 class="doc doc-heading" id="archivy.config.BaseHooks.on_edit">
+</h2>
 
+    <div class="doc doc-contents ">
+
+      <p>Hook for dataobj creation.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/config.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hook for dataobj creation.&quot;&quot;&quot;</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="archivy.config.BaseHooks.on_edit" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">on_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">)</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Hook called whenever a user edits through the web interface or the API.</p>
-<details class="quote">
-          <summary>Source code in <code>archivy/config.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">on_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
-    <span class="sd">"""Hook called whenever a user edits through the web interface or the API."""</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-method">
-<h2 class="doc doc-heading" id="archivy.config.BaseHooks.on_user_create">
+</h2>
 
+    <div class="doc doc-contents ">
+
+      <p>Hook called whenever a user edits through the web interface or the API.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/config.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hook called whenever a user edits through the web interface or the API.&quot;&quot;&quot;</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="archivy.config.BaseHooks.on_user_create" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">on_user_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Hook called after a new user is created.</p>
-<details class="quote">
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Hook called after a new user is created.</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/config.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">on_user_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
-    <span class="sd">"""Hook called after a new user is created."""</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-</div>
-</div>
-</div>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_user_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hook called after a new user is created.&quot;&quot;&quot;</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
                 
               
               
@@ -949,6 +991,7 @@ please open an <a href="https://github.com/archivy/archivy/issues">issue</a>.</p
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs
         </a>
+        
       </div>
       
     </div>
@@ -959,10 +1002,10 @@ please open an <a href="https://github.com/archivy/archivy/issues">issue</a>.</p
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.217ffd95.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.926459b3.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5cf3e710.min.js"></script>
       
     
   </body>

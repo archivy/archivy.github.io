@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../img/logo-2.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.5">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a3f8f96a.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.77f3fd56.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
@@ -36,6 +36,8 @@
       
     
     
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
     
   <!-- privacy respectful analytics -->
@@ -280,19 +282,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
       
-      <label class="md-nav__link" for="nav-1">
+      <label class="md-nav__link" for="__nav_1">
         Home
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Home" data-md-level="1">
-        <label class="md-nav__title" for="nav-1">
+        <label class="md-nav__title" for="__nav_1">
           <span class="md-nav__icon md-icon"></span>
           Home
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -359,19 +360,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
-      <label class="md-nav__link" for="nav-2">
+      <label class="md-nav__link" for="__nav_2">
         Getting Started
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="nav-2">
+        <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -462,19 +462,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
-      <label class="md-nav__link" for="nav-3">
+      <label class="md-nav__link" for="__nav_3">
         Plugins
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Plugins" data-md-level="1">
-        <label class="md-nav__title" for="nav-3">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Plugins
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -507,19 +506,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
-      <label class="md-nav__link" for="nav-4">
+      <label class="md-nav__link" for="__nav_4">
         API Reference
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="API Reference" data-md-level="1">
-        <label class="md-nav__title" for="nav-4">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           API Reference
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -748,36 +746,54 @@
                   <h1>Search</h1>
                 
                 <p>These are a few methods to interface between archivy and the elasticsearch instance.</p>
-<div class="doc doc-object doc-module">
-<h2 class="hidden-toc" id="archivy.search" style="visibility: hidden; position: absolute;">
-        </h2>
-<div class="doc doc-contents first">
-<div class="doc doc-children">
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.search.add_to_index">
 
+
+  <div class="doc doc-object doc-module">
+
+<a id="archivy.search"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.search.add_to_index" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">add_to_index</span><span class="p">(</span><span class="n">model</span><span class="p">)</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Adds dataobj to given index. If object of given id already exists, it will be updated.</p>
-<ul>
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Adds dataobj to given index. If object of given id already exists, it will be updated.</p>
+      <ul>
 <li><strong>index</strong> - String of the ES Index. Archivy uses <code>dataobj</code> by default.</li>
 <li><strong>model</strong> - Instance of <code>archivy.models.Dataobj</code>, the object you want to index.</li>
 </ul>
-<details class="quote">
+
+        <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">add_to_index</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="sd">"""</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_to_index</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Adds dataobj to given index. If object of given id already exists, it will be updated.</span>
 
 <span class="sd">    Params:</span>
 
 <span class="sd">    - **index** - String of the ES Index. Archivy uses `dataobj` by default.</span>
 <span class="sd">    - **model** - Instance of `archivy.models.Dataobj`, the object you want to index.</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">es</span> <span class="o">=</span> <span class="n">get_elastic_client</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">es</span><span class="p">:</span>
         <span class="k">return</span>
@@ -785,47 +801,54 @@
     <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">__searchable__</span><span class="p">:</span>
         <span class="n">payload</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
     <span class="n">es</span><span class="o">.</span><span class="n">index</span><span class="p">(</span>
-        <span class="n">index</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"SEARCH_CONF"</span><span class="p">][</span><span class="s2">"index_name"</span><span class="p">],</span> <span class="nb">id</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;index_name&quot;</span><span class="p">],</span> <span class="nb">id</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">payload</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="kc">True</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.search.query_index">
+</code></pre></div>
+        </details>
+    </div>
 
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.search.query_index" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">query_index</span><span class="p">(</span><span class="n">query</span><span class="p">)</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Returns search results for your given query</p>
-<details class="quote">
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Returns search results for your given query</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">query_index</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
-    <span class="sd">"""Returns search results for your given query"""</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">query_index</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns search results for your given query&quot;&quot;&quot;</span>
     <span class="n">es</span> <span class="o">=</span> <span class="n">get_elastic_client</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">es</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
     <span class="n">search</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-        <span class="n">index</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"SEARCH_CONF"</span><span class="p">][</span><span class="s2">"index_name"</span><span class="p">],</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;index_name&quot;</span><span class="p">],</span>
         <span class="n">body</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">"query"</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">"multi_match"</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">"query"</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
-                    <span class="s2">"fields"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>
-                    <span class="s2">"analyzer"</span><span class="p">:</span> <span class="s2">"rebuilt_standard"</span><span class="p">,</span>
+            <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;multi_match&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+                    <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;rebuilt_standard&quot;</span><span class="p">,</span>
                 <span class="p">}</span>
             <span class="p">},</span>
-            <span class="s2">"highlight"</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">"fragment_size"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-                <span class="s2">"fields"</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">"content"</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">"pre_tags"</span><span class="p">:</span> <span class="s2">"=="</span><span class="p">,</span>
-                        <span class="s2">"post_tags"</span><span class="p">:</span> <span class="s2">"=="</span><span class="p">,</span>
+            <span class="s2">&quot;highlight&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;fragment_size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;pre_tags&quot;</span><span class="p">:</span> <span class="s2">&quot;==&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;post_tags&quot;</span><span class="p">:</span> <span class="s2">&quot;==&quot;</span><span class="p">,</span>
                     <span class="p">}</span>
                 <span class="p">},</span>
             <span class="p">},</span>
@@ -833,44 +856,59 @@
     <span class="p">)</span>
 
     <span class="n">hits</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">hit</span> <span class="ow">in</span> <span class="n">search</span><span class="p">[</span><span class="s2">"hits"</span><span class="p">][</span><span class="s2">"hits"</span><span class="p">]:</span>
-        <span class="n">formatted_hit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="n">hit</span><span class="p">[</span><span class="s2">"_id"</span><span class="p">],</span> <span class="s2">"title"</span><span class="p">:</span> <span class="n">hit</span><span class="p">[</span><span class="s2">"_source"</span><span class="p">][</span><span class="s2">"title"</span><span class="p">]}</span>
-        <span class="k">if</span> <span class="s2">"highlight"</span> <span class="ow">in</span> <span class="n">hit</span><span class="p">:</span>
-            <span class="n">formatted_hit</span><span class="p">[</span><span class="s2">"highlight"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hit</span><span class="p">[</span><span class="s2">"highlight"</span><span class="p">][</span><span class="s2">"content"</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">hit</span> <span class="ow">in</span> <span class="n">search</span><span class="p">[</span><span class="s2">&quot;hits&quot;</span><span class="p">][</span><span class="s2">&quot;hits&quot;</span><span class="p">]:</span>
+        <span class="n">formatted_hit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;_id&quot;</span><span class="p">],</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;_source&quot;</span><span class="p">][</span><span class="s2">&quot;title&quot;</span><span class="p">]}</span>
+        <span class="k">if</span> <span class="s2">&quot;highlight&quot;</span> <span class="ow">in</span> <span class="n">hit</span><span class="p">:</span>
+            <span class="n">formatted_hit</span><span class="p">[</span><span class="s2">&quot;highlight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;highlight&quot;</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
         <span class="n">hits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">formatted_hit</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">hits</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.search.remove_from_index">
+</code></pre></div>
+        </details>
+    </div>
 
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.search.remove_from_index" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">remove_from_index</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Removes object of given id</p>
-<details class="quote">
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Removes object of given id</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">remove_from_index</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">):</span>
-    <span class="sd">"""Removes object of given id"""</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">remove_from_index</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Removes object of given id&quot;&quot;&quot;</span>
     <span class="n">es</span> <span class="o">=</span> <span class="n">get_elastic_client</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">es</span><span class="p">:</span>
         <span class="k">return</span>
-    <span class="n">es</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"SEARCH_CONF"</span><span class="p">][</span><span class="s2">"index_name"</span><span class="p">],</span> <span class="nb">id</span><span class="o">=</span><span class="n">dataobj_id</span><span class="p">)</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <span class="n">es</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;index_name&quot;</span><span class="p">],</span> <span class="nb">id</span><span class="o">=</span><span class="n">dataobj_id</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
                 
               
               
@@ -927,6 +965,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs
         </a>
+        
       </div>
       
     </div>
@@ -937,10 +976,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.217ffd95.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.926459b3.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5cf3e710.min.js"></script>
       
     
   </body>

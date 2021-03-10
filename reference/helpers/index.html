@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../img/logo-2.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.5">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a3f8f96a.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.77f3fd56.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
@@ -36,6 +36,8 @@
       
     
     
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
     
   <!-- privacy respectful analytics -->
@@ -280,19 +282,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
       
-      <label class="md-nav__link" for="nav-1">
+      <label class="md-nav__link" for="__nav_1">
         Home
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Home" data-md-level="1">
-        <label class="md-nav__title" for="nav-1">
+        <label class="md-nav__title" for="__nav_1">
           <span class="md-nav__icon md-icon"></span>
           Home
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -359,19 +360,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
-      <label class="md-nav__link" for="nav-2">
+      <label class="md-nav__link" for="__nav_2">
         Getting Started
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="nav-2">
+        <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -462,19 +462,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
-      <label class="md-nav__link" for="nav-3">
+      <label class="md-nav__link" for="__nav_3">
         Plugins
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Plugins" data-md-level="1">
-        <label class="md-nav__title" for="nav-3">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Plugins
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -507,19 +506,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
-      <label class="md-nav__link" for="nav-4">
+      <label class="md-nav__link" for="__nav_4">
         API Reference
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="API Reference" data-md-level="1">
-        <label class="md-nav__title" for="nav-4">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           API Reference
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -791,174 +789,236 @@
                 
                 <p>This is a series of helper functions that could be useful for you.</p>
 <p>Notably, the <code>get_db</code> and <code>get_elastic_client</code> could help with writing an archivy plugin.</p>
-<div class="doc doc-object doc-module">
-<h2 class="hidden-toc" id="archivy.helpers" style="visibility: hidden; position: absolute;">
-        </h2>
-<div class="doc doc-contents first">
-<div class="doc doc-children">
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.helpers.get_db">
 
+
+  <div class="doc doc-object doc-module">
+
+<a id="archivy.helpers"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.helpers.get_db" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get_db</span><span class="p">(</span><span class="n">force_reconnect</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Returns the database object that you can use to
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Returns the database object that you can use to
 store data persistently</p>
-<details class="quote">
+
+        <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">get_db</span><span class="p">(</span><span class="n">force_reconnect</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">"""</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_db</span><span class="p">(</span><span class="n">force_reconnect</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the database object that you can use to</span>
 <span class="sd">    store data persistently</span>
-<span class="sd">    """</span>
-    <span class="k">if</span> <span class="s2">"db"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">g</span> <span class="ow">or</span> <span class="n">force_reconnect</span><span class="p">:</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">TinyDB</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"INTERNAL_DIR"</span><span class="p">])</span> <span class="o">/</span> <span class="s2">"db.json"</span><span class="p">))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s2">&quot;db&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">g</span> <span class="ow">or</span> <span class="n">force_reconnect</span><span class="p">:</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">TinyDB</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;INTERNAL_DIR&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="s2">&quot;db.json&quot;</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">g</span><span class="o">.</span><span class="n">db</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.helpers.get_elastic_client">
+</code></pre></div>
+        </details>
+    </div>
 
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.helpers.get_elastic_client" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get_elastic_client</span><span class="p">()</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Returns the elasticsearch client you can use to search and insert / delete data</p>
-<details class="quote">
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Returns the elasticsearch client you can use to search and insert / delete data</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">get_elastic_client</span><span class="p">():</span>
-    <span class="sd">"""Returns the elasticsearch client you can use to search and insert / delete data"""</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"SEARCH_CONF"</span><span class="p">][</span><span class="s2">"enabled"</span><span class="p">]:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_elastic_client</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Returns the elasticsearch client you can use to search and insert / delete data&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;enabled&quot;</span><span class="p">]:</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="n">es</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"SEARCH_CONF"</span><span class="p">][</span><span class="s2">"url"</span><span class="p">])</span>
+    <span class="n">es</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;url&quot;</span><span class="p">])</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">health</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">health</span><span class="p">()</span>
     <span class="k">except</span> <span class="n">elasticsearch</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
         <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-            <span class="s2">"Elasticsearch does not seem to be running on "</span>
-            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'SEARCH_CONF'</span><span class="p">][</span><span class="s1">'url'</span><span class="p">]</span><span class="si">}</span><span class="s2">. Please start "</span>
-            <span class="s2">"it, for example with: sudo service elasticsearch restart"</span>
+            <span class="s2">&quot;Elasticsearch does not seem to be running on &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;SEARCH_CONF&#39;</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">. Please start &quot;</span>
+            <span class="s2">&quot;it, for example with: sudo service elasticsearch restart&quot;</span>
         <span class="p">)</span>
         <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-            <span class="s2">"You can disable Elasticsearch by modifying the `enabled` variable "</span>
-            <span class="sa">f</span><span class="s2">"in </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'INTERNAL_DIR'</span><span class="p">])</span> <span class="o">/</span> <span class="s1">'config.yml'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+            <span class="s2">&quot;You can disable Elasticsearch by modifying the `enabled` variable &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;in </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;INTERNAL_DIR&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="s1">&#39;config.yml&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">health</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">health</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">):</span>
         <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-            <span class="s2">"Elasticsearch reports that it is not working "</span>
-            <span class="s2">"properly. Search might not work. You can disable "</span>
-            <span class="s2">"Elasticsearch by setting ELASTICSEARCH_ENABLED to 0."</span>
+            <span class="s2">&quot;Elasticsearch reports that it is not working &quot;</span>
+            <span class="s2">&quot;properly. Search might not work. You can disable &quot;</span>
+            <span class="s2">&quot;Elasticsearch by setting ELASTICSEARCH_ENABLED to 0.&quot;</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="n">es</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.helpers.get_max_id">
+</code></pre></div>
+        </details>
+    </div>
 
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.helpers.get_max_id" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get_max_id</span><span class="p">()</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Returns the current maximum id of dataobjs in the database.</p>
-<details class="quote">
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Returns the current maximum id of dataobjs in the database.</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">get_max_id</span><span class="p">():</span>
-    <span class="sd">"""Returns the current maximum id of dataobjs in the database."""</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_max_id</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Returns the current maximum id of dataobjs in the database.&quot;&quot;&quot;</span>
     <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
-    <span class="n">max_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"max_id"</span><span class="p">)</span>
+    <span class="n">max_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;max_id&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">max_id</span><span class="p">:</span>
-        <span class="n">db</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"max_id"</span><span class="p">,</span> <span class="s2">"val"</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;max_id&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
         <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">return</span> <span class="n">max_id</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"val"</span><span class="p">]</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.helpers.load_config">
+    <span class="k">return</span> <span class="n">max_id</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;val&quot;</span><span class="p">]</span>
+</code></pre></div>
+        </details>
+    </div>
 
-<code class="highlight language-python"><span class="n">load_config</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span></code>
+  </div>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Loads <code>config.yml</code> file safely and deserializes it to a python dict.</p>
-<details class="quote">
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.helpers.load_config" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">load_config</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Loads <code>config.yml</code> file safely and deserializes it to a python dict.</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">load_config</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">""</span><span class="p">):</span>
-    <span class="sd">"""Loads `config.yml` file safely and deserializes it to a python dict."""</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="ow">or</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"INTERNAL_DIR"</span><span class="p">]</span>
-    <span class="k">with</span> <span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"config.yml"</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">load_config</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loads `config.yml` file safely and deserializes it to a python dict.&quot;&quot;&quot;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="ow">or</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;INTERNAL_DIR&quot;</span><span class="p">]</span>
+    <span class="k">with</span> <span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;config.yml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">SafeLoader</span><span class="p">)</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.helpers.set_max_id">
+</code></pre></div>
+        </details>
+    </div>
 
+  </div>
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.helpers.set_max_id" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">set_max_id</span><span class="p">(</span><span class="n">val</span><span class="p">)</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Sets a new max_id</p>
-<details class="quote">
-          <summary>Source code in <code>archivy/helpers.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">set_max_id</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
-    <span class="sd">"""Sets a new max_id"""</span>
-    <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
-    <span class="n">db</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">operations</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"val"</span><span class="p">,</span> <span class="n">val</span><span class="p">),</span> <span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"max_id"</span><span class="p">)</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="archivy.helpers.write_config">
+</h2>
 
+    <div class="doc doc-contents ">
+
+      <p>Sets a new max_id</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/helpers.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">set_max_id</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sets a new max_id&quot;&quot;&quot;</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">operations</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;val&quot;</span><span class="p">,</span> <span class="n">val</span><span class="p">),</span> <span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;max_id&quot;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.helpers.write_config" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">write_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span></code>
 
 
-      </h2>
-<div class="doc doc-contents ">
-<p>Writes a new config dict to a <code>config.yml</code> file that will override defaults</p>
-<details class="quote">
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Writes a new config dict to a <code>config.yml</code> file that will override defaults</p>
+
+        <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">write_config</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
-    <span class="sd">"""Writes a new config dict to a `config.yml` file that will override defaults"""</span>
-    <span class="k">with</span> <span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"INTERNAL_DIR"</span><span class="p">])</span> <span class="o">/</span> <span class="s2">"config.yml"</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">write_config</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Writes a new config dict to a `config.yml` file that will override defaults&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;INTERNAL_DIR&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="s2">&quot;config.yml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-</div>
-</div>
-</div>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
                 
               
               
@@ -1015,6 +1075,7 @@ store data persistently</p>
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs
         </a>
+        
       </div>
       
     </div>
@@ -1025,10 +1086,10 @@ store data persistently</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.217ffd95.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.926459b3.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5cf3e710.min.js"></script>
       
     
   </body>
