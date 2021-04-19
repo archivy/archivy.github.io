@@ -11,7 +11,7 @@
       
       
       <link rel="icon" href="../../img/logo-2.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.9299cb39.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f955dcd.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
@@ -562,6 +562,7 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+      
         <label class="md-nav__link md-nav__link--active" for="__toc">
           Dataobj Filesystem Layer
           <span class="md-nav__icon md-icon"></span>
@@ -573,6 +574,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
   
@@ -676,6 +678,13 @@
         <li class="md-nav__item">
   <a href="#archivy.data.open_file" class="md-nav__link">
     open_file()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivy.data.save_image" class="md-nav__link">
+    save_image()
   </a>
   
 </li>
@@ -772,6 +781,7 @@
   
   
   
+  
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Table of contents
@@ -872,6 +882,13 @@
         <li class="md-nav__item">
   <a href="#archivy.data.open_file" class="md-nav__link">
     open_file()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivy.data.save_image" class="md-nav__link">
+    save_image()
   </a>
   
 </li>
@@ -1391,6 +1408,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
+
   <div class="doc doc-object doc-function">
 
 
@@ -1446,6 +1464,47 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s2">&quot;open&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s2">&quot;xdg-open&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">])</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.data.save_image" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">save_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Saves image to USER_DATA_DIR</p>
+<p>Returns: filename where image has been saved.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/data.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">save_image</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Saves image to USER_DATA_DIR</span>
+
+<span class="sd">    Returns: filename where image has been saved.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;USER_DIR&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="s2">&quot;images&quot;</span>
+    <span class="n">fileparts</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">sanitized_filename</span> <span class="o">=</span> <span class="n">secure_filename</span><span class="p">(</span><span class="n">fileparts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">dest_path</span> <span class="o">=</span> <span class="n">base_path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sanitized_filename</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">fileparts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">dest_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">dest_path</span> <span class="o">=</span> <span class="n">base_path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sanitized_filename</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">fileparts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dest_path</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">dest_path</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </code></pre></div>
         </details>
     </div>
@@ -1611,6 +1670,7 @@ id: 1 # unchanged
 
 
 
+
   </div>
 
     </div>
@@ -1687,7 +1747,7 @@ id: 1 # unchanged
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.7353b375.min.js"></script>
+      <script src="../../assets/javascripts/bundle.4ea5477f.min.js"></script>
       
     
   </body>
