@@ -950,12 +950,12 @@ the db with their contents.</p>
 
     <div class="doc doc-contents ">
 
-      <p>converts html bookmark url to optimized markdown</p>
+      <p>converts html bookmark url to optimized markdown and saves images</p>
 
         <details class="quote">
           <summary>Source code in <code>archivy/models.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">extract_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beautsoup</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;converts html bookmark url to optimized markdown&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;converts html bookmark url to optimized markdown and saves images&quot;&quot;&quot;</span>
 
     <span class="n">stripped_tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;footer&quot;</span><span class="p">,</span> <span class="s2">&quot;nav&quot;</span><span class="p">]</span>
     <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
@@ -975,13 +975,24 @@ the db with their contents.</p>
                 <span class="c1"># delete tag</span>
                 <span class="n">tag</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
 
-        <span class="k">elif</span> <span class="p">(</span>
-            <span class="n">tag</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;img&quot;</span>
-            <span class="ow">and</span> <span class="n">tag</span><span class="o">.</span><span class="n">has_attr</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="p">(</span><span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;./&quot;</span><span class="p">))</span>
-        <span class="p">):</span>
-
-            <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">tag</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;img&quot;</span> <span class="ow">and</span> <span class="n">tag</span><span class="o">.</span><span class="n">has_attr</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">):</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="p">[</span>
+                    <span class="p">:</span> <span class="n">filename</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">)</span>
+                <span class="p">]</span>  <span class="c1"># remove query parameters</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">if</span> <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;./&quot;</span><span class="p">):</span>
+                <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SCRAPING_CONF&quot;</span><span class="p">][</span>
+                <span class="s2">&quot;save_images&quot;</span>
+            <span class="p">]</span> <span class="ow">and</span> <span class="n">valid_image_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+                <span class="n">image</span> <span class="o">=</span> <span class="n">FileStorage</span><span class="p">(</span>
+                    <span class="n">BytesIO</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">content</span><span class="p">),</span> <span class="n">filename</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;file&quot;</span>
+                <span class="p">)</span>
+                <span class="n">saved_to</span> <span class="o">=</span> <span class="n">save_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+                <span class="n">tag</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/images/&quot;</span> <span class="o">+</span> <span class="n">saved_to</span>
 
     <span class="n">res</span> <span class="o">=</span> <span class="n">html2text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">beautsoup</span><span class="p">),</span> <span class="n">bodywidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span>
