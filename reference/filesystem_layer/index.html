@@ -697,8 +697,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#archivy.data.update_item" class="md-nav__link">
-    update_item()
+  <a href="#archivy.data.update_item_frontmatter" class="md-nav__link">
+    update_item_frontmatter()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivy.data.update_item_md" class="md-nav__link">
+    update_item_md()
   </a>
   
 </li>
@@ -901,8 +908,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#archivy.data.update_item" class="md-nav__link">
-    update_item()
+  <a href="#archivy.data.update_item_frontmatter" class="md-nav__link">
+    update_item_frontmatter()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archivy.data.update_item_md" class="md-nav__link">
+    update_item_md()
   </a>
   
 </li>
@@ -1578,8 +1592,72 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
-<h2 id="archivy.data.update_item" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">update_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_content</span><span class="p">)</span></code>
+<h2 id="archivy.data.update_item_frontmatter" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">update_item_frontmatter</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_frontmatter</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Given an object id, this method overwrites the front matter
+of the post with <code>new_frontmatter</code>.</p>
+<hr />
+<p>date: Str
+id: Str
+path: Str
+tags: List[Str]
+title: Str
+type: note/bookmark</p>
+<hr />
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/data.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_item_frontmatter</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_frontmatter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given an object id, this method overwrites the front matter</span>
+<span class="sd">    of the post with `new_frontmatter`.</span>
+
+<span class="sd">    ---</span>
+<span class="sd">    date: Str</span>
+<span class="sd">    id: Str</span>
+<span class="sd">    path: Str</span>
+<span class="sd">    tags: List[Str]</span>
+<span class="sd">    title: Str</span>
+<span class="sd">    type: note/bookmark</span>
+<span class="sd">    ---</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">from</span> <span class="nn">archivy.models</span> <span class="kn">import</span> <span class="n">DataObj</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
+    <span class="n">dataobj</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">new_frontmatter</span><span class="p">):</span>
+        <span class="n">dataobj</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_frontmatter</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="n">md</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dataobj</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
+
+    <span class="n">converted_dataobj</span> <span class="o">=</span> <span class="n">DataObj</span><span class="o">.</span><span class="n">from_md</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
+    <span class="n">converted_dataobj</span><span class="o">.</span><span class="n">fullpath</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
+        <span class="n">filename</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;USER_DIR&quot;</span><span class="p">])</span>
+    <span class="p">)</span>
+    <span class="n">converted_dataobj</span><span class="o">.</span><span class="n">index</span><span class="p">()</span>
+    <span class="n">load_hooks</span><span class="p">()</span><span class="o">.</span><span class="n">on_edit</span><span class="p">(</span><span class="n">converted_dataobj</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="archivy.data.update_item_md" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">update_item_md</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_content</span><span class="p">)</span></code>
 
 
 </h2>
@@ -1610,7 +1688,7 @@ id: 1 # unchanged
 
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_content</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_item_md</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_content</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given an object id, this method overwrites the inner</span>
 <span class="sd">    content of the post with `new_content`.</span>
