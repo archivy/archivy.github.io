@@ -955,8 +955,8 @@
     <span class="n">json_data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
     <span class="n">bookmark</span> <span class="o">=</span> <span class="n">DataObj</span><span class="p">(</span>
         <span class="n">url</span><span class="o">=</span><span class="n">json_data</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">],</span>
-        <span class="n">tags</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">),</span>
-        <span class="n">path</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+        <span class="n">tags</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">,</span> <span class="p">[]),</span>
+        <span class="n">path</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;DEFAULT_BOOKMARKS_DIR&quot;</span><span class="p">]),</span>
         <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;bookmark&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">bookmark</span><span class="o">.</span><span class="n">process_bookmark_url</span><span class="p">()</span>
