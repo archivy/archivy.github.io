@@ -455,6 +455,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#theming" class="md-nav__link">
+    Theming
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#search" class="md-nav__link">
     Search
   </a>
@@ -705,6 +712,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#theming" class="md-nav__link">
+    Theming
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#search" class="md-nav__link">
     Search
   </a>
@@ -789,6 +803,34 @@
 <td><code>save_images</code></td>
 <td>False</td>
 <td>If true, whenever you save a bookmark, every linked image will also be downloaded locally.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="theming">Theming</h3>
+<p>Configure the way your Archivy install looks.</p>
+<p>These configuration options are children of the <code>THEME_CONF</code> object, like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">THEME_CONF</span><span class="p">:</span>
+  <span class="nt">use_custom_css</span><span class="p">:</span>
+  <span class="nt">custom_css_file</span><span class="p">:</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>use_custom_css</code></td>
+<td>false</td>
+<td>Whether or not to load custom css from <code>custom_css_file</code></td>
+</tr>
+<tr>
+<td><code>custom_css_file</code></td>
+<td>""</td>
+<td>Name of file to load in the <code>css/</code> subdirectory of your user directory (the one with your data or hooks). Create <code>css/</code> if it doesn't exist.</td>
 </tr>
 </tbody>
 </table>
