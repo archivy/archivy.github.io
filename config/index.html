@@ -11,7 +11,7 @@
       
       
       <link rel="icon" href="../img/logo-2.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.8">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.9">
     
     
       
@@ -468,6 +468,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#editor-configuration" class="md-nav__link">
+    Editor configuration
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -725,6 +732,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#editor-configuration" class="md-nav__link">
+    Editor configuration
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -885,6 +899,35 @@ To use search, you first have to enable it either through the <code>archivy init
 <p>On Linux systems, it follows the <a href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG
 specification</a>:
 <code>~/.local/share/archivy</code></p>
+<h3 id="editor-configuration">Editor configuration</h3>
+<p>Archivy uses the <a href="https://github.com/markdown-it/markdown-it">markdown-it</a> parser for its editor. This parser can be configured to change the output according to your needs. The default values of <code>EDITOR_CONF</code> are given below. Refer to the <a href="https://github.com/markdown-it/markdown-it#init-with-presets-and-options">markdown-it docs</a> for a full list of possible options.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">EDITOR_CONF</span><span class="p">:</span>
+  <span class="nt">settings</span><span class="p">:</span>
+    <span class="nt">linkify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">html</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="nt">xhtmlOut</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="nt">breaks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">typographer</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+  <span class="nt">plugins</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+</code></pre></div>
+<p>Archivy uses several markdown plugins to enhance its functionality:</p>
+<ul>
+<li><a href="https://github.com/valeriangalliat/markdown-it-anchor">markdown-it-anchor</a></li>
+<li><a href="https://github.com/nagaozen/markdown-it-toc-done-right">markdown-it-toc-done-right</a></li>
+<li><a href="https://github.com/markdown-it/markdown-it-mark">markdown-it-mark</a></li>
+<li><a href="https://github.com/markdown-it/markdown-it-footnote">markdown-it-footnote</a></li>
+<li><a href="https://github.com/goessner/markdown-it-texmath">markdown-it-texmath</a></li>
+</ul>
+<p>Some of these plugins (see below) can be configured and modified. Refer to their homepages above to see what you can change. They are set up with the following configuration by default:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">EDITOR_CONF</span><span class="p">:</span>
+  <span class="nt">plugins</span><span class="p">:</span>
+    <span class="nt">markdownitFootnote</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+    <span class="nt">markdownitMark</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+    <span class="nt">markdownItAnchor</span><span class="p">:</span>
+      <span class="nt">permalink</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+      <span class="nt">permalinkSymbol</span><span class="p">:</span> <span class="s">&#39;¶&#39;</span>
+    <span class="nt">markdownItTocDoneRight</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+</code></pre></div>
                 
               
               
@@ -955,10 +998,10 @@ specification</a>:
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../assets/javascripts/bundle.82b56eb2.min.js"></script>
       
     
   </body>
