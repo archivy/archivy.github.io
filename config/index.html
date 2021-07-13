@@ -825,6 +825,33 @@
 </tr>
 </tbody>
 </table>
+<p>If you want to configure the scraping progress more, you can also create a <code>scraping.py</code> file in the root of your user directory. This file allows you to override the default bookmarking behavior for certain websites / links, which you can match with regex.</p>
+<p>Once it matches a link, you can either pass your own custom function for parsing, or simply pass a string, which corresponds to the CSS selector for the part of the page you want archivy to scrape. If there are several matches, only the first will be treated.</p>
+<p>Example that processes youtube videos:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_videos</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">url</span>
+    <span class="c1"># modify whatever you want / set the metadata</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Video - &quot;</span> <span class="o">+</span> <span class="n">url</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;video&quot;</span><span class="p">]</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>
+
+<span class="c1"># declare your patterns in this PATTERNS variable</span>
+<span class="n">PATTERNS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;*youtube.com/*&quot;</span><span class="p">:</span> <span class="n">process_videos</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>With this example, whenever you create a bookmark of a youtube video, instead of going through the default archival, your function will be called on the data.</p>
+<p>Example that tells archivy only to scrape the main body of Wikipedia pages:</p>
+<div class="highlight"><pre><span></span><code><span class="n">PATTERNS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;https://*.wikipedia.org/wiki/*&quot;</span><span class="p">:</span> <span class="s2">&quot;#bodyContent&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Example patterns:</p>
+<ul>
+<li><code>*wikipedia*</code> (<code>*</code> matches everything)</li>
+<li><code>https://duckduckg?.com*</code> (? matches a single character)</li>
+<li><code>https://www.[nl][ya]times.com</code> ([] matches any character inside the brackets. Here it'll match nytimes or latimes, for example. Use ![] to match any character <strong>not</strong> inside the brackets)</li>
+</ul>
 <h3 id="theming">Theming</h3>
 <p>Configure the way your Archivy install looks.</p>
 <p>These configuration options are children of the <code>THEME_CONF</code> object, like this:</p>

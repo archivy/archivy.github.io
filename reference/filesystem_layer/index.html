@@ -1694,7 +1694,7 @@ type: note/bookmark</p>
         <span class="n">filename</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;USER_DIR&quot;</span><span class="p">])</span>
     <span class="p">)</span>
     <span class="n">converted_dataobj</span><span class="o">.</span><span class="n">index</span><span class="p">()</span>
-    <span class="n">load_hooks</span><span class="p">()</span><span class="o">.</span><span class="n">on_edit</span><span class="p">(</span><span class="n">converted_dataobj</span><span class="p">)</span>
+    <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;HOOKS&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">on_edit</span><span class="p">(</span><span class="n">converted_dataobj</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1787,7 +1787,7 @@ id: 1 # unchanged
         <span class="n">filename</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;USER_DIR&quot;</span><span class="p">])</span>
     <span class="p">)</span>
     <span class="n">converted_dataobj</span><span class="o">.</span><span class="n">index</span><span class="p">()</span>
-    <span class="n">load_hooks</span><span class="p">()</span><span class="o">.</span><span class="n">on_edit</span><span class="p">(</span><span class="n">converted_dataobj</span><span class="p">)</span>
+    <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;HOOKS&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">on_edit</span><span class="p">(</span><span class="n">converted_dataobj</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
