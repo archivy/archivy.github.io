@@ -1493,7 +1493,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
     <span class="sd">&quot;&quot;&quot;Move dataobj of given id to new_path&quot;&quot;&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
     <span class="n">data_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
-    <span class="n">out_dir</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="n">new_path</span>
+    <span class="n">out_dir</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_dir</span> <span class="o">/</span> <span class="n">new_path</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">FileNotFoundError</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">out_dir</span> <span class="o">/</span> <span class="n">file</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
@@ -1538,6 +1538,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
     </div>
 
   </div>
+
 
 
 
