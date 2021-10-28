@@ -653,6 +653,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.search.query_ripgrep_tags" class="md-nav__link">
+    query_ripgrep_tags()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.search.remove_from_index" class="md-nav__link">
     remove_from_index()
   </a>
@@ -744,6 +751,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.search.query_ripgrep_tags" class="md-nav__link">
+    query_ripgrep_tags()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.search.remove_from_index" class="md-nav__link">
     remove_from_index()
   </a>
@@ -803,7 +817,7 @@
 
 
 
-<h2 id="archivy.search.add_to_index" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.search.add_to_index">
 <code class="highlight language-python"><span class="n">add_to_index</span><span class="p">(</span><span class="n">model</span><span class="p">)</span></code>
 
 
@@ -850,7 +864,7 @@
 
 
 
-<h2 id="archivy.search.query_es_index" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.search.query_es_index">
 <code class="highlight language-python"><span class="n">query_es_index</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 
@@ -916,7 +930,7 @@
 
 
 
-<h2 id="archivy.search.query_ripgrep" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.search.query_ripgrep">
 <code class="highlight language-python"><span class="n">query_ripgrep</span><span class="p">(</span><span class="n">query</span><span class="p">)</span></code>
 
 
@@ -958,7 +972,53 @@
 
 
 
-<h2 id="archivy.search.remove_from_index" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.search.query_ripgrep_tags">
+<code class="highlight language-python"><span class="n">query_ripgrep_tags</span><span class="p">()</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Uses ripgrep to search for tags.
+Mandatory reference: https://xkcd.com/1171/</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/search.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">query_ripgrep_tags</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Uses ripgrep to search for tags.</span>
+<span class="sd">    Mandatory reference: https://xkcd.com/1171/</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(^|\n| )#([a-zA-Z0-9_-]+)\w&quot;</span>
+    <span class="kn">from</span> <span class="nn">archivy.data</span> <span class="kn">import</span> <span class="n">get_data_dir</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">which</span><span class="p">(</span><span class="s2">&quot;rg&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># io: case insensitive</span>
+    <span class="n">rg_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rg&quot;</span><span class="p">,</span> <span class="s2">&quot;-Uio&quot;</span><span class="p">,</span> <span class="n">RG_FILETYPE</span><span class="p">,</span> <span class="n">RG_REGEX_ARG</span><span class="p">,</span> <span class="n">PATTERN</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_data_dir</span><span class="p">())]</span>
+    <span class="n">rg</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">rg_cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">hits</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">rg</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>
+        <span class="n">hits</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">hits</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 class="doc doc-heading" id="archivy.search.remove_from_index">
 <code class="highlight language-python"><span class="n">remove_from_index</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span></code>
 
 
@@ -988,7 +1048,7 @@
 
 
 
-<h2 id="archivy.search.search" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.search.search">
 <code class="highlight language-python"><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 
@@ -1009,7 +1069,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;engine&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;elasticsearch&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">query_es_index</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="n">strict</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;engine&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ripgrep&quot;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;engine&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ripgrep&quot;</span> <span class="ow">or</span> <span class="n">which</span><span class="p">(</span><span class="s2">&quot;rg&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">query_ripgrep</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 </code></pre></div>
         </details>

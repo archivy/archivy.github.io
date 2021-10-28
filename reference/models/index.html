@@ -893,7 +893,7 @@
 
 
 
-<h2 id="archivy.models.DataObj" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.models.DataObj">
         <code>DataObj</code>
 
 
@@ -946,7 +946,7 @@ the db with their contents.</p>
 
 
 
-<h3 id="archivy.models.DataObj.extract_content" class="doc doc-heading">
+<h3 class="doc doc-heading" id="archivy.models.DataObj.extract_content">
 <code class="highlight language-python"><span class="n">extract_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beautsoup</span><span class="p">,</span> <span class="n">selector</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 
@@ -1017,7 +1017,7 @@ the db with their contents.</p>
 
 
 
-<h3 id="archivy.models.DataObj.from_md" class="doc doc-heading">
+<h3 class="doc doc-heading" id="archivy.models.DataObj.from_md">
 <code class="highlight language-python"><span class="n">from_md</span><span class="p">(</span><span class="n">md_content</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
@@ -1050,7 +1050,7 @@ the db with their contents.</p>
     <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">md_content</span><span class="p">)</span>
     <span class="n">dataobj</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">dataobj</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">content</span>
-    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;tags&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="s2">&quot;tags&quot;</span><span class="p">]:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">dataobj</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
@@ -1075,7 +1075,7 @@ the db with their contents.</p>
 
 
 
-<h3 id="archivy.models.DataObj.insert" class="doc doc-heading">
+<h3 class="doc doc-heading" id="archivy.models.DataObj.insert">
 <code class="highlight language-python"><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
@@ -1090,7 +1090,8 @@ the db with their contents.</p>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates a new file with the object&#39;s attributes&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">():</span>
-
+        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="p">:</span>
+            <span class="n">add_tag_to_index</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
         <span class="n">helpers</span><span class="o">.</span><span class="n">set_max_id</span><span class="p">(</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_max_id</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">get_max_id</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
@@ -1136,7 +1137,7 @@ the db with their contents.</p>
 
 
 
-<h3 id="archivy.models.DataObj.process_bookmark_url" class="doc doc-heading">
+<h3 class="doc doc-heading" id="archivy.models.DataObj.process_bookmark_url">
 <code class="highlight language-python"><span class="n">process_bookmark_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
@@ -1202,7 +1203,7 @@ the db with their contents.</p>
 
 
 
-<h3 id="archivy.models.DataObj.validate" class="doc doc-heading">
+<h3 class="doc doc-heading" id="archivy.models.DataObj.validate">
 <code class="highlight language-python"><span class="n">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
@@ -1237,7 +1238,7 @@ the db with their contents.</p>
 
 
 
-<h3 id="archivy.models.DataObj.wipe" class="doc doc-heading">
+<h3 class="doc doc-heading" id="archivy.models.DataObj.wipe">
 <code class="highlight language-python"><span class="n">wipe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
@@ -1275,7 +1276,7 @@ the db with their contents.</p>
 
 
 
-<h2 id="archivy.models.User" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.models.User">
         <code>User</code>
 
 
@@ -1309,7 +1310,7 @@ the db with their contents.</p>
 
 
 
-<h3 id="archivy.models.User.from_db" class="doc doc-heading">
+<h3 class="doc doc-heading" id="archivy.models.User.from_db">
 <code class="highlight language-python"><span class="n">from_db</span><span class="p">(</span><span class="n">db_object</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
@@ -1343,7 +1344,7 @@ the db with their contents.</p>
 
 
 
-<h3 id="archivy.models.User.insert" class="doc doc-heading">
+<h3 class="doc doc-heading" id="archivy.models.User.insert">
 <code class="highlight language-python"><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 

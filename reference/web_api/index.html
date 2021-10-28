@@ -586,6 +586,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.api.add_tag_to_index" class="md-nav__link">
+    add_tag_to_index()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.api.create_bookmark" class="md-nav__link">
     create_bookmark()
   </a>
@@ -793,6 +800,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.api.add_tag_to_index" class="md-nav__link">
+    add_tag_to_index()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.api.create_bookmark" class="md-nav__link">
     create_bookmark()
   </a>
@@ -927,7 +941,42 @@
 
 
 
-<h2 id="archivy.api.create_bookmark" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.api.add_tag_to_index">
+<code class="highlight language-python"><span class="n">add_tag_to_index</span><span class="p">()</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Add a tag to the database.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/api.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@api_bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/tags/add_to_index&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;PUT&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">add_tag_to_index</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Add a tag to the database.&quot;&quot;&quot;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tag</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span> <span class="ow">and</span> <span class="n">tags</span><span class="o">.</span><span class="n">is_tag_format</span><span class="p">(</span><span class="n">tag</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">tags</span><span class="o">.</span><span class="n">add_tag_to_index</span><span class="p">(</span><span class="n">tag</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">404</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s2">&quot;Must provide valid tag name.&quot;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">401</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 class="doc doc-heading" id="archivy.api.create_bookmark">
 <code class="highlight language-python"><span class="n">create_bookmark</span><span class="p">()</span></code>
 
 
@@ -982,7 +1031,7 @@
 
 
 
-<h2 id="archivy.api.create_folder" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.api.create_folder">
 <code class="highlight language-python"><span class="n">create_folder</span><span class="p">()</span></code>
 
 
@@ -1024,7 +1073,7 @@
 
 
 
-<h2 id="archivy.api.create_note" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.api.create_note">
 <code class="highlight language-python"><span class="n">create_note</span><span class="p">()</span></code>
 
 
@@ -1059,8 +1108,8 @@
     <span class="n">note</span> <span class="o">=</span> <span class="n">DataObj</span><span class="p">(</span>
         <span class="n">title</span><span class="o">=</span><span class="n">json_data</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span>
         <span class="n">content</span><span class="o">=</span><span class="n">json_data</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">],</span>
-        <span class="n">tags</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">),</span>
         <span class="n">path</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+        <span class="n">tags</span><span class="o">=</span><span class="n">json_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">,</span> <span class="p">[]),</span>
         <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;note&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
@@ -1080,7 +1129,7 @@
 
 
 
-<h2 id="archivy.api.delete_dataobj" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.api.delete_dataobj">
 <code class="highlight language-python"><span class="n">delete_dataobj</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span></code>
 
 
@@ -1111,7 +1160,7 @@
 
 
 
-<h2 id="archivy.api.delete_folder" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.api.delete_folder">
 <code class="highlight language-python"><span class="n">delete_folder</span><span class="p">()</span></code>
 
 
@@ -1151,7 +1200,7 @@
 
 
 
-<h2 id="archivy.api.get_dataobj" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.api.get_dataobj">
 <code class="highlight language-python"><span class="n">get_dataobj</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span></code>
 
 
@@ -1190,7 +1239,7 @@
 
 
 
-<h2 id="archivy.api.get_dataobjs" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.api.get_dataobjs">
 <code class="highlight language-python"><span class="n">get_dataobjs</span><span class="p">()</span></code>
 
 
@@ -1221,7 +1270,7 @@
 
 
 
-<h2 id="archivy.api.login" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.api.login">
 <code class="highlight language-python"><span class="n">login</span><span class="p">()</span></code>
 
 
@@ -1264,7 +1313,7 @@ Pass in the username and password of your account.</p>
 
 
 
-<h2 id="archivy.api.search_endpoint" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.api.search_endpoint">
 <code class="highlight language-python"><span class="n">search_endpoint</span><span class="p">()</span></code>
 
 
@@ -1301,7 +1350,7 @@ Pass in the username and password of your account.</p>
 
 
 
-<h2 id="archivy.api.update_dataobj" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.api.update_dataobj">
 <code class="highlight language-python"><span class="n">update_dataobj</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span></code>
 
 
@@ -1345,7 +1394,7 @@ Pass in the username and password of your account.</p>
 
 
 
-<h2 id="archivy.api.update_dataobj_frontmatter" class="doc doc-heading">
+<h2 class="doc doc-heading" id="archivy.api.update_dataobj_frontmatter">
 <code class="highlight language-python"><span class="n">update_dataobj_frontmatter</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span></code>
 
 
