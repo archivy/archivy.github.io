@@ -603,6 +603,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.data.build_dir_tree" class="md-nav__link">
+    build_dir_tree()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.data.create" class="md-nav__link">
     create()
   </a>
@@ -821,6 +828,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.data.build_dir_tree" class="md-nav__link">
+    build_dir_tree()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.data.create" class="md-nav__link">
     create()
   </a>
@@ -1015,6 +1029,69 @@
 
   </div>
 
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 class="doc doc-heading" id="archivy.data.build_dir_tree">
+<code class="highlight language-python"><span class="n">build_dir_tree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">query_dir</span><span class="p">,</span> <span class="n">load_content</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Builds a structured tree of directories and data objects.</p>
+<ul>
+<li><strong>path</strong>: name of the directory relative to the root directory.</li>
+<li><strong>query_dir</strong>: absolute path of the directory we're building the tree of.</li>
+<li><strong>load_content</strong>: internal option to not save post contents in memory
+    if they're not going to be accessed.</li>
+</ul>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/data.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">build_dir_tree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">query_dir</span><span class="p">,</span> <span class="n">load_content</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builds a structured tree of directories and data objects.</span>
+
+<span class="sd">    - **path**: name of the directory relative to the root directory.</span>
+<span class="sd">    - **query_dir**: absolute path of the directory we&#39;re building the tree of.</span>
+<span class="sd">    - **load_content**: internal option to not save post contents in memory</span>
+<span class="sd">        if they&#39;re not going to be accessed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">datacont</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">path</span> <span class="ow">or</span> <span class="s2">&quot;root&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">query_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">):</span>
+        <span class="n">current_path</span> <span class="o">=</span> <span class="n">filepath</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">query_dir</span><span class="p">)</span>
+        <span class="n">current_dir</span> <span class="o">=</span> <span class="n">datacont</span>
+
+        <span class="c1"># iterate through parent directories</span>
+        <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">current_path</span><span class="o">.</span><span class="n">parts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="c1"># directory has not been saved in tree yet</span>
+            <span class="k">if</span> <span class="n">segment</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">:</span>
+                <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">segment</span><span class="p">]</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
+            <span class="n">current_dir</span> <span class="o">=</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">segment</span><span class="p">]</span>
+
+        <span class="c1"># handle last part of current_path</span>
+        <span class="n">last_seg</span> <span class="o">=</span> <span class="n">current_path</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">filepath</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">last_seg</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">:</span>
+                <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">last_seg</span><span class="p">]</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">last_seg</span><span class="p">)</span>
+            <span class="n">current_dir</span> <span class="o">=</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">last_seg</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">last_seg</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">load_content</span><span class="p">:</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">current_dir</span><span class="o">.</span><span class="n">child_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">datacont</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
 
 
 
@@ -1360,7 +1437,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 <h2 class="doc doc-heading" id="archivy.data.get_items">
-<code class="highlight language-python"><span class="n">get_items</span><span class="p">(</span><span class="n">collections</span><span class="o">=</span><span class="p">[],</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">structured</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">json_format</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">get_items</span><span class="p">(</span><span class="n">collections</span><span class="o">=</span><span class="p">[],</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">structured</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">json_format</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">load_content</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 
 </h2>
@@ -1375,11 +1452,14 @@ and a filename of format "{id}-{old_filename}.md"</p>
   data will just be returned as a list of dataobjs</li>
 <li><strong>json_format</strong>: boolean value used internally to pre-process dataobjs
   to send back a json response.</li>
+<li><strong>load_content</strong>: internal value to disregard post content and not save them in memory if they won't be accessed.</li>
 </ul>
 
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_items</span><span class="p">(</span><span class="n">collections</span><span class="o">=</span><span class="p">[],</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">structured</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">json_format</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_items</span><span class="p">(</span>
+    <span class="n">collections</span><span class="o">=</span><span class="p">[],</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">structured</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">json_format</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">load_content</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets all dataobjs.</span>
 
@@ -1391,37 +1471,21 @@ and a filename of format "{id}-{old_filename}.md"</p>
 <span class="sd">      data will just be returned as a list of dataobjs</span>
 <span class="sd">    - **json_format**: boolean value used internally to pre-process dataobjs</span>
 <span class="sd">      to send back a json response.</span>
+<span class="sd">    - **load_content**: internal value to disregard post content and not save them in memory if they won&#39;t be accessed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">datacont</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">path</span> <span class="ow">or</span> <span class="s2">&quot;root&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">structured</span> <span class="k">else</span> <span class="p">[]</span>
     <span class="n">data_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
-    <span class="n">root_dir</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="n">path</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_relative_to</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="n">query_dir</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="n">path</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_relative_to</span><span class="p">(</span><span class="n">query_dir</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">query_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
         <span class="k">raise</span> <span class="ne">FileNotFoundError</span>
     <span class="k">if</span> <span class="n">structured</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">):</span>
-            <span class="n">current_path</span> <span class="o">=</span> <span class="n">filepath</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span>
-            <span class="n">current_dir</span> <span class="o">=</span> <span class="n">datacont</span>
-
-            <span class="c1"># iterate through parent directories</span>
-            <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">current_path</span><span class="o">.</span><span class="n">parts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="c1"># directory has not been saved in tree yet</span>
-                <span class="k">if</span> <span class="n">segment</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">:</span>
-                    <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">segment</span><span class="p">]</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
-                <span class="n">current_dir</span> <span class="o">=</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">segment</span><span class="p">]</span>
-
-            <span class="c1"># handle last part of current_path</span>
-            <span class="n">last_seg</span> <span class="o">=</span> <span class="n">current_path</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">filepath</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">last_seg</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">:</span>
-                    <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">last_seg</span><span class="p">]</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">last_seg</span><span class="p">)</span>
-                <span class="n">current_dir</span> <span class="o">=</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">last_seg</span><span class="p">]</span>
-            <span class="k">elif</span> <span class="n">last_seg</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">):</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-                <span class="n">current_dir</span><span class="o">.</span><span class="n">child_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">build_dir_tree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">query_dir</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">root_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.md&quot;</span><span class="p">):</span>
+        <span class="n">datacont</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">query_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.md&quot;</span><span class="p">):</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;fullpath&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">root_dir</span><span class="p">))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">load_content</span><span class="p">:</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;fullpath&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">query_dir</span><span class="p">))</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">collections</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span>
                 <span class="p">[</span><span class="n">collection</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">collection</span> <span class="ow">in</span> <span class="n">collections</span><span class="p">]</span>
             <span class="p">):</span>
@@ -1432,7 +1496,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
                     <span class="n">datacont</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dict_dataobj</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">datacont</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">datacont</span>
+        <span class="k">return</span> <span class="n">datacont</span>
 </code></pre></div>
         </details>
     </div>
