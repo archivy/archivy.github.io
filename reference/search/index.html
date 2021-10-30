@@ -900,8 +900,8 @@
                 <span class="s2">&quot;fragment_size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
                 <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;pre_tags&quot;</span><span class="p">:</span> <span class="s2">&quot;==&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;post_tags&quot;</span><span class="p">:</span> <span class="s2">&quot;==&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;pre_tags&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;post_tags&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
                     <span class="p">}</span>
                 <span class="p">},</span>
             <span class="p">},</span>
@@ -912,8 +912,8 @@
     <span class="k">for</span> <span class="n">hit</span> <span class="ow">in</span> <span class="n">search</span><span class="p">[</span><span class="s2">&quot;hits&quot;</span><span class="p">][</span><span class="s2">&quot;hits&quot;</span><span class="p">]:</span>
         <span class="n">formatted_hit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;_id&quot;</span><span class="p">],</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;_source&quot;</span><span class="p">][</span><span class="s2">&quot;title&quot;</span><span class="p">]}</span>
         <span class="k">if</span> <span class="s2">&quot;highlight&quot;</span> <span class="ow">in</span> <span class="n">hit</span><span class="p">:</span>
-            <span class="n">formatted_hit</span><span class="p">[</span><span class="s2">&quot;highlight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;highlight&quot;</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
-            <span class="n">reformatted_match</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_hit</span><span class="p">[</span><span class="s2">&quot;highlight&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;==&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">formatted_hit</span><span class="p">[</span><span class="s2">&quot;matches&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;highlight&quot;</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
+            <span class="n">reformatted_match</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_hit</span><span class="p">[</span><span class="s2">&quot;matches&quot;</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">strict</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">query</span> <span class="ow">in</span> <span class="n">reformatted_match</span><span class="p">):</span>
                 <span class="k">continue</span>
         <span class="n">hits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">formatted_hit</span><span class="p">)</span>
@@ -938,28 +938,44 @@
 
     <div class="doc doc-contents ">
 
-      <p>Uses ripgrep to search data with a simpler setup than ES</p>
+      <p>Uses ripgrep to search data with a simpler setup than ES.
+Returns a list of dicts with detailed matches.</p>
 
         <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">query_ripgrep</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Uses ripgrep to search data with a simpler setup than ES&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Uses ripgrep to search data with a simpler setup than ES.</span>
+<span class="sd">    Returns a list of dicts with detailed matches.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="kn">from</span> <span class="nn">archivy.data</span> <span class="kn">import</span> <span class="n">get_data_dir</span>
 
-    <span class="k">if</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;engine&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;ripgrep&quot;</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">which</span><span class="p">(</span><span class="s2">&quot;rg&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">which</span><span class="p">(</span><span class="s2">&quot;rg&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="n">rg_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rg&quot;</span><span class="p">,</span> <span class="n">RG_MISC_ARGS</span><span class="p">,</span> <span class="n">RG_FILETYPE</span><span class="p">,</span> <span class="n">RG_REGEX_ARG</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_data_dir</span><span class="p">())]</span>
+    <span class="n">rg_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rg&quot;</span><span class="p">,</span> <span class="n">RG_MISC_ARGS</span><span class="p">,</span> <span class="n">RG_FILETYPE</span><span class="p">,</span> <span class="s2">&quot;--json&quot;</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_data_dir</span><span class="p">())]</span>
     <span class="n">rg</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">rg_cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-    <span class="n">file_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">Path</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">rg</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()]</span>
-
-    <span class="c1"># don&#39;t open file just find info from filename for speed</span>
-    <span class="n">hits</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">file_paths</span><span class="p">:</span>
-        <span class="n">parsed</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-        <span class="n">hits</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">parsed</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parsed</span><span class="p">[</span><span class="mi">1</span><span class="p">:])})</span>
-    <span class="k">return</span> <span class="n">hits</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+    <span class="n">hits</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">curr_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+        <span class="n">hit</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;begin&quot;</span><span class="p">:</span>
+            <span class="n">curr_file</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+            <span class="p">)</span>  <span class="c1"># parse target note data from path</span>
+            <span class="n">curr_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">curr_file</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">hits</span><span class="p">[</span><span class="n">curr_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">curr_file</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;matches&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">curr_id</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;match&quot;</span><span class="p">:</span>
+            <span class="n">match_text</span> <span class="o">=</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;lines&quot;</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">match_text</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;tags: [&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">match_text</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span>
+                <span class="s2">&quot;title:&quot;</span>
+            <span class="p">):</span>  <span class="c1"># don&#39;t send matches on metadata</span>
+                <span class="n">hits</span><span class="p">[</span><span class="n">curr_id</span><span class="p">][</span><span class="s2">&quot;matches&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">match_text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span><span class="n">hits</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;matches&quot;</span><span class="p">]),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>  <span class="c1"># sort by number of matches</span>
 </code></pre></div>
         </details>
     </div>
@@ -991,7 +1007,7 @@ Mandatory reference: https://xkcd.com/1171/</p>
 <span class="sd">    Mandatory reference: https://xkcd.com/1171/</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(^|\n| )#([a-zA-Z0-9_-]+)\w&quot;</span>
+    <span class="n">PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(^|\n| )#([-_a-zA-ZÀ-ÖØ-öø-ÿ0-9]+)&quot;</span>
     <span class="kn">from</span> <span class="nn">archivy.data</span> <span class="kn">import</span> <span class="n">get_data_dir</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">which</span><span class="p">(</span><span class="s2">&quot;rg&quot;</span><span class="p">):</span>
