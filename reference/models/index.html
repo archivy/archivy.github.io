@@ -1172,21 +1172,21 @@ the db with their contents.</p>
             <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;User-agent&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Archivy/v</span><span class="si">{</span><span class="n">require</span><span class="p">(</span><span class="s1">&#39;archivy&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
         <span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not retrieve </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Could not retrieve </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wipe</span><span class="p">()</span>
         <span class="k">return</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">parsed_html</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">url_request</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not parse </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Could not parse </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wipe</span><span class="p">()</span>
         <span class="k">return</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_content</span><span class="p">(</span><span class="n">parsed_html</span><span class="p">,</span> <span class="n">selector</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">flash</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not extract content from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Could not extract content from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="k">return</span>
 
     <span class="n">parsed_title</span> <span class="o">=</span> <span class="n">parsed_html</span><span class="o">.</span><span class="n">title</span>
