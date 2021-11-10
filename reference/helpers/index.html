@@ -615,6 +615,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.helpers.create_plugin_dir" class="md-nav__link">
+    create_plugin_dir()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.helpers.get_db" class="md-nav__link">
     get_db()
   </a>
@@ -751,6 +758,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archivy.helpers.create_plugin_dir" class="md-nav__link">
+    create_plugin_dir()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#archivy.helpers.get_db" class="md-nav__link">
     get_db()
   </a>
@@ -877,6 +891,100 @@
             <span class="n">parent_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">curr_key</span><span class="p">)</span>
             <span class="k">return</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="mi">1</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 class="doc doc-heading" id="archivy.helpers.create_plugin_dir">
+<code class="highlight language-python"><span class="n">create_plugin_dir</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Creates a sample plugin directory</p>
+
+        <details class="quote">
+          <summary>Source code in <code>archivy/helpers.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create_plugin_dir</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates a sample plugin directory&quot;&quot;&quot;</span>
+    <span class="n">raw_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;archivy_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;archivy-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Creates requirements.txt.</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/requirements.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">fp</span><span class="o">.</span><span class="n">writelines</span><span class="p">([</span><span class="s2">&quot;archivy&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">click&quot;</span><span class="p">])</span>
+
+        <span class="c1"># Creates an empty readme file to be filled</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/README.md&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">fp</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="sa">f</span><span class="s2">&quot;# </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">## Install&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">You need to have `archivy` already installed.&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Run `pip install archivy_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">`&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">## Usage&quot;</span><span class="p">,</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Creates a setup.py file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/setup.py&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">setup_f</span><span class="p">:</span>
+            <span class="n">setup_f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;from setuptools import setup, find_packages&quot;</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">with open(&quot;README.md&quot;, &quot;r&quot;) as fh:&#39;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">long_description = fh.read()&quot;</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">with open(&quot;requirements.txt&quot;, encoding=&quot;utf-8&quot;) as f:&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">all_reqs = f.read().split(&quot;</span><span class="se">\\</span><span class="s1">n&quot;)&#39;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">install_requires = [x.strip() for x in all_reqs]&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">#Fill in the details below for distribution purposes&quot;</span>
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">setup(</span><span class="se">\n\t</span><span class="s1">name=&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;,&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">version=&quot;0.0.1&quot;,&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">author=&quot;&quot;,&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">author_email=&quot;&quot;,&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">description=&quot;&quot;,&#39;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">long_description=long_description,&quot;</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">long_description_content_type=&quot;text/markdown&quot;,&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">classifiers=[&quot;Programming Language :: Python :: 3&quot;],&#39;</span>
+                    <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">packages=find_packages(),&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">install_requires=install_requires,&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">entry_points=&quot;&quot;&quot;</span><span class="se">\n\t\t</span><span class="s1">[archivy.plugins]&#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n\t\t</span><span class="si">{</span><span class="n">raw_name</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">raw_name</span><span class="si">}</span><span class="s1">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s1">)&#39;</span><span class="p">,</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Creating a basic __init__.py file where the main function of the plugin goes</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/__init__.py&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">fp</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;import archivy&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">import click&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2"># Fill in the functionality for the commands (see https://archivy.github.io/plugins/)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">@click.group()&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">def </span><span class="si">{</span><span class="n">raw_name</span><span class="si">}</span><span class="s2">():&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">pass&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">@</span><span class="si">{</span><span class="n">raw_name</span><span class="si">}</span><span class="s2">.command()&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">def command1():&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">pass&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">@</span><span class="si">{</span><span class="n">raw_name</span><span class="si">}</span><span class="s2">.command()&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">def command2():&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">pass&quot;</span><span class="p">,</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">FileExistsError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
 </code></pre></div>
         </details>
     </div>
