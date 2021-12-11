@@ -435,15 +435,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#with-nix" class="md-nav__link">
-    With Nix
+  <a href="#with-docker" class="md-nav__link">
+    With docker
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#with-docker" class="md-nav__link">
-    With docker
+  <a href="#with-nix" class="md-nav__link">
+    With Nix
   </a>
   
 </li>
@@ -759,15 +759,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#with-nix" class="md-nav__link">
-    With Nix
+  <a href="#with-docker" class="md-nav__link">
+    With docker
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#with-docker" class="md-nav__link">
-    With docker
+  <a href="#with-nix" class="md-nav__link">
+    With Nix
   </a>
   
 </li>
@@ -796,16 +796,17 @@
 <ol>
 <li>Make sure your system has Python and pip installed. The Python programming language can also be downloaded from <a href="https://www.python.org/downloads/">here</a>.</li>
 <li>Install the python package with <code>pip install archivy</code></li>
-<li>If you'd like to use search, follow <a href="../setup-search/">these docs</a> first and then do this part. Either way, run <code>archivy init</code> to create a new user and use the setup wizard.</li>
+<li>It's highly recommended to install <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>, which Archivy uses for some of it's organization features (note links &amp; tags inside notes).</li>
+<li>If you'd like to use search, follow <a href="../setup-search/">these docs</a> first and then do this part. Run <code>archivy init</code> to create a new user and use the setup wizard.</li>
 <li>There you go! You should be able to start the app by running <code>archivy run</code> in your terminal and then just login.</li>
 </ol>
-<h2 id="with-nix">With Nix</h2>
-<div class="highlight"><pre><span></span><code>$ nix-env -i archivy
-</code></pre></div>
 <h2 id="with-docker">With docker</h2>
 <p>You can also use archivy with Docker. </p>
 <p>See <a href="https://github.com/archivy/archivy-docker">the docker documentation</a> for instructions on this.</p>
 <p>We might implement an AppImage install. Comment <a href="https://github.com/archivy/archivy/issues/44">here</a> if you'd like to see that happen.</p>
+<h2 id="with-nix">With Nix</h2>
+<div class="highlight"><pre><span></span><code>$ nix-env -i archivy
+</code></pre></div>
 
               
             </article>
