@@ -1065,6 +1065,17 @@ Directory        </code>
 
       <p>Tree like file-structure used to build file navigation in Archiv</p>
 
+        <details class="quote">
+          <summary>Source code in <code>archivy/data.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Directory</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Tree like file-structure used to build file navigation in Archiv&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">child_files</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">child_dirs</span> <span class="o">=</span> <span class="p">{}</span>
+</code></pre></div>
+        </details>
 
 
 

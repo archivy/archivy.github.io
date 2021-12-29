@@ -871,6 +871,52 @@ This location is usually set during <code>archivy init</code>.</p>
 <p>If you have ideas for any other hooks you'd find useful if they were supported,
 please open an <a href="https://github.com/archivy/archivy/issues">issue</a>.</p>
 
+        <details class="quote">
+          <summary>Source code in <code>archivy/config.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BaseHooks</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class of methods users can inherit to configure and extend archivy with hooks.</span>
+
+
+<span class="sd">    ## Usage:</span>
+
+<span class="sd">    Archivy checks for the presence of a `hooks.py` file in the</span>
+<span class="sd">    user directory that stores the `data/` directory with your notes and bookmarks.</span>
+<span class="sd">    This location is usually set during `archivy init`.</span>
+
+<span class="sd">    Example `hooks.py` file:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    from archivy.config import BaseHooks</span>
+
+<span class="sd">    class Hooks(BaseHooks):</span>
+<span class="sd">        def on_edit(self, dataobj):</span>
+<span class="sd">            print(f&quot;Edit made to {dataobj.title}&quot;)</span>
+
+<span class="sd">        def before_dataobj_create(self, dataobj):</span>
+<span class="sd">            from random import randint</span>
+<span class="sd">            dataobj.content += f&quot;\\nThis note&#39;s random number is {randint(1, 10)}&quot;</span>
+
+<span class="sd">        # ...</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    If you have ideas for any other hooks you&#39;d find useful if they were supported,</span>
+<span class="sd">    please open an [issue](https://github.com/archivy/archivy/issues).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">on_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Hook for dataobj creation.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Hook called immediately before dataobj creation.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">on_user_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Hook called after a new user is created.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">on_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Hook called whenever a user edits through the web interface or the API.&quot;&quot;&quot;</span>
+</code></pre></div>
+        </details>
 
 
 
