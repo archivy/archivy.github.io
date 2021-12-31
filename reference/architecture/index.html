@@ -893,17 +893,17 @@
 <ul>
 <li><code>DataObjs</code> is the term used to denote a note or bookmark that is stored in your knowledge base (abbreviation for Data Object). These are stored in a directory on your filesystem of which you can <a href="../../config/">configure the location</a>. They are organized in markdown files with <code>yaml</code> front matter like this:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nn">---</span>
-<span class="nt">date</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">08-31-20</span>
-<span class="nt">desc</span><span class="p">:</span> <span class="s">&#39;&#39;</span>
-<span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
-<span class="nt">path</span><span class="p">:</span> <span class="s">&#39;&#39;</span>
-<span class="nt">tags</span><span class="p">:</span> <span class="p p-Indicator">[]</span>
-<span class="nt">title</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="nn">---</span>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span><span class="w"></span>
+<span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">08-31-20</span><span class="w"></span>
+<span class="nt">desc</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="w"></span>
+<span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span><span class="w"></span>
+<span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="w"></span>
+<span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span><span class="w"></span>
+<span class="nn">---</span><span class="w"></span>
 
-<span class="nn">...</span>
+<span class="nn">...</span><span class="w"></span>
 </code></pre></div>
 <p>Archivy uses the <a href="https://python-frontmatter.readthedocs.io/en/latest/">python-frontmatter</a> package to handle the parsing of these files. They can be organized into user-specified sub-directories. Check out <a href="../filesystem_layer/">the reference</a> to see the methods archivy uses for this.</p>
 <ul>
