@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="../img/logo-2.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.7">
     
     
       
@@ -1000,8 +1000,10 @@ To use search, you first have to enable it either through the <code>archivy init
 specification</a>:
 <code>~/.local/share/archivy</code></p>
 <h3 id="editor-configuration">Editor configuration</h3>
+<p>To enable auto save in the editor, set <code>EDITOR_CONF -&gt; autosave</code> to True. </p>
 <p>Archivy uses the <a href="https://github.com/markdown-it/markdown-it">markdown-it</a> parser for its editor. This parser can be configured to change the output according to your needs. The default values of <code>EDITOR_CONF</code> are given below. Refer to the <a href="https://github.com/markdown-it/markdown-it#init-with-presets-and-options">markdown-it docs</a> for a full list of possible options.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">EDITOR_CONF</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">autosave</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span><span class="w"></span>
 <span class="w">  </span><span class="nt">settings</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">linkify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">    </span><span class="nt">html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
