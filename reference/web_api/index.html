@@ -1437,8 +1437,11 @@ Pass in the username and password of your account.</p>
 <span class="sd">    - **content**: markdown text of new dataobj.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">):</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">update_item_md</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">update_item_md</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">404</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s2">&quot;Must provide content parameter&quot;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">401</span><span class="p">)</span>
 </code></pre></div>
         </details>
