@@ -866,7 +866,7 @@ This location is usually set during <code>archivy init</code>.</p>
 
     <span class="k">def</span> <span class="nf">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
-        <span class="n">dataobj</span><span class="o">.</span><span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">This note&#39;s random number is </span><span class="si">{</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">dataobj</span><span class="o">.</span><span class="n">content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">This note&#39;s random number is </span><span class="si">{</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
 
     <span class="c1"># ...</span>
 </code></pre></div>
@@ -876,7 +876,7 @@ please open an <a href="https://github.com/archivy/archivy/issues">issue</a>.</p
         <details class="quote">
           <summary>Source code in <code>archivy/config.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BaseHooks</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class of methods users can inherit to configure and extend archivy with hooks.</span>
 
 
@@ -907,16 +907,16 @@ please open an <a href="https://github.com/archivy/archivy/issues">issue</a>.</p
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">on_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Hook for dataobj creation.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hook for dataobj creation.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Hook called immediately before dataobj creation.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hook called immediately before dataobj creation.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">on_user_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Hook called after a new user is created.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hook called after a new user is created.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">on_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Hook called whenever a user edits through the web interface or the API.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hook called whenever a user edits through the web interface or the API.&quot;&quot;&quot;</span>
 </code></pre></div>
         </details>
 
@@ -949,7 +949,7 @@ please open an <a href="https://github.com/archivy/archivy/issues">issue</a>.</p
         <details class="quote">
           <summary>Source code in <code>archivy/config.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">before_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Hook called immediately before dataobj creation.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hook called immediately before dataobj creation.&quot;&quot;&quot;</span>
 </code></pre></div>
         </details>
     </div>
@@ -975,7 +975,7 @@ please open an <a href="https://github.com/archivy/archivy/issues">issue</a>.</p
         <details class="quote">
           <summary>Source code in <code>archivy/config.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_dataobj_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Hook for dataobj creation.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hook for dataobj creation.&quot;&quot;&quot;</span>
 </code></pre></div>
         </details>
     </div>
@@ -1001,7 +1001,7 @@ please open an <a href="https://github.com/archivy/archivy/issues">issue</a>.</p
         <details class="quote">
           <summary>Source code in <code>archivy/config.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataobj</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Hook called whenever a user edits through the web interface or the API.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hook called whenever a user edits through the web interface or the API.&quot;&quot;&quot;</span>
 </code></pre></div>
         </details>
     </div>
@@ -1027,7 +1027,7 @@ please open an <a href="https://github.com/archivy/archivy/issues">issue</a>.</p
         <details class="quote">
           <summary>Source code in <code>archivy/config.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_user_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Hook called after a new user is created.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hook called after a new user is created.&quot;&quot;&quot;</span>
 </code></pre></div>
         </details>
     </div>

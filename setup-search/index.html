@@ -790,8 +790,8 @@
 <p>Elasticsearch, is a complex and extendable search engine that returns high-quality results.</p>
 <p>Instructions to install and run the service which needs to be running when you use Elasticsearch can be found <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html">here</a>.</p>
 <p>Append these two lines to your <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html">elasticsearch.yml config file</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">http.cors.enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="nt">http.cors.allow-origin</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://localhost:5000&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">http.cors.enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">http.cors.allow-origin</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://localhost:5000&quot;</span>
 </code></pre></div>
 <p>Then, when you run <code>archivy init</code> simply specify you have enabled ES to integrate it with archivy.</p>
 <p>You will now have full-text search on your knowledge base!</p>

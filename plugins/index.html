@@ -888,14 +888,14 @@
 
 <span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">extra_metadata</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;`archivy_extra_metadata` plugin to add metadata to your notes.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;`archivy_extra_metadata` plugin to add metadata to your notes.&quot;&quot;&quot;</span>
     <span class="k">pass</span>
 
 <span class="nd">@extra_metadata</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--author&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--location&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">author</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Save metadata values.&quot;&quot;&quot;</span>    
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save metadata values.&quot;&quot;&quot;</span>    
     <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
         <span class="c1"># save data in db</span>
         <span class="n">get_db</span><span class="p">()</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="n">author</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">})</span>
@@ -910,29 +910,29 @@
 <li>Then we just have our command code that takes the arguments and saves them into the <a href="/reference/architecture/#data-storage">database</a>.</li>
 </ul>
 <p>Now you just need to do <code>pip install .</code> in the main directory and you'll have access to the commands. Check it out by running <code>archivy extra_metadata --help</code> and then you can access the commands:</p>
-<div class="highlight"><pre><span></span><code>$ archivy extra-metadata --help
-Usage: archivy extra-metadata <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>archivy<span class="w"> </span>extra-metadata<span class="w"> </span>--help
+Usage:<span class="w"> </span>archivy<span class="w"> </span>extra-metadata<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
 
-  <span class="sb">`</span>archivy_extra_metadata<span class="sb">`</span> plugin to add metadata to your notes.
+<span class="w">  </span><span class="sb">`</span>archivy_extra_metadata<span class="sb">`</span><span class="w"> </span>plugin<span class="w"> </span>to<span class="w"> </span>add<span class="w"> </span>metadata<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>notes.
 
 Options:
-  --help  Show this message and exit.
+<span class="w">  </span>--help<span class="w">  </span>Show<span class="w"> </span>this<span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
 
 Commands:
-  setup  Save metadata values.
+<span class="w">  </span>setup<span class="w">  </span>Save<span class="w"> </span>metadata<span class="w"> </span>values.
 
-$ archivy extra-metadata setup --help
-Usage: archivy extra-metadata setup <span class="o">[</span>OPTIONS<span class="o">]</span>
+$<span class="w"> </span>archivy<span class="w"> </span>extra-metadata<span class="w"> </span>setup<span class="w"> </span>--help
+Usage:<span class="w"> </span>archivy<span class="w"> </span>extra-metadata<span class="w"> </span>setup<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 
-  Save metadata values.
+<span class="w">  </span>Save<span class="w"> </span>metadata<span class="w"> </span>values.
 
 Options:
-  --name TEXT      <span class="o">[</span>required<span class="o">]</span>
-  --location TEXT  <span class="o">[</span>required<span class="o">]</span>
-  --help           Show this message and exit.
+<span class="w">  </span>--name<span class="w"> </span>TEXT<span class="w">      </span><span class="o">[</span>required<span class="o">]</span>
+<span class="w">  </span>--location<span class="w"> </span>TEXT<span class="w">  </span><span class="o">[</span>required<span class="o">]</span>
+<span class="w">  </span>--help<span class="w">           </span>Show<span class="w"> </span>this<span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
 
-$ archivy extra-metadata setup --author Uzay --location Europe
-Metadata saved!
+$<span class="w"> </span>archivy<span class="w"> </span>extra-metadata<span class="w"> </span>setup<span class="w"> </span>--author<span class="w"> </span>Uzay<span class="w"> </span>--location<span class="w"> </span>Europe
+Metadata<span class="w"> </span>saved!
 </code></pre></div>
 <p>That's nice and all, but now we want to actually use this metadata! This wouldn't work with a cli command, because we want it to add metadata whenever a new note is created, not just when a command is executed.</p>
 <p>To do this, we'll use <a href="/reference/hooks"><code>hooks</code></a>. These allow the end user to configure what happens whenever an event is fired off, like the creation of a <a href="../reference/models/">DataObj</a> .</p>
@@ -966,14 +966,14 @@ def add_metadata(dataobj):
 
 <span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">extra_metadata</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;`archivy_extra_metadata` plugin to add metadata to your notes.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;`archivy_extra_metadata` plugin to add metadata to your notes.&quot;&quot;&quot;</span>
     <span class="k">pass</span>
 
 <span class="nd">@extra_metadata</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--author&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--location&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">author</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Save metadata values.&quot;&quot;&quot;</span>    
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save metadata values.&quot;&quot;&quot;</span>    
     <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
         <span class="c1"># save data in db</span>
         <span class="n">get_db</span><span class="p">()</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="n">author</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">})</span>

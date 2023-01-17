@@ -930,7 +930,7 @@
         <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">config_diff</span><span class="p">(</span><span class="n">curr_key</span><span class="p">,</span> <span class="n">curr_val</span><span class="p">,</span> <span class="n">parent_dict</span><span class="p">,</span> <span class="n">defaults</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function diffs the user config with the defaults to only save what is actually different.</span>
 
 <span class="sd">    Returns 1 if the current element or its nested elements are different and have been preserved.</span>
@@ -975,7 +975,7 @@
         <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create_plugin_dir</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates a sample plugin directory&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a sample plugin directory&quot;&quot;&quot;</span>
     <span class="n">raw_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;archivy_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;archivy-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1070,7 +1070,7 @@ store data persistently</p>
         <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_db</span><span class="p">(</span><span class="n">force_reconnect</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the database object that you can use to</span>
 <span class="sd">    store data persistently</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1103,7 +1103,7 @@ store data persistently</p>
         <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_elastic_client</span><span class="p">(</span><span class="n">error_if_invalid</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the elasticsearch client you can use to search and insert / delete data&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the elasticsearch client you can use to search and insert / delete data&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="p">(</span>
         <span class="ow">not</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;enabled&quot;</span><span class="p">]</span>
         <span class="ow">or</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SEARCH_CONF&quot;</span><span class="p">][</span><span class="s2">&quot;engine&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;elasticsearch&quot;</span>
@@ -1157,7 +1157,7 @@ store data persistently</p>
         <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_max_id</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Returns the current maximum id of dataobjs in the database.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the current maximum id of dataobjs in the database.&quot;&quot;&quot;</span>
     <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
     <span class="n">max_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;max_id&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">max_id</span><span class="p">:</span>
@@ -1190,7 +1190,7 @@ store data persistently</p>
         <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">load_config</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Loads `config.yml` file safely and deserializes it to a python dict.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads `config.yml` file safely and deserializes it to a python dict.&quot;&quot;&quot;</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="ow">or</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;INTERNAL_DIR&quot;</span><span class="p">]</span>
     <span class="k">with</span> <span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;config.yml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">SafeLoader</span><span class="p">)</span>
@@ -1221,7 +1221,7 @@ store data persistently</p>
         <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">set_max_id</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Sets a new max_id&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sets a new max_id&quot;&quot;&quot;</span>
     <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
     <span class="n">db</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">operations</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;val&quot;</span><span class="p">,</span> <span class="n">val</span><span class="p">),</span> <span class="n">Query</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;max_id&quot;</span><span class="p">)</span>
 </code></pre></div>
@@ -1249,7 +1249,7 @@ store data persistently</p>
         <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_es_connection</span><span class="p">(</span><span class="n">es</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Tests health and presence of connection to elasticsearch.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests health and presence of connection to elasticsearch.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">health</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">health</span><span class="p">()</span>
     <span class="k">except</span> <span class="n">elasticsearch</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
@@ -1260,7 +1260,7 @@ store data persistently</p>
         <span class="p">)</span>
         <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
             <span class="s2">&quot;You can disable Elasticsearch by modifying the `enabled` variable &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;in </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;INTERNAL_DIR&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="s1">&#39;config.yml&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;in </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;INTERNAL_DIR&#39;</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="s1">&#39;config.yml&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
@@ -1296,7 +1296,7 @@ Compares user config with defaults to only save changes.</p>
         <details class="quote">
           <summary>Source code in <code>archivy/helpers.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">write_config</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Writes a new config dict to a `config.yml` file that will override defaults.</span>
 <span class="sd">    Compares user config with defaults to only save changes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

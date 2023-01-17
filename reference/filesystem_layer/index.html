@@ -1070,7 +1070,7 @@ Directory        </code>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Directory</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Tree like file-structure used to build file navigation in Archiv&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tree like file-structure used to build file navigation in Archiv&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
@@ -1126,7 +1126,7 @@ Directory        </code>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">build_dir_tree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">query_dir</span><span class="p">,</span> <span class="n">load_content</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Builds a structured tree of directories and data objects.</span>
 
 <span class="sd">    - **path**: name of the directory relative to the root directory.</span>
@@ -1188,7 +1188,7 @@ Directory        </code>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">contents</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper method to save a new dataobj onto the filesystem.</span>
 
 <span class="sd">    Parameters:</span>
@@ -1234,7 +1234,7 @@ Directory        </code>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create_dir</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create dir of given name&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create dir of given name&quot;&quot;&quot;</span>
     <span class="n">root_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
     <span class="n">new_path</span> <span class="o">=</span> <span class="n">root_dir</span> <span class="o">/</span> <span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">is_relative_to</span><span class="p">(</span><span class="n">new_path</span><span class="p">,</span> <span class="n">root_dir</span><span class="p">):</span>
@@ -1266,7 +1266,7 @@ Directory        </code>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">delete_dir</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Deletes dir of given name&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Deletes dir of given name&quot;&quot;&quot;</span>
     <span class="n">root_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
     <span class="n">target_dir</span> <span class="o">=</span> <span class="n">root_dir</span> <span class="o">/</span> <span class="n">name</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_relative_to</span><span class="p">(</span><span class="n">target_dir</span><span class="p">,</span> <span class="n">root_dir</span><span class="p">)</span> <span class="ow">or</span> <span class="n">target_dir</span> <span class="o">==</span> <span class="n">root_dir</span><span class="p">:</span>
@@ -1301,7 +1301,7 @@ Directory        </code>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">delete_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Delete dataobj of given id&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delete dataobj of given id&quot;&quot;&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
     <span class="n">remove_from_index</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">file</span><span class="p">:</span>
@@ -1332,7 +1332,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">format_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts normal md of file at `path` to formatted archivy markdown file, with yaml front matter</span>
 <span class="sd">    and a filename of format &quot;{id}-{old_filename}.md&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1370,7 +1370,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
         <span class="n">path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
         <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Formatted and moved </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">datapath</span> <span class="o">/</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">dataobj</span><span class="o">.</span><span class="n">fullpath</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Formatted and moved </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">datapath</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">dataobj</span><span class="o">.</span><span class="n">fullpath</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
 </code></pre></div>
         </details>
@@ -1397,7 +1397,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns filename of dataobj of given id&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns filename of dataobj of given id&quot;&quot;&quot;</span>
     <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">get_data_dir</span><span class="p">()</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataobj_id</span><span class="si">}</span><span class="s2">-*.md&quot;</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">results</span> <span class="k">else</span> <span class="kc">None</span>
 </code></pre></div>
@@ -1425,7 +1425,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_data_dir</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Returns the directory where dataobjs are stored&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the directory where dataobjs are stored&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;USER_DIR&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
 </code></pre></div>
         </details>
@@ -1452,7 +1452,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_dirs</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Gets all dir names where dataobjs are stored&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets all dir names where dataobjs are stored&quot;&quot;&quot;</span>
     <span class="c1"># join glob matchers</span>
     <span class="n">dirnames</span> <span class="o">=</span> <span class="p">[</span>
         <span class="nb">str</span><span class="p">(</span><span class="n">dir_path</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">get_data_dir</span><span class="p">()))</span>
@@ -1486,7 +1486,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a Post object with the given dataobjs&#39; attributes&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a Post object with the given dataobjs&#39; attributes&quot;&quot;&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
@@ -1533,7 +1533,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_items</span><span class="p">(</span>
     <span class="n">collections</span><span class="o">=</span><span class="p">[],</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">structured</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">json_format</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">load_content</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets all dataobjs.</span>
 
 <span class="sd">    Parameters:</span>
@@ -1596,7 +1596,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">is_relative_to</span><span class="p">(</span><span class="n">sub_path</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Implement pathlib `is_relative_to` only available in python 3.9&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Implement pathlib `is_relative_to` only available in python 3.9&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">parent_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
         <span class="n">sub_path</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
@@ -1628,7 +1628,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">move_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Move dataobj of given id to new_path&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Move dataobj of given id to new_path&quot;&quot;&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span>
     <span class="n">data_dir</span> <span class="o">=</span> <span class="n">get_data_dir</span><span class="p">()</span>
     <span class="n">out_dir</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_dir</span> <span class="o">/</span> <span class="n">new_path</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
@@ -1664,7 +1664,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">open_file</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Cross platform way of opening file on user&#39;s computer&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cross platform way of opening file on user&#39;s computer&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Windows&quot;</span><span class="p">:</span>
         <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Darwin&quot;</span><span class="p">:</span>
@@ -1698,7 +1698,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">save_image</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="n">FileStorage</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Saves image to USER_DATA_DIR</span>
 
 <span class="sd">    Returns: filename where image has been saved.</span>
@@ -1739,7 +1739,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">unformat_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts normal md of file at `path` to formatted archivy markdown file, with yaml front matter</span>
 <span class="sd">    and a filename of format &quot;{id}-{old_filename}.md&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1808,7 +1808,7 @@ type: note/bookmark</p>
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_item_frontmatter</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_frontmatter</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given an object id, this method overwrites the front matter</span>
 <span class="sd">    of the post with `new_frontmatter`.</span>
 
@@ -1884,7 +1884,7 @@ id: 1 # unchanged
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_item_md</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_content</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given an object id, this method overwrites the inner</span>
 <span class="sd">    content of the post with `new_content`.</span>
 

@@ -867,9 +867,9 @@
 </table>
 <h3 id="scraping">Scraping</h3>
 <p>An in-progress configuration object to customize how you'd like bookmarking / scraping to work. The options are children of the <code>SCRAPING_CONF</code> object, like so:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">SCRAPING_CONF</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">save_images</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">SCRAPING_CONF</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">save_images</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 <table>
 <thead>
@@ -917,10 +917,10 @@
 <h3 id="theming">Theming</h3>
 <p>Configure the way your Archivy install looks.</p>
 <p>These configuration options are children of the <code>THEME_CONF</code> object, like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">THEME_CONF</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">use_theme_dark</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">use_custom_css</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">custom_css_file</span><span class="p">:</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">THEME_CONF</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">use_theme_dark</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">use_custom_css</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">custom_css_file</span><span class="p">:</span>
 </code></pre></div>
 <table>
 <thead>
@@ -951,10 +951,10 @@
 <h3 id="search">Search</h3>
 <p>See <a href="../setup-search/">Setup Search</a> for more information.</p>
 <p>All of these options are children of the <code>SEARCH_CONF</code> object, like this in the <code>config.yml</code>:</p>
-<p><div class="highlight"><pre><span></span><code><span class="nt">SEARCH_CONF</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># ...</span><span class="w"></span>
+<p><div class="highlight"><pre><span></span><code><span class="nt">SEARCH_CONF</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># ...</span>
 </code></pre></div>
 To use search, you first have to enable it either through the <code>archivy init</code> setup script or by modifying the <code>enabled</code> variable (see below).</p>
 <p>Variables marked <code>ES only</code> in their description are only relevant when using the Elasticsearch engine.</p>
@@ -1002,16 +1002,16 @@ specification</a>:
 <h3 id="editor-configuration">Editor configuration</h3>
 <p>To enable auto save in the editor, set <code>EDITOR_CONF -&gt; autosave</code> to True. </p>
 <p>Archivy uses the <a href="https://github.com/markdown-it/markdown-it">markdown-it</a> parser for its editor. This parser can be configured to change the output according to your needs. The default values of <code>EDITOR_CONF</code> are given below. Refer to the <a href="https://github.com/markdown-it/markdown-it#init-with-presets-and-options">markdown-it docs</a> for a full list of possible options.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">EDITOR_CONF</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">autosave</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span><span class="w"></span>
-<span class="w">  </span><span class="nt">settings</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">linkify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="w">    </span><span class="nt">html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
-<span class="w">    </span><span class="nt">xhtmlOut</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
-<span class="w">    </span><span class="nt">breaks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="w">    </span><span class="nt">typographer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
-<span class="w">  </span><span class="nt">plugins</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
-<span class="w">  </span><span class="nt">toolbar_icons</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;bold&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;italic&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;link&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;upload-image&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;heading&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;strikethrough&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;quote&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;table&quot;</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># see https://github.com/Ionaru/easy-markdown-editor#toolbar-icons for more options</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">EDITOR_CONF</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">autosave</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="w">  </span><span class="nt">settings</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">linkify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">xhtmlOut</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">breaks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">typographer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">plugins</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="nt">toolbar_icons</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;bold&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;italic&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;link&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;upload-image&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;heading&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;strikethrough&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;quote&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;table&quot;</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># see https://github.com/Ionaru/easy-markdown-editor#toolbar-icons for more options</span>
 </code></pre></div>
 <p>Archivy uses several markdown plugins to enhance its functionality:</p>
 <ul>
@@ -1022,14 +1022,14 @@ specification</a>:
 <li><a href="https://github.com/goessner/markdown-it-texmath">markdown-it-texmath</a></li>
 </ul>
 <p>Some of these plugins (see below) can be configured and modified. Refer to their homepages above to see what you can change. They are set up with the following configuration by default:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">EDITOR_CONF</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">plugins</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">markdownitFootnote</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w"></span>
-<span class="w">    </span><span class="nt">markdownitMark</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w"></span>
-<span class="w">    </span><span class="nt">markdownItAnchor</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">permalink</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w"></span>
-<span class="w">      </span><span class="nt">permalinkSymbol</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;¶&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">markdownItTocDoneRight</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">EDITOR_CONF</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">plugins</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">markdownitFootnote</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">    </span><span class="nt">markdownitMark</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">    </span><span class="nt">markdownItAnchor</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">permalink</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">      </span><span class="nt">permalinkSymbol</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;¶&#39;</span>
+<span class="w">    </span><span class="nt">markdownItTocDoneRight</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
 </code></pre></div>
 
               

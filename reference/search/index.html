@@ -921,7 +921,7 @@
         <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_to_index</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Adds dataobj to given index. If object of given id already exists, it will be updated.</span>
 
 <span class="sd">    Params:</span>
@@ -964,7 +964,7 @@
         <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_ripgrep_line</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Parses a line of ripgrep JSON output&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parses a line of ripgrep JSON output&quot;&quot;&quot;</span>
     <span class="n">hit</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">if</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;begin&quot;</span><span class="p">:</span>
@@ -1005,7 +1005,7 @@
         <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">query_es_index</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns search results for your given query</span>
 
 <span class="sd">    Specify strict=True if you want only exact result (in case you&#39;re using ES.</span>
@@ -1071,7 +1071,7 @@ Returns a list of dicts with detailed matches.</p>
         <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">query_ripgrep</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Uses ripgrep to search data with a simpler setup than ES.</span>
 <span class="sd">    Returns a list of dicts with detailed matches.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1123,7 +1123,7 @@ Mandatory reference: https://xkcd.com/1171/</p>
         <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">query_ripgrep_tags</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Uses ripgrep to search for tags.</span>
 <span class="sd">    Mandatory reference: https://xkcd.com/1171/</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1173,7 +1173,7 @@ Mandatory reference: https://xkcd.com/1171/</p>
         <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">remove_from_index</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Removes object of given id&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Removes object of given id&quot;&quot;&quot;</span>
     <span class="n">es</span> <span class="o">=</span> <span class="n">get_elastic_client</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">es</span><span class="p">:</span>
         <span class="k">return</span>
@@ -1204,7 +1204,7 @@ Mandatory reference: https://xkcd.com/1171/</p>
         <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Wrapper to search methods for different engines.</span>
 
 <span class="sd">    If using ES, specify strict=True if you only want results that strictly match the query, without parsing / tokenization.</span>
@@ -1238,7 +1238,7 @@ Mandatory reference: https://xkcd.com/1171/</p>
         <details class="quote">
           <summary>Source code in <code>archivy/search.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">search_frontmatter_tags</span><span class="p">(</span><span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a list of dataobj ids that have the given tag.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">archivy.data</span> <span class="kn">import</span> <span class="n">get_data_dir</span>
