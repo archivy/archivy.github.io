@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="../../img/logo-2.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.7">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.2.7">
     
     
       
@@ -1055,7 +1055,7 @@
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.Directory">
+<h2 id="archivy.data.Directory" class="doc doc-heading">
         <code>
 Directory        </code>
 
@@ -1107,8 +1107,8 @@ Directory        </code>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.build_dir_tree">
-<code class="highlight language-python"><span class="n">build_dir_tree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">query_dir</span><span class="p">,</span> <span class="n">load_content</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+<h2 id="archivy.data.build_dir_tree" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">build_dir_tree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">query_dir</span><span class="p">)</span></code>
 
 
 </h2>
@@ -1119,20 +1119,16 @@ Directory        </code>
 <ul>
 <li><strong>path</strong>: name of the directory relative to the root directory.</li>
 <li><strong>query_dir</strong>: absolute path of the directory we're building the tree of.</li>
-<li><strong>load_content</strong>: internal option to not save post contents in memory
-    if they're not going to be accessed.</li>
 </ul>
 
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">build_dir_tree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">query_dir</span><span class="p">,</span> <span class="n">load_content</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">build_dir_tree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">query_dir</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Builds a structured tree of directories and data objects.</span>
 
 <span class="sd">    - **path**: name of the directory relative to the root directory.</span>
 <span class="sd">    - **query_dir**: absolute path of the directory we&#39;re building the tree of.</span>
-<span class="sd">    - **load_content**: internal option to not save post contents in memory</span>
-<span class="sd">        if they&#39;re not going to be accessed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">datacont</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">path</span> <span class="ow">or</span> <span class="s2">&quot;root&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">query_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">):</span>
@@ -1153,9 +1149,7 @@ Directory        </code>
                 <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">last_seg</span><span class="p">]</span> <span class="o">=</span> <span class="n">Directory</span><span class="p">(</span><span class="n">last_seg</span><span class="p">)</span>
             <span class="n">current_dir</span> <span class="o">=</span> <span class="n">current_dir</span><span class="o">.</span><span class="n">child_dirs</span><span class="p">[</span><span class="n">last_seg</span><span class="p">]</span>
         <span class="k">elif</span> <span class="n">last_seg</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">):</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">load_content</span><span class="p">:</span>
-                <span class="n">data</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">load_frontmatter</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
             <span class="n">current_dir</span><span class="o">.</span><span class="n">child_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">datacont</span>
 </code></pre></div>
@@ -1170,7 +1164,7 @@ Directory        </code>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.create">
+<h2 id="archivy.data.create" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">create</span><span class="p">(</span><span class="n">contents</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
 
 
@@ -1221,7 +1215,7 @@ Directory        </code>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.create_dir">
+<h2 id="archivy.data.create_dir" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">create_dir</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></code>
 
 
@@ -1253,7 +1247,7 @@ Directory        </code>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.delete_dir">
+<h2 id="archivy.data.delete_dir" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">delete_dir</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></code>
 
 
@@ -1288,7 +1282,7 @@ Directory        </code>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.delete_item">
+<h2 id="archivy.data.delete_item" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">delete_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span></code>
 
 
@@ -1318,7 +1312,7 @@ Directory        </code>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.format_file">
+<h2 id="archivy.data.format_file" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">format_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></code>
 
 
@@ -1384,7 +1378,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.get_by_id">
+<h2 id="archivy.data.get_by_id" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get_by_id</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span></code>
 
 
@@ -1412,7 +1406,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.get_data_dir">
+<h2 id="archivy.data.get_data_dir" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get_data_dir</span><span class="p">()</span></code>
 
 
@@ -1439,7 +1433,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.get_dirs">
+<h2 id="archivy.data.get_dirs" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get_dirs</span><span class="p">()</span></code>
 
 
@@ -1473,7 +1467,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.get_item">
+<h2 id="archivy.data.get_item" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">)</span></code>
 
 
@@ -1509,8 +1503,8 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.get_items">
-<code class="highlight language-python"><span class="n">get_items</span><span class="p">(</span><span class="n">collections</span><span class="o">=</span><span class="p">[],</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">structured</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">json_format</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">load_content</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+<h2 id="archivy.data.get_items" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_items</span><span class="p">(</span><span class="n">collections</span><span class="o">=</span><span class="p">[],</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">structured</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">json_format</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 
 </h2>
@@ -1530,9 +1524,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
         <details class="quote">
           <summary>Source code in <code>archivy/data.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_items</span><span class="p">(</span>
-    <span class="n">collections</span><span class="o">=</span><span class="p">[],</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">structured</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">json_format</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">load_content</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_items</span><span class="p">(</span><span class="n">collections</span><span class="o">=</span><span class="p">[],</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">structured</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">json_format</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets all dataobjs.</span>
 
@@ -1555,9 +1547,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">datacont</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">query_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.md&quot;</span><span class="p">):</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">load_content</span><span class="p">:</span>
-                <span class="n">data</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">load_frontmatter</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
             <span class="n">data</span><span class="p">[</span><span class="s2">&quot;fullpath&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">query_dir</span><span class="p">))</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">collections</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span>
                 <span class="p">[</span><span class="n">collection</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">collection</span> <span class="ow">in</span> <span class="n">collections</span><span class="p">]</span>
@@ -1583,7 +1573,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.is_relative_to">
+<h2 id="archivy.data.is_relative_to" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">is_relative_to</span><span class="p">(</span><span class="n">sub_path</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span></code>
 
 
@@ -1611,11 +1601,12 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
+
   <div class="doc doc-object doc-function">
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.move_item">
+<h2 id="archivy.data.move_item" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">move_item</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_path</span><span class="p">)</span></code>
 
 
@@ -1651,7 +1642,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.open_file">
+<h2 id="archivy.data.open_file" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">open_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></code>
 
 
@@ -1684,7 +1675,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.save_image">
+<h2 id="archivy.data.save_image" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">save_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span></code>
 
 
@@ -1725,7 +1716,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.unformat_file">
+<h2 id="archivy.data.unformat_file" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">unformat_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">)</span></code>
 
 
@@ -1786,7 +1777,7 @@ and a filename of format "{id}-{old_filename}.md"</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.update_item_frontmatter">
+<h2 id="archivy.data.update_item_frontmatter" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">update_item_frontmatter</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_frontmatter</span><span class="p">)</span></code>
 
 
@@ -1851,7 +1842,7 @@ type: note/bookmark</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.data.update_item_md">
+<h2 id="archivy.data.update_item_md" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">update_item_md</span><span class="p">(</span><span class="n">dataobj_id</span><span class="p">,</span> <span class="n">new_content</span><span class="p">)</span></code>
 
 

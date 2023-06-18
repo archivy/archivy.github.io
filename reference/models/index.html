@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="../../img/logo-2.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.7">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.2.7">
     
     
       
@@ -952,7 +952,7 @@
 
 
 
-<h2 class="doc doc-heading" id="archivy.models.DataObj">
+<h2 id="archivy.models.DataObj" class="doc doc-heading">
         <code>
 DataObj        </code>
 
@@ -991,7 +991,8 @@ the db with their contents.</p>
 
         <details class="quote">
           <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">DataObj</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="nd">@attrs</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">DataObj</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class that holds a data object (either a note or a bookmark).</span>
 
@@ -1244,7 +1245,7 @@ the db with their contents.</p>
 
 
 
-<h3 class="doc doc-heading" id="archivy.models.DataObj.extract_content">
+<h3 id="archivy.models.DataObj.extract_content" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">extract_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beautsoup</span><span class="p">,</span> <span class="n">selector</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 
@@ -1311,7 +1312,7 @@ the db with their contents.</p>
 
 
 
-<h3 class="doc doc-heading" id="archivy.models.DataObj.from_md">
+<h3 id="archivy.models.DataObj.from_md" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">from_md</span><span class="p">(</span><span class="n">md_content</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
@@ -1374,7 +1375,7 @@ the db with their contents.</p>
 
 
 
-<h3 class="doc doc-heading" id="archivy.models.DataObj.insert">
+<h3 id="archivy.models.DataObj.insert" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
@@ -1437,7 +1438,7 @@ the db with their contents.</p>
 
 
 
-<h3 class="doc doc-heading" id="archivy.models.DataObj.process_bookmark_url">
+<h3 id="archivy.models.DataObj.process_bookmark_url" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">process_bookmark_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_html</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 
@@ -1505,7 +1506,7 @@ the db with their contents.</p>
 
 
 
-<h3 class="doc doc-heading" id="archivy.models.DataObj.validate">
+<h3 id="archivy.models.DataObj.validate" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
@@ -1540,7 +1541,7 @@ the db with their contents.</p>
 
 
 
-<h3 class="doc doc-heading" id="archivy.models.DataObj.wipe">
+<h3 id="archivy.models.DataObj.wipe" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">wipe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
@@ -1578,7 +1579,7 @@ the db with their contents.</p>
 
 
 
-<h2 class="doc doc-heading" id="archivy.models.User">
+<h2 id="archivy.models.User" class="doc doc-heading">
         <code>
 User            (<span title="flask_login.mixins.UserMixin">UserMixin</span>)
         </code>
@@ -1599,7 +1600,8 @@ User            (<span title="flask_login.mixins.UserMixin">UserMixin</span>)
 
         <details class="quote">
           <summary>Source code in <code>archivy/models.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="nd">@attrs</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Model we use for User that inherits from flask login&#39;s</span>
 <span class="sd">    [`UserMixin`](https://flask-login.readthedocs.io/en/latest/#flask_login.UserMixin)</span>
@@ -1664,7 +1666,7 @@ User            (<span title="flask_login.mixins.UserMixin">UserMixin</span>)
 
 
 
-<h3 class="doc doc-heading" id="archivy.models.User.from_db">
+<h3 id="archivy.models.User.from_db" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">from_db</span><span class="p">(</span><span class="n">db_object</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
@@ -1698,7 +1700,7 @@ User            (<span title="flask_login.mixins.UserMixin">UserMixin</span>)
 
 
 
-<h3 class="doc doc-heading" id="archivy.models.User.insert">
+<h3 id="archivy.models.User.insert" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
 
